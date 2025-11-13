@@ -1,12 +1,20 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import projectImage from "@/assets/project-1.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const WorkSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="w-full max-w-6xl py-16 px-8">
+    <section 
+      ref={ref}
+      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8">Work</h2>
+        <h2 className="text-3xl font-bold mb-8">Timeline</h2>
       
         <div>
         <div 

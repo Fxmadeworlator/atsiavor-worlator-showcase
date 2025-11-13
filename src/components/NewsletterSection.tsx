@@ -1,10 +1,18 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const NewsletterSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="w-full max-w-6xl py-16 px-8 border-t border-border">
+    <section 
+      ref={ref}
+      className={`w-full max-w-6xl py-16 px-8 border-t border-border transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
         <p className="text-muted-foreground mb-8">

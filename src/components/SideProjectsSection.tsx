@@ -1,7 +1,9 @@
 import { ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const SideProjectsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
   const projects = [
     {
       icon: "💬",
@@ -26,9 +28,14 @@ const SideProjectsSection = () => {
   ];
 
   return (
-    <section className="w-full max-w-6xl py-16 px-8">
+    <section 
+      ref={ref}
+      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8">Side Projects</h2>
+        <h2 className="text-3xl font-bold mb-8">Projects</h2>
       
         <div className="space-y-3">
         {projects.map((project, index) => (

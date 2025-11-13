@@ -1,9 +1,17 @@
 import { Button } from "./ui/button";
 import profileImage from "@/assets/profile.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HeroSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="w-full max-w-6xl py-16 px-8">
+    <section 
+      ref={ref}
+      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-3xl mx-auto">
         <div className="mb-6">
           <img 
@@ -17,12 +25,12 @@ const HeroSection = () => {
         <p className="text-lg text-muted-foreground mb-6">How's your Thursday?</p>
         
         <p className="text-base text-foreground/90 leading-relaxed mb-8">
-          Hey there! I'm Atsiavor Worlator, your friendly neighborhood CAD wizard from the 
-          mystical land of Haridwar (yep, the place considered as a gateway to lord). With 5+ 
-          years of doodling... uh, I mean designing, I turn "wait, how?" ideas into "wow, that's 
-          slick!" reality. Whether I'm jamming with a team of quirky geniuses or flying solo like a 
-          design ninja, I bring a mix of creativity, precision, and just enough magic to make 
-          projects shine.
+          I'm a student with 3–5 years of coding experience, depending on whether you count the days I spent debugging… which absolutely should count because that's where the real learning happens.
+          <br /><br />
+          I build software, break software, fix the software I broke, and sometimes pretend I meant to do it all along. I love tech, cyber security, and anything that lets me turn caffeine into code.
+          <br /><br />
+          If you're here to see my projects, scroll down.
+          If you're here to judge my life choices… at least look at the projects first.
         </p>
         
         <Button 
