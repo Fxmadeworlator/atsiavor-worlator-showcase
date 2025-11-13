@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      <main className="ml-64 p-16">
+      <main className="p-16">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
           <p className="text-lg text-muted-foreground mb-8">

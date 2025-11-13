@@ -10,19 +10,21 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-nav-bg flex items-center justify-center">
-      <nav className="flex flex-col gap-2 w-full px-8">
+    <aside className="fixed left-0 top-0 h-screen flex items-center justify-center z-50">
+      <nav className="flex flex-col gap-3 p-4 bg-nav-bg/80 backdrop-blur-sm rounded-3xl border border-border shadow-lg ml-6">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
             <NavLink
               key={item.path}
               to={item.path}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-nav-item hover:text-nav-item-hover hover:bg-secondary transition-all duration-200"
-              activeClassName="!text-nav-item-active bg-secondary font-medium"
+              className="group relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-300 hover:scale-110 hover:shadow-md overflow-hidden w-12 hover:w-auto hover:pr-4"
+              activeClassName="!text-nav-item-active !bg-secondary font-medium"
             >
-              <Icon className="w-5 h-5" />
-              <span>{item.label}</span>
+              <Icon className="w-5 h-5 flex-shrink-0" />
+              <span className="ml-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-w-0 group-hover:max-w-xs">
+                {item.label}
+              </span>
             </NavLink>
           );
         })}
