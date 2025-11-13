@@ -3,8 +3,8 @@ import profileImage from "@/assets/profile.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="py-16 px-8">
-      <div className="max-w-3xl">
+    <section className="w-full max-w-6xl py-16 px-8">
+      <div className="max-w-3xl mx-auto">
         <div className="mb-6">
           <img 
             src={profileImage} 

@@ -4,10 +4,11 @@ import projectImage from "@/assets/project-1.jpg";
 
 const WorkSection = () => {
   return (
-    <section className="py-16 px-8">
-      <h2 className="text-3xl font-bold mb-8">Work</h2>
+    <section className="w-full max-w-6xl py-16 px-8">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Work</h2>
       
-      <div className="max-w-4xl">
+        <div>
         <div 
           className="relative rounded-3xl overflow-hidden mb-6 group cursor-pointer"
           style={{
@@ -47,6 +48,7 @@ const WorkSection = () => {
             </Button>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
