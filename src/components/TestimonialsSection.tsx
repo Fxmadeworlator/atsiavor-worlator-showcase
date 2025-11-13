@@ -1,4 +1,8 @@
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const TestimonialsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+  
   const testimonials = [
     {
       name: "Vishnumaya Unni",
@@ -18,7 +22,12 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="w-full max-w-6xl py-16 px-8">
+    <section 
+      ref={ref}
+      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
