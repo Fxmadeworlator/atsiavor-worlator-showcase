@@ -14,10 +14,9 @@ const NewsletterSection = () => {
       }`}
     >
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
+        <h2 className="text-3xl font-bold mb-4">Attendance</h2>
         <p className="text-muted-foreground mb-8">
-          I document my learnings once a month. I would love to share them with you over mail.<br />
-          No bulls**t. No spam. Straight up value.
+          Don’t leave your email for attendance. Seriously. Don’t. (But if you do… nice.)
         </p>
         
         <div className="flex gap-3 max-w-xl mx-auto mb-12">
@@ -27,7 +26,7 @@ const NewsletterSection = () => {
             className="h-12 rounded-full border-border"
           />
           <Button size="lg" className="rounded-full px-8 whitespace-nowrap">
-            Subscribe
+            was here!
           </Button>
         </div>
         
