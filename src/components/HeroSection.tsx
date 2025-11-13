@@ -26,9 +26,9 @@ const HeroSection = () => {
         
         <p className="text-base text-foreground/90 leading-relaxed mb-8">
           I'm a student with 3–5 years of coding experience, depending on whether you count the days I spent debugging… which absolutely should count because that's where the real learning happens.
-          <br /><br />
+      
           I build software, break software, fix the software I broke, and sometimes pretend I meant to do it all along. I love tech, cyber security, and anything that lets me turn caffeine into code.
-          <br /><br />
+        
           If you're here to see my projects, scroll down.
           If you're here to judge my life choices… at least look at the projects first.
         </p>
