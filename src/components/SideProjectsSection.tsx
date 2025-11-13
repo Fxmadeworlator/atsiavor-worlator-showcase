@@ -26,10 +26,11 @@ const SideProjectsSection = () => {
   ];
 
   return (
-    <section className="py-16 px-8">
-      <h2 className="text-3xl font-bold mb-8">Side Projects</h2>
+    <section className="w-full max-w-6xl py-16 px-8">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Side Projects</h2>
       
-      <div className="max-w-4xl space-y-3">
+        <div className="space-y-3">
         {projects.map((project, index) => (
           <div
             key={index}
@@ -50,6 +51,7 @@ const SideProjectsSection = () => {
             </Button>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );

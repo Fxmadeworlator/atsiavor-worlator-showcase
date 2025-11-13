@@ -9,7 +9,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      <main>
+      <main className="flex flex-col items-center justify-center">
         <HeroSection />
         <WorkSection />
         <SideProjectsSection />

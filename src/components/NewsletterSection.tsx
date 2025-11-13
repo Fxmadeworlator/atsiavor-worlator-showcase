@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
 
 const NewsletterSection = () => {
   return (
-    <section className="py-16 px-8 border-t border-border">
+    <section className="w-full max-w-6xl py-16 px-8 border-t border-border">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
         <p className="text-muted-foreground mb-8">
