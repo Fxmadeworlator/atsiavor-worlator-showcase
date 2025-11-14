@@ -21,31 +21,38 @@ const TestimonialsSection = () => {
     },
   ];
 
+  // Duplicate testimonials for seamless infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
   return (
     <section 
       ref={ref}
-      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+      className={`w-full py-16 px-8 transition-all duration-700 overflow-hidden ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-3xl mx-auto">
-        <div className="grid grid-cols-1 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
-            >
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {testimonial.text}
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-xl">
-                  {testimonial.avatar}
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-center">Reviews</h2>
+        
+        <div className="relative">
+          <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused]">
+            {duplicatedTestimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 min-w-[400px] flex-shrink-0"
+              >
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {testimonial.text}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-xl">
+                    {testimonial.avatar}
+                  </div>
+                  <span className="font-medium">{testimonial.name}</span>
                 </div>
-                <span className="font-medium">{testimonial.name}</span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
