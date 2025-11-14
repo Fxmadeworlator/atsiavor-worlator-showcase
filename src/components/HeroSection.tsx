@@ -21,10 +21,10 @@ const HeroSection = () => {
           />
         </div>
         
-        <h1 className="text-3xl font-bold mb-2">Hey, Etor here</h1>
-        <p className="text-base text-muted-foreground mb-6">How's your day going?</p>
+        <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
+        <p className="text-lg text-muted-foreground mb-6">How's your day going?</p>
         
-        <p className="text-sm text-foreground/90 leading-relaxed mb-8">
+        <p className="text-base text-foreground/90 leading-relaxed mb-8">
           Hey There! My name is Worlator "Etor" Atsiavor. I'm a student with 3–5 years of coding experience, depending on whether you count the days I spent debugging… which absolutely should count because that's where the real learning happens.
       
           I build software, break software, fix the software I broke, and sometimes pretend I meant to do it all along. I love tech, cyber security, and anything that lets me turn caffeine into code.

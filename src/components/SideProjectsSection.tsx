@@ -35,19 +35,22 @@ const SideProjectsSection = () => {
       }`}
     >
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold mb-8">Projects</h2>
+        <h2 className="text-3xl font-bold mb-8">Projects</h2>
       
         <div className="space-y-3">
         {projects.map((project, index) => (
           <div
             key={index}
             className="flex items-center justify-between p-4 rounded-2xl hover:bg-secondary transition-all duration-200 group cursor-pointer"
+            style={{
+              animation: `fade-in 0.5s ease-out ${index * 0.1}s backwards`
+            }}
           >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center text-2xl">
                 {project.icon}
               </div>
-              <span className="text-sm font-medium">{project.title}</span>
+              <span className="font-medium">{project.title}</span>
             </div>
             <Button 
               variant="ghost" 
