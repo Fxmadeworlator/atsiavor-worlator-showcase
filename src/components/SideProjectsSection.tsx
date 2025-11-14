@@ -34,8 +34,8 @@ const SideProjectsSection = () => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8">Projects</h2>
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold mb-8">Projects</h2>
       
         <div className="space-y-3">
         {projects.map((project, index) => (
@@ -47,7 +47,7 @@ const SideProjectsSection = () => {
               <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center text-2xl">
                 {project.icon}
               </div>
-              <span className="font-medium">{project.title}</span>
+              <span className="text-sm font-medium">{project.title}</span>
             </div>
             <Button 
               variant="ghost" 
