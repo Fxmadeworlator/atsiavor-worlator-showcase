@@ -11,7 +11,7 @@ const TestimonialsSection = () => {
     },
     {
       name: "Emmanuel",
-      text: "Worked with Worlator on the AGTV site and other projects. Dedicated, efficient, and a realcomputer nerd. Wishing him the best ahead.",
+      text: "Worked with Worlator on the AGTV site and other projects. Dedicated, efficient, and a real computer nerd. Wishing him the best ahead.",
       avatar: "👤",
     },
     {
