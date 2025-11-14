@@ -27,15 +27,19 @@ const TestimonialsSection = () => {
   return (
     <section 
       ref={ref}
-      className={`w-full py-16 px-8 transition-all duration-700 overflow-hidden ${
+      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Reviews</h2>
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Reviews</h2>
         
-        <div className="relative">
-          <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused]">
+        <div className="relative overflow-hidden">
+          {/* Fade effect overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused] overflow-hidden">
             {duplicatedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
