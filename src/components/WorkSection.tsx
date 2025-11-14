@@ -9,7 +9,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const timelineItems = [
   {
     id: 1,
-    title: "Leeds Becket University",
+    title: "Leeds Beckett University",
     period: "(2025 - Present)",
     icon: "🎓",
     image: leedsBecketImage,
