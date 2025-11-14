@@ -5,18 +5,18 @@ const TestimonialsSection = () => {
   
   const testimonials = [
     {
-      name: "Vishnumaya Unni",
-      text: "Atsiavor is a great person to work with. He is madly obsessed over cars and he is very passionate about the things he love.",
+      name: "Ernest",
+      text: "Etor approaches tasks with clarity and focus, and his solutions are clean and well-structured. I was impressed by how fast he executed the features without compromising quality.",
       avatar: "👤",
     },
     {
-      name: "Saliq Shah",
-      text: "Worked with Atsiavor on our Major Project, the Dynamometer, and other projects. Dedicated, passionate, and a true petrol head. Wishing him the best ahead.",
+      name: "Emmanuel",
+      text: "Worked with Worlator on the AGTV site and other projects. Dedicated, efficient, and a realcomputer nerd. Wishing him the best ahead.",
       avatar: "👤",
     },
     {
       name: "Subodh Dangi",
-      text: "There are very few people in this world who are driven by just the looks of some cars, atsiavor is one of them. I can recommend him to entrust with any job as I know I will get much more than just the required results.",
+      text: "Reliable, organized, and efficient. He communicates clearly, works independently, and consistently delivers on time. I’d gladly work with him again on future projects.",
       avatar: "👤",
     },
   ];
