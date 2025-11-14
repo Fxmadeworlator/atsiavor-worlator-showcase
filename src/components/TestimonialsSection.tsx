@@ -39,7 +39,7 @@ const TestimonialsSection = () => {
             {duplicatedTestimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 min-w-[400px] flex-shrink-0"
+                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 min-w-[300px] max-w-[300px] flex-shrink-0"
               >
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   {testimonial.text}
