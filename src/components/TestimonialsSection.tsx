@@ -28,14 +28,14 @@ const TestimonialsSection = () => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 gap-6">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
             >
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                 {testimonial.text}
               </p>
               <div className="flex items-center gap-3">
