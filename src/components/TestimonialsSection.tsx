@@ -15,7 +15,7 @@ const TestimonialsSection = () => {
       avatar: "👤",
     },
     {
-      name: "Subodh Dangi",
+      name: "Maxwell",
       text: "Reliable, organized, and efficient. He communicates clearly, works independently, and consistently delivers on time. I’d gladly work with him again on future projects.",
       avatar: "👤",
     },
