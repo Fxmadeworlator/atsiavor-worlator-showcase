@@ -14,11 +14,6 @@ const HeroSection = () => {
     >
       <div className="max-w-3xl mx-auto">
         <div className="mb-6">
-          <img 
-            src={profileImage} 
-            alt="Atsiavor Worlator"
-            className="w-24 h-24 rounded-full object-cover shadow-lg"
-          />
         </div>
         
         <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
