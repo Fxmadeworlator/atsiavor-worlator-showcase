@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
               key={index}
               className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
             >
-              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 {testimonial.text}
               </p>
               <div className="flex items-center gap-3">
