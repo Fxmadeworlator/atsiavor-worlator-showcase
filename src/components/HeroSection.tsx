@@ -12,14 +12,6 @@ const HeroSection = () => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-6">
-          <img 
-            src={profileImage} 
-            alt="Atsiavor Worlator"
-            className="w-24 h-24 rounded-full object-cover shadow-lg"
-          />
-        </div>
         
         <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
         <p className="text-lg text-muted-foreground mb-6">How's your day going?</p>
