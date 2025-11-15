@@ -50,6 +50,11 @@ const About = () => {
           <p>Currently at Leeds Beckett University</p>
           <p>Previously at Accra Technical University</p>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div className="rounded-3xl overflow-hidden mt-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
           <img 
             src={heroImage} 
