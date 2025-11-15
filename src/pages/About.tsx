@@ -1,5 +1,15 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import heroImage from "@/assets/about-hero.jpg";
+import engineering1 from "@/assets/about-engineering-1.jpg";
+import engineering2 from "@/assets/about-engineering-2.jpg";
+import shell1 from "@/assets/about-shell-1.jpg";
+import shell2 from "@/assets/about-shell-2.jpg";
+import civic1 from "@/assets/about-civic-1.jpg";
+import civic2 from "@/assets/about-civic-2.jpg";
+import evImage from "@/assets/about-ev.jpg";
+import teaching1 from "@/assets/about-teaching-1.jpg";
+import teaching2 from "@/assets/about-teaching-2.jpg";
 
 const AboutSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation();
@@ -31,9 +41,16 @@ const About = () => {
         <p className="text-xl text-muted-foreground mb-4">
           I like building my ideas.
         </p>
-        <div className="text-base text-muted-foreground space-y-2">
+        <div className="text-base text-muted-foreground space-y-2 mb-8">
           <p>Currently at Leeds Beckett University</p>
           <p>Previously at Accra Technical University</p>
+        </div>
+        <div className="rounded-3xl overflow-hidden mt-8">
+          <img 
+            src={heroImage} 
+            alt="Hero background"
+            className="w-full h-auto object-cover"
+          />
         </div>
       </AboutSection>
 
@@ -51,6 +68,24 @@ const About = () => {
       <AboutSection className="snap-start">
         <h3 className="text-3xl font-bold mb-2">Engineering Foundations</h3>
         <p className="text-sm text-muted-foreground mb-8">2017 - 2021</p>
+        
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={engineering1} 
+              alt="Engineering workshop"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={engineering2} 
+              alt="Modified car"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        
         <p className="text-base text-foreground/90 leading-relaxed">
           I began my career as a Mechanical Engineer, which basically meant spending half my 
           time solving problems and the other half creating new ones by "fixing" things. Working 
@@ -67,6 +102,24 @@ const About = () => {
       <AboutSection className="snap-start">
         <h3 className="text-3xl font-bold mb-2">Infleon Supermileage (Shell Eco-Marathon)</h3>
         <p className="text-sm text-muted-foreground mb-8">2019-2021</p>
+        
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={shell1} 
+              alt="Shell Eco-Marathon racing vehicle"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={shell2} 
+              alt="Team celebrating with trophy"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        
         <p className="text-base text-foreground/90 leading-relaxed">
           In my college days, I designed a reverse clutch mechanism- basically convincing the 
           car to run smarter, not harder. After weeks of trial, error, and arguments over whether 
@@ -81,6 +134,24 @@ const About = () => {
       <AboutSection className="snap-start">
         <h3 className="text-3xl font-bold mb-2">2008 Honda Civic Modification</h3>
         <p className="text-sm text-muted-foreground mb-8">2021</p>
+        
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={civic1} 
+              alt="Modified Honda Civic with LED headlights"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={civic2} 
+              alt="Standing with modified Honda Civic"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        
         <p className="text-base text-foreground/90 leading-relaxed">
           My 2008 Honda Civic wasn't just a car, it was a blank canvas begging for personality. I 
           dove into custom modifications like a kid in a candy store, swapping bumpers and 
@@ -96,6 +167,15 @@ const About = () => {
       <AboutSection className="snap-start">
         <h3 className="text-3xl font-bold mb-2">N1 Category Electric Vehicle</h3>
         <p className="text-sm text-muted-foreground mb-8">2021-2023</p>
+        
+        <div className="rounded-2xl overflow-hidden mb-8">
+          <img 
+            src={evImage} 
+            alt="N1 category electric vehicle"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+        
         <p className="text-base text-foreground/90 leading-relaxed">
           Building an N1 category electric vehicle from scratch was like trying to assemble IKEA 
           furniture... if the furniture could move, beep, and occasionally shock you. From 
@@ -112,6 +192,24 @@ const About = () => {
       <AboutSection className="snap-start">
         <h3 className="text-3xl font-bold mb-2">Innovating and Leading</h3>
         <p className="text-sm text-muted-foreground mb-8">2023-2025</p>
+        
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={teaching1} 
+              alt="Teaching CAD and design"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={teaching2} 
+              alt="Students with certificates"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+        
         <p className="text-base text-foreground/90 leading-relaxed">
           Sharing knowledge about CAD and the manufacturing of EVs with the young 
           generation feels a bit like being a tech wizard showing magic tricks, except the magic 
