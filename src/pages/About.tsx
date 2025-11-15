@@ -54,6 +54,11 @@ const About = () => {
         <br></br>
         <br></br>
         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div className="rounded-3xl overflow-hidden mt-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
           <img 
             src={heroImage} 
