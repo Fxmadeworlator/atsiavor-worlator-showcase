@@ -1,6 +1,10 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTypingEffect } from "@/hooks/useTypingEffect";
 import heroImage from "@/assets/about-hero.jpg";
+import heroImage2 from "@/assets/about-hero-2.jpg";
+import heroImage3 from "@/assets/about-hero-3.jpg";
+import heroImage4 from "@/assets/about-hero-4.jpg";
 import engineering1 from "@/assets/about-engineering-1.jpg";
 import engineering2 from "@/assets/about-engineering-2.jpg";
 import shell1 from "@/assets/about-shell-1.jpg";
@@ -29,14 +33,16 @@ const AboutSection = ({ children, className = "" }: { children: React.ReactNode;
 };
 
 const About = () => {
+  const typedText = useTypingEffect("Hey, Etor here 👋", 100);
+  
   return (
     <div className="bg-background snap-y snap-mandatory overflow-y-scroll h-screen">
       <Sidebar />
       
       {/* Hero Section */}
       <AboutSection className="snap-start">
-        <h1 className="text-5xl font-bold mb-6">
-          Hey, Etor here 👋
+        <h1 className="text-5xl font-bold mb-6 min-h-[60px]">
+          {typedText}
         </h1>
         <p className="text-xl text-muted-foreground mb-4">
           I like building my ideas.
@@ -45,12 +51,35 @@ const About = () => {
           <p>Currently at Leeds Beckett University</p>
           <p>Previously at Accra Technical University</p>
         </div>
-        <div className="rounded-3xl overflow-hidden mt-8">
+        <div className="rounded-3xl overflow-hidden mt-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
           <img 
             src={heroImage} 
             alt="Hero background"
             className="w-full h-auto object-cover"
           />
+        </div>
+        <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
+            <img 
+              src={heroImage2} 
+              alt="Workshop scene"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
+            <img 
+              src={heroImage3} 
+              alt="Engineering workspace"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}>
+            <img 
+              src={heroImage4} 
+              alt="Technical lab"
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </div>
       </AboutSection>
 
@@ -70,14 +99,14 @@ const About = () => {
         <p className="text-sm text-muted-foreground mb-8">2017 - 2021</p>
         
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
             <img 
               src={engineering1} 
               alt="Engineering workshop"
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
             <img 
               src={engineering2} 
               alt="Modified car"
@@ -104,14 +133,14 @@ const About = () => {
         <p className="text-sm text-muted-foreground mb-8">2019-2021</p>
         
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
             <img 
               src={shell1} 
               alt="Shell Eco-Marathon racing vehicle"
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
             <img 
               src={shell2} 
               alt="Team celebrating with trophy"
@@ -136,14 +165,14 @@ const About = () => {
         <p className="text-sm text-muted-foreground mb-8">2021</p>
         
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
             <img 
               src={civic1} 
               alt="Modified Honda Civic with LED headlights"
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
             <img 
               src={civic2} 
               alt="Standing with modified Honda Civic"
@@ -168,7 +197,7 @@ const About = () => {
         <h3 className="text-3xl font-bold mb-2">N1 Category Electric Vehicle</h3>
         <p className="text-sm text-muted-foreground mb-8">2021-2023</p>
         
-        <div className="rounded-2xl overflow-hidden mb-8">
+        <div className="rounded-2xl overflow-hidden mb-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
           <img 
             src={evImage} 
             alt="N1 category electric vehicle"
@@ -194,14 +223,14 @@ const About = () => {
         <p className="text-sm text-muted-foreground mb-8">2023-2025</p>
         
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
             <img 
               src={teaching1} 
               alt="Teaching CAD and design"
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
             <img 
               src={teaching2} 
               alt="Students with certificates"
