@@ -31,7 +31,12 @@ const AboutSection = ({ children, className = "" }: { children: React.ReactNode;
     </section>
   );
 };
-
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+          
 const About = () => {
   const typedText = useTypingEffect("Hey there 👋 I’m Etor, I collect ideas and build the brave ones.", 100);
   
