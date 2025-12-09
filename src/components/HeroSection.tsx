@@ -8,14 +8,11 @@ const HeroSection = () => {
   return (
     <section 
       ref={ref}
-      className={`w-full max-w-6xl py-16 px-8 transition-all duration-700 ${
+      className={`w-full flex items-center justify-center min-h-[70vh] py-16 px-8 transition-all duration-700 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-6">
-        </div>
-        
+      <div className="max-w-md text-center">
         <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
         <p className="text-lg text-muted-foreground mb-6">How's your day going?</p>
         
