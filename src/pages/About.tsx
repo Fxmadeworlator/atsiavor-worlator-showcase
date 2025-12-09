@@ -65,20 +65,12 @@ const About = () => {
   
   const timelineData = [
     {
-      year: "Jan 2025",
-      title: "Leeds Beckett University",
-      subtitle: "Pursuing further studies in the UK",
-      description: "Currently expanding my knowledge and skills at Leeds Beckett University. This chapter marks a new adventure — studying abroad, meeting new people, and pushing myself to grow both personally and professionally.",
-      icon: <Rocket className="w-5 h-5" />,
-      isCurrent: true,
-    },
-    {
-      year: "2024",
-      endYear: "2025",
-      title: "Openlabs Software Dev.",
-      subtitle: "Software Development",
-      description: "Transitioned into software development, building real-world applications and diving deep into code. Learned how to turn ideas into functional products, debug at 2am, and appreciate the beauty of clean code.",
-      icon: <Code className="w-5 h-5" />,
+      year: "2017",
+      endYear: "2020",
+      title: "Presbyterian Boys' Senior High School",
+      subtitle: "Legon, Accra",
+      description: "Where it all started. PRESEC shaped my foundation — discipline, curiosity, and the drive to always ask 'why?' and 'what if?'. The friendships and lessons from those years still guide me today.",
+      icon: <GraduationCap className="w-5 h-5" />,
     },
     {
       year: "2021",
@@ -89,12 +81,20 @@ const About = () => {
       icon: <Building2 className="w-5 h-5" />,
     },
     {
-      year: "2017",
-      endYear: "2020",
-      title: "Presbyterian Boys' Senior High School",
-      subtitle: "Legon, Accra",
-      description: "Where it all started. PRESEC shaped my foundation — discipline, curiosity, and the drive to always ask 'why?' and 'what if?'. The friendships and lessons from those years still guide me today.",
-      icon: <GraduationCap className="w-5 h-5" />,
+      year: "2024",
+      endYear: "2025",
+      title: "Openlabs Software Dev.",
+      subtitle: "Software Development",
+      description: "Transitioned into software development, building real-world applications and diving deep into code. Learned how to turn ideas into functional products, debug at 2am, and appreciate the beauty of clean code.",
+      icon: <Code className="w-5 h-5" />,
+    },
+    {
+      year: "Jan 2025",
+      title: "Leeds Beckett University",
+      subtitle: "Pursuing further studies in the UK",
+      description: "Currently expanding my knowledge and skills at Leeds Beckett University. This chapter marks a new adventure — studying abroad, meeting new people, and pushing myself to grow both personally and professionally.",
+      icon: <Rocket className="w-5 h-5" />,
+      isCurrent: true,
       isLast: true,
     },
   ];
