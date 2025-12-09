@@ -6,24 +6,24 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "Discord Community for Gamers",
-    description: "A vibrant community platform for gamers to connect, share strategies, and organize gaming sessions. Built with modern technologies for real-time communication.",
+    title: "Assemblies of God GH TV",
+    description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["Discord.js", "Node.js", "MongoDB"],
     image: "💬",
     github: "#",
     live: "#",
   },
   {
-    title: "Honda Civic 2008 Modification",
-    description: "A comprehensive documentation of my Honda Civic modification journey, including performance upgrades, aesthetic changes, and technical improvements.",
+    title: "Maxwell's Portfolio",
+    description: "A sleek portfolio showcasing Max’s unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["Automotive", "Engineering", "Documentation"],
     image: "🚗",
     github: "#",
     live: "#",
   },
   {
-    title: "Self-Paced Courses Website",
-    description: "An e-learning platform featuring self-paced courses with progress tracking, interactive content, and certificate generation upon completion.",
+    title: "Elibon Events and Deco.",
+    description: "A contemporary event and décor brand transforming every space into a beautifully curated experience.",
     techStack: ["React", "Node.js", "PostgreSQL"],
     image: "📚",
     github: "#",
