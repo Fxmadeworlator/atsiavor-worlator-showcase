@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "Assemblies of God GH TV",
+    title: "Assemblies of God Ghana TV",
     description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
-    techStack: ["Discord.js", "Node.js", "MongoDB"],
+    techStack: ["HTML", "Node.js", "MongoDB"],
     image: "💬",
     github: "#",
     live: "#",
@@ -16,7 +16,7 @@ const projects = [
   {
     title: "Maxwell's Portfolio",
     description: "A sleek portfolio showcasing Max’s unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
-    techStack: ["Automotive", "Engineering", "Documentation"],
+    techStack: ["HTML", "CSS", "Node.js"],
     image: "🚗",
     github: "#",
     live: "#",
@@ -24,7 +24,7 @@ const projects = [
   {
     title: "Elibon Events and Deco.",
     description: "A contemporary event and décor brand transforming every space into a beautifully curated experience.",
-    techStack: ["React", "Node.js", "PostgreSQL"],
+    techStack: ["HTML", "CSS", "Node.js"],
     image: "📚",
     github: "#",
     live: "#",
@@ -32,7 +32,7 @@ const projects = [
   {
     title: "Podcast Series",
     description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into the world of software development.",
-    techStack: ["Audio Production", "Web Development", "Content Creation"],
+    techStack: ["HTML", "CSS", "Node.js"],
     image: "🎙️",
     github: "#",
     live: "#",
