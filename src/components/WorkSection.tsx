@@ -55,23 +55,12 @@ const WorkSection = () => {
         <h2 className="text-3xl font-bold mb-8 transition-all duration-500 delay-100">Timeline</h2>
       
         <div className="transition-all duration-500 delay-200">
-        <div 
-          className="relative rounded-3xl overflow-hidden mb-6 group cursor-pointer"
-          style={{
-            background: "var(--gradient-card)",
-            padding: "1.5rem",
-            boxShadow: "var(--shadow-card)",
-          }}
-        >
-          <div 
-            className="rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[0.98]"
-          >
-            <img 
-              src={currentItem.image}
-              alt={currentItem.title}
-              className="w-full h-auto object-cover"
-            />
-          </div>
+        <div className="relative rounded-2xl overflow-hidden mb-6 group cursor-pointer">
+          <img 
+            src={currentItem.image}
+            alt={currentItem.title}
+            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          />
         </div>
         
         <div className="flex items-center justify-between">
