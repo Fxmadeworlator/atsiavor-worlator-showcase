@@ -32,7 +32,7 @@ const AboutSection = ({ children, className = "" }: { children: React.ReactNode;
   );
 };      
 const About = () => {
-  const typedText = useTypingEffect("Hey there 👋 I’m Etor, I collect ideas and build the brave ones.", 100);
+  const typedText = useTypingEffect("Hi👋 I’m Etor, I collect ideas and build the brave ones.", 100);
   
   return (
     <div className="bg-background snap-y snap-mandatory overflow-y-scroll h-screen">
