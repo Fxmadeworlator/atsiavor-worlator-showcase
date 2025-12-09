@@ -76,7 +76,7 @@ const About = () => {
       year: "2021",
       endYear: "2024",
       title: "Accra Technical University",
-      subtitle: "Higher National Diploma",
+      subtitle: "Bsc. Automobile Engineering",
       description: "Studied Mechanical Engineering and got hands-on experience with design, manufacturing, and everything in between. This is where I built an electric vehicle, competed in Shell Eco-Marathon, and learned that engineering is 50% problem-solving and 50% convincing people that the solution works.",
       icon: <Building2 className="w-5 h-5" />,
     },
