@@ -6,23 +6,23 @@ const SideProjectsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
   const projects = [
     {
-      icon: "💬",
-      title: "Discord Community for Gamers",
+      icon: "📂",
+      title: "/ projects",
       url: "#",
     },
     {
-      icon: "🚗",
-      title: "Honda Civic 2008 Modification",
+      icon: "🎮",
+      title: "/ games",
       url: "#",
     },
     {
       icon: "📚",
-      title: "Self-Paced Courses Website",
+      title: "/ pet projects",
       url: "#",
     },
     {
-      icon: "🎙️",
-      title: "Podcast Series",
+      icon: "🛡️",
+      title: "/ cybersecurity",
       url: "#",
     },
   ];
