@@ -53,9 +53,37 @@ const Projects = () => {
 
   const currentProject = projects[currentIndex];
 
+  const categories = [
+    { label: "Projects", path: "/projects" },
+    { label: "Games", path: "/projects/games" },
+    { label: "Pet Projects", path: "/projects/pet-projects" },
+    { label: "Cybersecurity", path: "/projects/cybersecurity" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
+      
+      {/* Project Categories Navigation - Left Side */}
+      <aside className="fixed left-24 top-0 h-screen flex items-center justify-center z-40">
+        <nav className="flex flex-col gap-2 p-3 bg-nav-bg/80 backdrop-blur-sm rounded-2xl border border-border shadow-lg">
+          {categories.map((category, index) => (
+            <button
+              key={category.path}
+              onClick={() => setCurrentIndex(0)}
+              className={`group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm transition-all duration-200 ease-out hover:translate-x-1 ${
+                index === 0 
+                  ? 'text-nav-item-active bg-secondary font-medium' 
+                  : 'text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary'
+              }`}
+            >
+              <span className="text-muted-foreground">/</span>
+              <span className="whitespace-nowrap">{category.label.toLowerCase()}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
       <main className="min-h-screen flex flex-col items-center px-8">
         <div 
           ref={ref}
