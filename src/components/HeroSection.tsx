@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import profileHero from "@/assets/profile-hero.png";
+import profileHero from "@/assets/profile-hero.jpg";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HeroSection = () => {
@@ -16,7 +16,7 @@ const HeroSection = () => {
         <img 
           src={profileHero}
           alt="Etor"
-          className="w-20 h-20 rounded-full object-cover mb-6"
+          className="w-20 h-20 rounded-full object-cover mb-6 grayscale hover:grayscale-0 transition-all duration-300"
         />
         <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
         <p className="text-lg text-muted-foreground mb-6">How's your day going?</p>
