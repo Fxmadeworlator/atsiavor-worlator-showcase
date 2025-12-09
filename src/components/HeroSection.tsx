@@ -8,7 +8,7 @@ const HeroSection = () => {
   return (
     <section 
       ref={ref}
-      className={`w-full py-8 px-8 transition-all duration-700 ${
+      className={`w-full min-h-[calc(100vh-2rem)] flex items-center py-8 px-8 transition-all duration-700 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
