@@ -39,57 +39,54 @@ const About = () => {
       <Sidebar />
       
       {/* Hero Section */}
-      <AboutSection className="snap-start">
-        <h1 className="text-5xl font-bold mb-6 min-h-[60px]">
-          {typedText}
-        </h1>
-        <p className="text-xl text-muted-foreground mb-4">
-        </p>
-        <div className="text-base text-muted-foreground space-y-2 mb-8">
-          <p>Currently at Leeds Beckett University</p>
-          <p>Previously at Accra Technical University</p>
+      <section className="min-h-screen flex flex-col px-8 snap-start">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-3xl w-full mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-6 min-h-[60px]">
+              {typedText}
+            </h1>
+            <p className="text-xl text-muted-foreground mb-4">
+            </p>
+            <div className="text-base text-muted-foreground space-y-2">
+              <p>Currently at Leeds Beckett University</p>
+              <p>Previously at Accra Technical University</p>
+            </div>
+          </div>
         </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div className="rounded-3xl overflow-hidden mt-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
-          <img 
-            src={heroImage} 
-            alt="Hero background"
-            className="w-full h-auto object-cover"
-          />
-        </div>
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
+        
+        <div className="max-w-3xl w-full mx-auto pb-8">
+          <div className="rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}>
             <img 
-              src={heroImage2} 
-              alt="Workshop scene"
+              src={heroImage} 
+              alt="Hero background"
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
-            <img 
-              src={heroImage3} 
-              alt="Engineering workspace"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}>
-            <img 
-              src={heroImage4} 
-              alt="Technical lab"
-              className="w-full h-auto object-cover"
-            />
+          <div className="grid grid-cols-3 gap-4 mt-4">
+            <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}>
+              <img 
+                src={heroImage2} 
+                alt="Workshop scene"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'backwards' }}>
+              <img 
+                src={heroImage3} 
+                alt="Engineering workspace"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.8s', animationFillMode: 'backwards' }}>
+              <img 
+                src={heroImage4} 
+                alt="Technical lab"
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
         </div>
-      </AboutSection>
+      </section>
 
       {/* My Journey Intro */}
       <AboutSection className="snap-start">
