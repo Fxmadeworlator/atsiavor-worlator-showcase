@@ -1,64 +1,142 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Github, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import projectAgtv from "@/assets/project-agtv.jpg";
+import projectMaxwell from "@/assets/project-maxwell.jpg";
 
-const projects = [
+type Category = "projects" | "apps" | "pet-projects" | "cybersecurity";
+
+interface Project {
+  title: string;
+  description: string;
+  techStack: string[];
+  image: string;
+  live: string;
+  category: Category;
+}
+
+const allProjects: Project[] = [
   {
     title: "Assemblies of God Ghana TV",
     description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
-    image: "💬",
-    github: "#",
-    live: "#",
+    image: projectAgtv,
+    live: "https://agtv.vercel.app/",
+    category: "projects",
   },
   {
     title: "Maxwell's Portfolio",
-    description: "A sleek portfolio showcasing Max’s unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
+    description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
-    image: "🚗",
-    github: "#",
-    live: "#",
+    image: projectMaxwell,
+    live: "https://maxwellandoh.vercel.app/",
+    category: "projects",
   },
   {
     title: "Elibon Events and Deco.",
     description: "A contemporary event and décor brand transforming every space into a beautifully curated experience.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: "📚",
-    github: "#",
     live: "#",
+    category: "projects",
   },
   {
     title: "Podcast Series",
     description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into the world of software development.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: "🎙️",
-    github: "#",
     live: "#",
+    category: "projects",
   },
+  // Apps category
+  {
+    title: "Task Manager Pro",
+    description: "A productivity app for managing daily tasks and tracking progress with intuitive drag-and-drop functionality.",
+    techStack: ["React Native", "TypeScript", "Firebase"],
+    image: "📱",
+    live: "#",
+    category: "apps",
+  },
+  {
+    title: "Weather Companion",
+    description: "Real-time weather updates with beautiful visualizations and accurate forecasting for any location worldwide.",
+    techStack: ["Flutter", "Dart", "OpenWeather API"],
+    image: "🌤️",
+    live: "#",
+    category: "apps",
+  },
+  // Pet Projects category
+  {
+    title: "Code Snippet Manager",
+    description: "A personal tool for storing, organizing, and quickly accessing frequently used code snippets across languages.",
+    techStack: ["Electron", "React", "SQLite"],
+    image: "💾",
+    live: "#",
+    category: "pet-projects",
+  },
+  {
+    title: "Portfolio Template",
+    description: "An open-source portfolio template for developers looking for a clean, modern starting point.",
+    techStack: ["Next.js", "Tailwind", "Framer Motion"],
+    image: "🎨",
+    live: "#",
+    category: "pet-projects",
+  },
+  // Cybersecurity category
+  {
+    title: "Network Scanner",
+    description: "A lightweight network analysis tool for identifying devices and potential vulnerabilities on local networks.",
+    techStack: ["Python", "Scapy", "Nmap"],
+    image: "🔍",
+    live: "#",
+    category: "cybersecurity",
+  },
+  {
+    title: "Password Vault",
+    description: "Secure password management solution with AES-256 encryption and zero-knowledge architecture.",
+    techStack: ["Rust", "SQLCipher", "WebCrypto"],
+    image: "🔐",
+    live: "#",
+    category: "cybersecurity",
+  },
+];
+
+const categories: { label: string; value: Category }[] = [
+  { label: "Projects", value: "projects" },
+  { label: "Apps", value: "apps" },
+  { label: "Pet Projects", value: "pet-projects" },
+  { label: "Cybersecurity", value: "cybersecurity" },
 ];
 
 const Projects = () => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<Category>("projects");
+
+  const filteredProjects = allProjects.filter(p => p.category === activeCategory);
 
   const nextProject = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
   };
 
   const prevProject = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
   };
 
-  const currentProject = projects[currentIndex];
+  const handleCategoryChange = (category: Category) => {
+    setActiveCategory(category);
+    setCurrentIndex(0);
+  };
 
-  const categories = [
-    { label: "Projects", path: "/projects" },
-    { label: "Games", path: "/projects/games" },
-    { label: "Pet Projects", path: "/projects/pet-projects" },
-    { label: "Cybersecurity", path: "/projects/cybersecurity" },
-  ];
+  const currentProject = filteredProjects[currentIndex];
+  const isImageUrl = currentProject?.image?.startsWith("/") || currentProject?.image?.startsWith("http") || currentProject?.image?.includes("assets");
+
+  const getCategoryTitle = () => {
+    const cat = categories.find(c => c.value === activeCategory);
+    return cat?.label || "Projects";
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -67,12 +145,12 @@ const Projects = () => {
       {/* Project Categories Navigation - Left Side */}
       <aside className="fixed left-24 top-0 h-screen flex items-center justify-center z-40">
         <nav className="flex flex-col gap-2 p-3 bg-nav-bg/80 backdrop-blur-sm rounded-2xl border border-border shadow-lg">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <button
-              key={category.path}
-              onClick={() => setCurrentIndex(0)}
+              key={category.value}
+              onClick={() => handleCategoryChange(category.value)}
               className={`group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm transition-all duration-200 ease-out hover:translate-x-1 ${
-                index === 0 
+                activeCategory === category.value 
                   ? 'text-nav-item-active bg-secondary font-medium' 
                   : 'text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary'
               }`}
@@ -93,100 +171,130 @@ const Projects = () => {
         >
           {/* Header */}
           <div className="mb-12">
-            <h1 className="text-4xl font-bold">/ Projects</h1>
+            <h1 className="text-4xl font-bold">/ {getCategoryTitle()}</h1>
             <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
           </div>
 
-          {/* Carousel Container */}
-          <div className="relative">
-            {/* Project Card */}
-            <div 
-              className="bg-card rounded-2xl border border-border p-8 min-h-[400px] transition-all duration-500"
-              style={{ boxShadow: 'var(--shadow-card)' }}
-            >
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                {/* Left Side - Icon/Preview */}
-                <div className="flex items-center justify-center">
-                  <div className="w-32 h-32 bg-muted rounded-2xl flex items-center justify-center text-6xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
-                    {currentProject.image}
+          {filteredProjects.length > 0 ? (
+            <>
+              {/* Carousel Container */}
+              <div className="relative">
+                {/* Project Card */}
+                <div 
+                  className="bg-card rounded-2xl border border-border p-8 min-h-[400px] transition-all duration-500"
+                  style={{ boxShadow: 'var(--shadow-card)' }}
+                >
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    {/* Left Side - Icon/Preview */}
+                    <div className="flex items-center justify-center">
+                      {isImageUrl ? (
+                        <img 
+                          src={currentProject.image} 
+                          alt={currentProject.title}
+                          className="w-full max-w-[280px] h-auto rounded-2xl object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-32 h-32 bg-muted rounded-2xl flex items-center justify-center text-6xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
+                          {currentProject.image}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Right Side - Content */}
+                    <div className="space-y-4">
+                      <h2 className="text-2xl font-bold text-foreground">{currentProject.title}</h2>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {currentProject.description}
+                      </p>
+                      
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {currentProject.techStack.map((tech, i) => (
+                          <span 
+                            key={i}
+                            className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Links */}
+                      {currentProject.live !== "#" && (
+                        <div className="flex gap-4 pt-4">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="rounded-full hover:bg-muted"
+                            asChild
+                          >
+                            <a href={currentProject.live} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="w-5 h-5" />
+                            </a>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                {/* Right Side - Content */}
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-foreground">{currentProject.title}</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {currentProject.description}
-                  </p>
-                  
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {currentProject.techStack.map((tech, i) => (
-                      <span 
-                        key={i}
-                        className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex gap-4 pt-4">
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted">
-                      <Github className="w-5 h-5" />
+                {/* Navigation Arrows */}
+                {filteredProjects.length > 1 && (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={prevProject}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 rounded-full hover:bg-muted hidden md:flex"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-muted">
-                      <ExternalLink className="w-5 h-5" />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={nextProject}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 rounded-full hover:bg-muted hidden md:flex"
+                    >
+                      <ChevronRight className="w-6 h-6" />
                     </Button>
-                  </div>
-                </div>
+                  </>
+                )}
               </div>
+
+              {/* Mobile Navigation */}
+              {filteredProjects.length > 1 && (
+                <div className="flex justify-center gap-4 mt-6 md:hidden">
+                  <Button variant="ghost" size="icon" onClick={prevProject} className="rounded-full">
+                    <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={nextProject} className="rounded-full">
+                    <ChevronRight className="w-5 h-5" />
+                  </Button>
+                </div>
+              )}
+
+              {/* Pagination Dots */}
+              {filteredProjects.length > 1 && (
+                <div className="flex justify-center gap-2 mt-8">
+                  {filteredProjects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`w-8 h-1 rounded-full transition-all duration-300 ${
+                        index === currentIndex 
+                          ? 'bg-primary' 
+                          : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center text-muted-foreground py-16">
+              <p>No projects in this category yet.</p>
             </div>
-
-            {/* Navigation Arrows */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={prevProject}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 rounded-full hover:bg-muted hidden md:flex"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextProject}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 rounded-full hover:bg-muted hidden md:flex"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </Button>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="flex justify-center gap-4 mt-6 md:hidden">
-            <Button variant="ghost" size="icon" onClick={prevProject} className="rounded-full">
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" onClick={nextProject} className="rounded-full">
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-8 h-1 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-primary' 
-                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                }`}
-              />
-            ))}
-          </div>
+          )}
         </div>
       </main>
     </div>

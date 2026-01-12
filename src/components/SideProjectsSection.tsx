@@ -1,6 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Link } from "react-router-dom";
 
 const SideProjectsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -8,22 +9,22 @@ const SideProjectsSection = () => {
     {
       icon: "📂",
       title: "/ projects",
-      url: "#",
+      url: "/projects",
     },
     {
-      icon: "🎮",
-      title: "/ games",
-      url: "#",
+      icon: "📱",
+      title: "/ apps",
+      url: "/projects?category=apps",
     },
     {
       icon: "📚",
       title: "/ pet projects",
-      url: "#",
+      url: "/projects?category=pet-projects",
     },
     {
       icon: "🛡️",
       title: "/ cybersecurity",
-      url: "#",
+      url: "/projects?category=cybersecurity",
     },
   ];
 
