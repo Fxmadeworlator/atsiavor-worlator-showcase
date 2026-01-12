@@ -40,8 +40,9 @@ const SideProjectsSection = () => {
       
         <div className="space-y-3">
         {projects.map((project, index) => (
-          <div
+          <Link
             key={index}
+            to={project.url}
             className="flex items-center justify-between p-4 rounded-2xl hover:bg-secondary transition-all duration-300 group cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
             style={{
               animation: `fade-in 0.6s ease-out ${index * 0.15}s backwards, slide-in-right 0.6s ease-out ${index * 0.15}s backwards`,
@@ -67,7 +68,7 @@ const SideProjectsSection = () => {
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
-          </div>
+          </Link>
         ))}
         </div>
       </div>
