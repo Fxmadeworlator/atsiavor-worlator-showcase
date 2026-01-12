@@ -95,7 +95,6 @@ const About = () => {
       description: "Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.",
       icon: <PawPrint className="w-5 h-5" />,
       isCurrent: true,
-      isLast: true,
     },
     {
       year: "Sep 2026",
@@ -103,7 +102,8 @@ const About = () => {
       subtitle: "Pursuing further studies in the UK",
       description: "Currently expanding my knowledge and skills at Leeds Beckett University. This chapter marks a new adventure — studying abroad, meeting new people, and pushing myself to grow both personally and professionally.",
       icon: <Rocket className="w-5 h-5" />,
-      isCurrent: true,
+      isCurrent: false,
+      isLast: true,
     },
   ];
 
