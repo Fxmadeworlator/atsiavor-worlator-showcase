@@ -1,3 +1,4 @@
+// src/pages/Projects.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
@@ -164,57 +165,57 @@ const Projects = () => {
             <>
               {/* Carousel Container */}
               <div className="relative">
-                {/* Project Card */}
+                {/* Project Card with background image */}
                 <div 
-                  className="bg-card rounded-2xl border border-border p-8 min-h-[400px] transition-all duration-500"
-                  style={{ boxShadow: 'var(--shadow-card)' }}
+                  className="relative rounded-2xl border border-border p-8 min-h-[400px] transition-all duration-500 bg-cover bg-center overflow-hidden"
+                  style={{ 
+                    boxShadow: 'var(--shadow-card)',
+                    backgroundImage: isImageUrl ? `url(${currentProject.image})` : 'none'
+                  }}
                 >
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
-                    {/* Left Side - Icon/Preview */}
+                  {/* dark scrim so text is readable */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+
+                  {/* content stacked on top of image */}
+                  <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center h-full">
+                    {/* left - icon (emoji fallback) */}
                     <div className="flex items-center justify-center">
-                      {isImageUrl ? (
-                        <img 
-                          src={currentProject.image} 
-                          alt={currentProject.title}
-                          className="w-full max-w-[280px] h-auto rounded-2xl object-cover transition-transform duration-300 hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-32 h-32 bg-muted rounded-2xl flex items-center justify-center text-6xl transition-transform duration-300 hover:scale-110 hover:rotate-6">
+                      {!isImageUrl && (
+                        <div className="w-32 h-32 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center text-6xl">
                           {currentProject.image}
                         </div>
                       )}
                     </div>
 
-                    {/* Right Side - Content */}
-                    <div className="space-y-4">
-                      <h2 className="text-2xl font-bold text-foreground">{currentProject.title}</h2>
-                      <p className="text-muted-foreground leading-relaxed">
+                    {/* right - text + CTA */}
+                    <div className="space-y-4 text-white">
+                      <h2 className="text-3xl font-bold">{currentProject.title}</h2>
+                      <p className="text-sm leading-relaxed opacity-90">
                         {currentProject.description}
                       </p>
-                      
-                      {/* Tech Stack */}
+
                       <div className="flex flex-wrap gap-2 pt-2">
                         {currentProject.techStack.map((tech, i) => (
-                          <span 
+                          <span
                             key={i}
-                            className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+                            className="px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full"
                           >
                             {tech}
                           </span>
                         ))}
                       </div>
 
-                      {/* Links */}
                       {currentProject.live !== "#" && (
-                        <div className="flex gap-4 pt-4">
-                          <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            className="rounded-full hover:bg-muted"
+                        <div className="pt-4">
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            className="gap-2"
                             asChild
                           >
                             <a href={currentProject.live} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-5 h-5" />
+                              <ExternalLink className="w-4 h-4" />
+                              View site
                             </a>
                           </Button>
                         </div>
