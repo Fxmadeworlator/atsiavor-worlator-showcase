@@ -1,6 +1,6 @@
 // src/components/Sidebar.tsx
 import { NavLink } from "./NavLink";
-import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
+import { Home, User, Briefcase, Mail, Wrench, TrendingUp, Award } from "lucide-react";
 
 const Sidebar = () => {
   const core = [
@@ -13,6 +13,7 @@ const Sidebar = () => {
   const extra = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
     { icon: TrendingUp, label: "Trading", path: "/trading" },
+    { icon: Award, label: "Verified", path: "/verified" },
   ];
 
   return (
