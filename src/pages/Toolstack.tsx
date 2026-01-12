@@ -1,22 +1,18 @@
 // src/pages/Toolstack.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import {
-  Zap,
-  Palette,
-  Code,
-  Wrench,
-  Cpu,
-  Layers,
-  Figma,
-  Github,
-  Slack,
-  Chrome,
-} from "lucide-react";
+import { Code, Palette, Github } from "lucide-react";
+import FigmaSvg from "@/assets/figma.svg?react";
+import CanvaSvg from "@/assets/canva.svg?react";
+import VscodeSvg from "@/assets/vscode.svg?react";
+import LovableSvg from "@/assets/lovable.svg?react";
+import CursorSvg from "@/assets/cursor.svg?react";
+import ChatgptSvg from "@/assets/chatgpt.svg?react";
+import GeminiSvg from "@/assets/gemini.svg?react";
 
 interface ToolCardProps {
   category: string;
-  tools: { name: string; icon?: React.ReactNode }[];
+  tools: { name: string; logo: React.ReactNode }[];
 }
 
 const ToolCard = ({ category, tools }: ToolCardProps) => {
@@ -29,7 +25,7 @@ const ToolCard = ({ category, tools }: ToolCardProps) => {
       }`}
     >
       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
-        <Wrench className="h-5 w-5 text-primary" />
+        <Palette className="h-5 w-5 text-primary" />
         {category}
       </h3>
       <div className="flex flex-wrap gap-3">
@@ -38,7 +34,7 @@ const ToolCard = ({ category, tools }: ToolCardProps) => {
             key={t.name}
             className="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary"
           >
-            {t.icon}
+            {t.logo}
             <span>{t.name}</span>
           </div>
         ))}
@@ -52,41 +48,31 @@ const Toolstack = () => {
 
   const toolGroups: ToolCardProps[] = [
     {
-      category: "3D & Simulation",
-      tools: [
-        { name: "SolidWorks", icon: <Layers className="h-4 w-4" /> },
-        { name: "Ansys", icon: <Cpu className="h-4 w-4" /> },
-      ],
-    },
-    {
       category: "Design & Prototyping",
       tools: [
-        { name: "Figma", icon: <Figma className="h-4 w-4" /> },
-        { name: "Framer", icon: <Palette className="h-4 w-4" /> },
-        { name: "After Effects", icon: <Zap className="h-4 w-4" /> },
+        { name: "Figma", logo: <FigmaSvg className="h-4 w-4" /> },
+        { name: "Canva", logo: <CanvaSvg className="h-4 w-4" /> },
       ],
     },
     {
       category: "Development",
       tools: [
-        { name: "Github", icon: <Github className="h-4 w-4" /> },
-        { name: "VS Code", icon: <Code className="h-4 w-4" /> },
+        { name: "GitHub", logo: <Github className="h-4 w-4" /> },
+        { name: "VS Code", logo: <VscodeSvg className="h-4 w-4" /> },
       ],
     },
     {
-      category: "No-Code / Automation",
+      category: "No-Code",
       tools: [
-        { name: "Wix" },
-        { name: "Zapier", icon: <Zap className="h-4 w-4" /> },
-        { name: "Canva", icon: <Palette className="h-4 w-4" /> },
+        { name: "Lovable", logo: <LovableSvg className="h-4 w-4" /> },
+        { name: "Cursor AI", logo: <CursorSvg className="h-4 w-4" /> },
       ],
     },
     {
       category: "AI & Productivity",
       tools: [
-        { name: "ChatGPT" },
-        { name: "Slack", icon: <Slack className="h-4 w-4" /> },
-        { name: "Chrome DevTools", icon: <Chrome className="h-4 w-4" /> },
+        { name: "ChatGPT", logo: <ChatgptSvg className="h-4 w-4" /> },
+        { name: "Gemini", logo: <GeminiSvg className="h-4 w-4" /> },
       ],
     },
   ];
@@ -103,7 +89,7 @@ const Toolstack = () => {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Tool Stack</h1>
           <p className="text-lg text-muted-foreground max-w-xl">
-            My go-to toolkit — the apps, platforms, and resources I rely on to design, build, and ship ideas.
+            The apps I actually open every day to design, build, and ship.
           </p>
         </div>
 
