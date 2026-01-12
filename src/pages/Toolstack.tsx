@@ -3,14 +3,12 @@ import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Palette, Github } from "lucide-react";
 
-/* ----------  FLATICON PNGS (hot-linked)  ---------- */
 const FLATICON = "https://cdn-icons-png.flaticon.com/512";
 
 const Logo = ({ src }: { src: string }) => (
   <img src={src} alt="" className="h-10 w-10 object-contain" />
 );
 
-/* ----------  TOOL CARD  ---------- */
 interface ToolCardProps {
   category: string;
   tools: { name: string; logo: React.ReactNode }[];
@@ -49,26 +47,23 @@ const OtherTools = () => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const tools = [
-    /* office */
     { name: "Excel",     img: `${FLATICON}/732212/732212.png` },
     { name: "Word",      img: `${FLATICON}/732221/732221.png` },
-    /* social / comms */
     { name: "Discord",   img: `${FLATICON}/2111370/2111370.png` },
     { name: "Google",    img: `${FLATICON}/2991147/2991147.png` },
     { name: "Telegram",  img: `${FLATICON}/2111646/2111646.png` },
     { name: "YouTube",   img: `${FLATICON}/1384060/1384060.png` },
     { name: "X",         img: `${FLATICON}/5969020/5969020.png` },
     { name: "Pinterest", img: `${FLATICON}/2111378/2111378.png` },
-    /* dev / productivity */
     { name: "Vercel",    img: `${FLATICON}/5967269/5967269.png` },
     { name: "Kimi AI",   img: `${FLATICON}/9214907/9214907.png` },
     { name: "DeepSeek",  img: `${FLATICON}/2889626/2889626.png` },
     { name: "Notion",    img: `${FLATICON}/5968262/5968262.png` },
-    { name: "Google Meet",img:`${FLATICON}/732219/732219.png`},
-    { name: "Google Analytics",img:`${FLATICON}/732204/732204.png`},
+    { name: "Google Meet",    img: `${FLATICON}/732219/732219.png` },
+    { name: "Google Analytics", img: `${FLATICON}/732204/732204.png` },
     { name: "Wix",       img: `${FLATICON}/732283/732283.png` },
     { name: "Zoom",      img: `${FLATICON}/732284/732284.png` },
-    { name: "Google Calendar",img:`${FLATICON}/732213/732213.png`},
+    { name: "Google Calendar", img: `${FLATICON}/732213/732213.png` },
   ];
 
   return (
@@ -151,10 +146,9 @@ const Toolstack = () => {
           ))}
         </div>
 
-        {/* -----  OTHER TOOLS – 4-COLUMN GRID OF PLAIN IMAGES ----- */}
         <OtherTools />
 
-        {/* -----  FLATICON ATTRIBUTION ----- */}
+        {/* -----  FLATICON ATTRIBUTION  ----- */}
         <div className="max-w-5xl mx-auto mt-12 text-center text-xs text-muted-foreground">
           Icons by{" "}
           <a href="https://www.flaticon.com/free-icons/figma" target="_blank" rel="noreferrer" className="underline">Freepik (Figma)</a>,{" "}
