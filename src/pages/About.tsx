@@ -92,7 +92,19 @@ const About = () => {
       year: "Jan 2026",
       title: "Ootie",
       subtitle: "Founder & Developer",
-      description: "Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.",
+      description: (
+        <>
+          Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.{" "}
+          <a
+            href="https://ootie-web.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:no-underline"
+          >
+            Visit site
+          </a>
+        </>
+      ),
       icon: <PawPrint className="w-5 h-5" />,
       isCurrent: true,
     },
