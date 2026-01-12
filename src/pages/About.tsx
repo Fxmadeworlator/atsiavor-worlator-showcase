@@ -77,7 +77,7 @@ const About = () => {
       endYear: "2024",
       title: "Accra Technical University",
       subtitle: "Bsc. Automobile Engineering",
-      description: "Studied Mechanical Engineering and got hands-on experience with design, manufacturing, and everything in between. This is where I built an electric vehicle, competed in Shell Eco-Marathon, and learned that engineering is 50% problem-solving and 50% convincing people that the solution works.",
+      description: "Studied Mechanical Engineering, gaining a strong foundation in core engineering principles such as mechanics, thermodynamics, and materials science. I developed skills in problem-solving, design thinking, and analytical reasoning, which help me apply my knowledge to practical challenges.",
       icon: <Building2 className="w-5 h-5" />,
     },
     {
