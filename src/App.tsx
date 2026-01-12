@@ -9,6 +9,7 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack"; // ← add this line
+import Verified from "./pages/Verified"; // ← add import
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/toolstack" element={<Toolstack />} /> // ← add this line
+          <Route path="/verified" element={<Verified />} /> {/* NEW */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
