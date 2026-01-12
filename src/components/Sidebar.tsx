@@ -12,8 +12,7 @@ const Sidebar = () => {
 
   const extra = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
-    { icon: TrendingUp, label: "Trading", path: "/trading" },
-    { icon: Award, label: "Verified", path: "/verified" },
+    { icon: TrendingUp, label: "Trading", path: "/verified" },
   ];
 
   return (
