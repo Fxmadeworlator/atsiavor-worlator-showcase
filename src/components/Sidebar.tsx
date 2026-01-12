@@ -1,11 +1,13 @@
 import { NavLink } from "./NavLink";
-import { Home, User, Briefcase, Mail } from "lucide-react";
+import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
 
 const Sidebar = () => {
   const navItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: User, label: "About", path: "/about" },
     { icon: Briefcase, label: "Projects", path: "/projects" },
+    { icon: Wrench, label: "Tool Stack", path: "/tools" },
+    { icon: TrendingUp, label: "Trading", path: "/trading" },
     { icon: Mail, label: "Contact", path: "/contact" },
   ];
 
