@@ -89,7 +89,7 @@ const About = () => {
       icon: <Code className="w-5 h-5" />,
     },
     {
-      year: "2026",
+      year: "Jan 2026",
       title: "Ootie",
       subtitle: "Founder & Developer",
       description: "Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.",
@@ -100,7 +100,7 @@ const About = () => {
       year: "Sep 2026",
       title: "Leeds Beckett University",
       subtitle: "Pursuing further studies in the UK",
-      description: "Currently expanding my knowledge and skills at Leeds Beckett University. This chapter marks a new adventure — studying abroad, meeting new people, and pushing myself to grow both personally and professionally.",
+      description: "Preparing for my next academic chapter at Leeds Beckett University. I will be studying abroad later this year or next, embracing new challenges, meeting diverse people, and continuing to grow both personally and professionally.",
       icon: <Rocket className="w-5 h-5" />,
       isCurrent: false,
       isLast: true,
