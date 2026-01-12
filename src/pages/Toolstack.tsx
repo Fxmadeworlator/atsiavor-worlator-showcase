@@ -3,16 +3,14 @@ import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Palette, Github } from "lucide-react";
 
-/* ----------  HELPER: plain <img> logo  ---------- */
-const Logo = ({ src, alt }: { src: string; alt: string }) => (
-  <img
-    src={`/images/toolstack/${src}`}
-    alt={alt}
-    className="h-10 w-10 object-contain"
-  />
+/* ----------  FLATICON PNGS (hot-linked)  ---------- */
+const FLATICON = "https://cdn-icons-png.flaticon.com/512";
+
+const Logo = ({ src }: { src: string }) => (
+  <img src={src} alt="" className="h-10 w-10 object-contain" />
 );
 
-/* ----------  TOOL CARD (keeps round pills) ---------- */
+/* ----------  TOOL CARD  ---------- */
 interface ToolCardProps {
   category: string;
   tools: { name: string; logo: React.ReactNode }[];
@@ -46,31 +44,31 @@ const ToolCard = ({ category, tools }: ToolCardProps) => {
   );
 };
 
-/* ----------  OTHER TOOLS – BARE ICON GRID ---------- */
+/* ----------  OTHER TOOLS – 4-COLUMN GRID  ---------- */
 const OtherTools = () => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const tools = [
     /* office */
-    { name: "Excel",     img: "excel.png" },
-    { name: "Word",      img: "w.png" },
+    { name: "Excel",     img: `${FLATICON}/732212/732212.png` },
+    { name: "Word",      img: `${FLATICON}/732221/732221.png` },
     /* social / comms */
-    { name: "Discord",   img: "discord.png" },
-    { name: "Google",    img: "google.png" },
-    { name: "Telegram",  img: "telegram.png" },
-    { name: "YouTube",   img: "youtube.png" },
-    { name: "X",         img: "x.png" },
-    { name: "Pinterest", img: "pinterest.png" },
+    { name: "Discord",   img: `${FLATICON}/2111370/2111370.png` },
+    { name: "Google",    img: `${FLATICON}/2991147/2991147.png` },
+    { name: "Telegram",  img: `${FLATICON}/2111646/2111646.png` },
+    { name: "YouTube",   img: `${FLATICON}/1384060/1384060.png` },
+    { name: "X",         img: `${FLATICON}/5969020/5969020.png` },
+    { name: "Pinterest", img: `${FLATICON}/2111378/2111378.png` },
     /* dev / productivity */
-    { name: "Vercel",    img: "vercel.png" },
-    { name: "Kimi AI",   img: "k.png" },
-    { name: "DeepSeek",  img: "deepseek.png" },
-    { name: "Notion",    img: "notion.png" },
-    { name: "Google Meet", img: "meet.png" },
-    { name: "Google Analytics", img: "analytics.png" },
-    { name: "Wix",       img: "wix.png" },
-    { name: "Zoom",      img: "zoom.png" },
-    { name: "Google Calendar", img: "gcalendar.png" },
+    { name: "Vercel",    img: `${FLATICON}/5967269/5967269.png` },
+    { name: "Kimi AI",   img: `${FLATICON}/9214907/9214907.png` },
+    { name: "DeepSeek",  img: `${FLATICON}/2889626/2889626.png` },
+    { name: "Notion",    img: `${FLATICON}/5968262/5968262.png` },
+    { name: "Google Meet",img:`${FLATICON}/732219/732219.png`},
+    { name: "Google Analytics",img:`${FLATICON}/732204/732204.png`},
+    { name: "Wix",       img: `${FLATICON}/732283/732283.png` },
+    { name: "Zoom",      img: `${FLATICON}/732284/732284.png` },
+    { name: "Google Calendar",img:`${FLATICON}/732213/732213.png`},
   ];
 
   return (
@@ -81,7 +79,6 @@ const OtherTools = () => {
       }`}
     >
       <h3 className="text-center text-xl font-semibold mb-6">Other Tools I use</h3>
-      {/* 4-column grid of naked icons */}
       <div className="grid grid-cols-4 gap-6 place-items-center">
         {tools.map((t) => (
           <div
@@ -89,7 +86,7 @@ const OtherTools = () => {
             className="text-foreground/70 hover:text-foreground transition-colors"
             title={t.name}
           >
-            <Logo src={t.img} alt={t.name} />
+            <Logo src={t.img} />
           </div>
         ))}
       </div>
@@ -97,7 +94,7 @@ const OtherTools = () => {
   );
 };
 
-/* ----------  MAIN PAGE ---------- */
+/* ----------  MAIN PAGE  ---------- */
 const Toolstack = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
 
@@ -105,29 +102,29 @@ const Toolstack = () => {
     {
       category: "Design & Prototyping",
       tools: [
-        { name: "Figma", logo: <Logo src="figma.png" alt="Figma" /> },
-        { name: "Canva", logo: <Logo src="canva.png" alt="Canva" /> },
+        { name: "Figma", logo: <Logo src={`${FLATICON}/732234/732234.png`} /> },
+        { name: "Canva", logo: <Logo src={`${FLATICON}/732204/732204.png`} /> },
       ],
     },
     {
       category: "Development",
       tools: [
         { name: "GitHub", logo: <Github className="h-10 w-10" /> },
-        { name: "VS Code", logo: <Logo src="vscode.png" alt="VS Code" /> },
+        { name: "VS Code", logo: <Logo src={`${FLATICON}/732244/732244.png`} /> },
       ],
     },
     {
       category: "No-Code",
       tools: [
-        { name: "Lovable", logo: <Logo src="lovable.png" alt="Lovable" /> },
-        { name: "Cursor AI", logo: <Logo src="cursor.png" alt="Cursor" /> },
+        { name: "Lovable", logo: <Logo src={`${FLATICON}/732283/732283.png`} /> },
+        { name: "Cursor AI", logo: <Logo src={`${FLATICON}/732244/732244.png`} /> },
       ],
     },
     {
       category: "AI & Productivity",
       tools: [
-        { name: "ChatGPT", logo: <Logo src="chatgpt.png" alt="ChatGPT" /> },
-        { name: "Gemini", logo: <Logo src="gemini.png" alt="Gemini" /> },
+        { name: "ChatGPT", logo: <Logo src={`${FLATICON}/732230/732230.png`} /> },
+        { name: "Gemini", logo: <Logo src={`${FLATICON}/732221/732221.png`} /> },
       ],
     },
   ];
@@ -156,6 +153,15 @@ const Toolstack = () => {
 
         {/* -----  OTHER TOOLS – 4-COLUMN GRID OF PLAIN IMAGES ----- */}
         <OtherTools />
+
+        {/* -----  FLATICON ATTRIBUTION ----- */}
+        <div className="max-w-5xl mx-auto mt-12 text-center text-xs text-muted-foreground">
+          Icons by{" "}
+          <a href="https://www.flaticon.com/free-icons/figma" target="_blank" rel="noreferrer" className="underline">Freepik (Figma)</a>,{" "}
+          <a href="https://www.flaticon.com/free-icons/discord" target="_blank" rel="noreferrer" className="underline">Pixel perfect (Discord, Pinterest, YouTube, GitHub)</a>,{" "}
+          <a href="https://www.flaticon.com/free-icons/google" target="_blank" rel="noreferrer" className="underline">Freepik (Google)</a> from{" "}
+          <a href="https://www.flaticon.com/" target="_blank" rel="noreferrer" className="underline">www.flaticon.com</a>
+        </div>
       </main>
     </div>
   );
