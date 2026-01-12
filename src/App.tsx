@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Toolstack from "./pages/Toolstack";
 
 const queryClient = new QueryClient();
 
