@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { GraduationCap, Code, Building2, Rocket } from "lucide-react";
+import { GraduationCap, Code, Building2, Rocket, PawPrint } from "lucide-react";
 
 interface TimelineItemProps {
   year: string;
@@ -94,6 +94,14 @@ const About = () => {
       subtitle: "Pursuing further studies in the UK",
       description: "Currently expanding my knowledge and skills at Leeds Beckett University. This chapter marks a new adventure — studying abroad, meeting new people, and pushing myself to grow both personally and professionally.",
       icon: <Rocket className="w-5 h-5" />,
+      isCurrent: true,
+    },
+    {
+      year: "2025",
+      title: "Ootie",
+      subtitle: "Founder & Developer",
+      description: "Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.",
+      icon: <PawPrint className="w-5 h-5" />,
       isCurrent: true,
       isLast: true,
     },
