@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { GraduationCap, Code, Building2, Rocket, PawPrint, ExternalLink } from "lucide-react";
+import { GraduationCap, Code, Building2, Rocket, PawPrint } from "lucide-react";
 
 interface TimelineItemProps {
   year: string;
@@ -103,8 +103,7 @@ const About = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
           >
-            <ExternalLink className="w-3 h-3" />
-            <span>Visit site</span>
+            ootie
           </a>
         </>
       ),
