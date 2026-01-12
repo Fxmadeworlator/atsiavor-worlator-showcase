@@ -1,4 +1,4 @@
-// app/toolstack/page.tsx  (or pages/toolstack.tsx depending on your setup)
+// src/pages/Toolstack.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import {
@@ -47,7 +47,7 @@ const ToolCard = ({ category, tools }: ToolCardProps) => {
   );
 };
 
-export default function ToolStack() {
+const Toolstack = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
 
   const toolGroups: ToolCardProps[] = [
@@ -94,9 +94,7 @@ export default function ToolStack() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-
       <main className="min-h-screen px-8 pb-20">
-        {/* Header */}
         <div
           ref={headerRef}
           className={`pt-[20vh] mb-16 max-w-3xl mx-auto transition-all duration-700 ${
@@ -109,7 +107,6 @@ export default function ToolStack() {
           </p>
         </div>
 
-        {/* Tool grids */}
         <div className="max-w-3xl mx-auto grid gap-6 md:grid-cols-2">
           {toolGroups.map((g) => (
             <ToolCard key={g.category} category={g.category} tools={g.tools} />
@@ -118,4 +115,6 @@ export default function ToolStack() {
       </main>
     </div>
   );
-}
+};
+
+export default Toolstack;
