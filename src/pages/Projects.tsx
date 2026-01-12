@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
+import projectOotie from "@/assets/project-ootie.jpg";
 
 type Category = "projects" | "apps" | "pet-projects" | "cybersecurity";
 
@@ -52,52 +53,36 @@ const allProjects: Project[] = [
   },
   // Apps category
   {
-    title: "Task Manager Pro",
-    description: "A productivity app for managing daily tasks and tracking progress with intuitive drag-and-drop functionality.",
-    techStack: ["React Native", "TypeScript", "Firebase"],
-    image: "📱",
-    live: "#",
-    category: "apps",
-  },
-  {
-    title: "Weather Companion",
-    description: "Real-time weather updates with beautiful visualizations and accurate forecasting for any location worldwide.",
-    techStack: ["Flutter", "Dart", "OpenWeather API"],
-    image: "🌤️",
-    live: "#",
+    title: "Ootie",
+    description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
+    techStack: ["React", "TypeScript", "Tailwind CSS"],
+    image: projectOotie,
+    live: "https://ootie-web.vercel.app/",
     category: "apps",
   },
   // Pet Projects category
   {
-    title: "Code Snippet Manager",
-    description: "A personal tool for storing, organizing, and quickly accessing frequently used code snippets across languages.",
-    techStack: ["Electron", "React", "SQLite"],
-    image: "💾",
-    live: "#",
-    category: "pet-projects",
-  },
-  {
-    title: "Portfolio Template",
-    description: "An open-source portfolio template for developers looking for a clean, modern starting point.",
-    techStack: ["Next.js", "Tailwind", "Framer Motion"],
-    image: "🎨",
-    live: "#",
+    title: "Personal Portfolio",
+    description: "This very website you're looking at! A clean, minimal portfolio showcasing my work and journey as a developer.",
+    techStack: ["React", "TypeScript", "Tailwind CSS"],
+    image: "🌐",
+    live: "/",
     category: "pet-projects",
   },
   // Cybersecurity category
   {
-    title: "Network Scanner",
-    description: "A lightweight network analysis tool for identifying devices and potential vulnerabilities on local networks.",
-    techStack: ["Python", "Scapy", "Nmap"],
-    image: "🔍",
+    title: "CTF Write-ups",
+    description: "A collection of Capture The Flag competition write-ups documenting my journey through various security challenges and vulnerabilities.",
+    techStack: ["Python", "Bash", "Wireshark"],
+    image: "🚩",
     live: "#",
     category: "cybersecurity",
   },
   {
-    title: "Password Vault",
-    description: "Secure password management solution with AES-256 encryption and zero-knowledge architecture.",
-    techStack: ["Rust", "SQLCipher", "WebCrypto"],
-    image: "🔐",
+    title: "Security Research",
+    description: "Ongoing research into web application security, penetration testing methodologies, and vulnerability assessment techniques.",
+    techStack: ["Burp Suite", "OWASP", "Kali Linux"],
+    image: "🔒",
     live: "#",
     category: "cybersecurity",
   },

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ootie</title>
+    <meta name="description" content="Ootie - The Pet Community App">
+    <meta name="author" content="Ootie" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-ads.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ootie" />
+    <meta name="twitter:image" content="/og-ads.png" />
+    <meta property="og:title" content="Ootie - The Pet Community App">
+  <meta name="twitter:title" content="Ootie - The Pet Community App">
+  <meta property="og:description" content="Ootie - The Pet Community App">
+  <meta name="twitter:description" content="Ootie - The Pet Community App">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <script type="module" crossorigin src="/assets/index-D9b6ZFle.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D3RVoOVR.css">
+</head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
