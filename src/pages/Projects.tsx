@@ -167,34 +167,34 @@ const Projects = () => {
               <div className="relative">
                 {/* Project Card with background image */}
                 <div 
-                  className="relative rounded-2xl border border-border p-8 min-h-[400px] transition-all duration-500 bg-cover bg-center overflow-hidden"
+                  className="relative rounded-2xl border border-border min-h-[450px] transition-all duration-500 bg-cover bg-center overflow-hidden"
                   style={{ 
                     boxShadow: 'var(--shadow-card)',
                     backgroundImage: isImageUrl ? `url(${currentProject.image})` : 'none'
                   }}
                 >
                   {/* dark scrim so text is readable */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
 
-                  {/* content pinned to bottom-left */}
-                  <div className="relative z-10 absolute bottom-8 left-8 right-8 text-white">
+                  {/* content pinned to bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     {/* emoji fallback (only when no real image) */}
                     {!isImageUrl && (
-                      <div className="w-20 h-20 mb-4 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center text-4xl">
+                      <div className="w-16 h-16 mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl">
                         {currentProject.image}
                       </div>
                     )}
 
-                    <h2 className="text-3xl font-bold">{currentProject.title}</h2>
-                    <p className="text-sm leading-relaxed opacity-90 mt-2">
+                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
+                    <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">
                       {currentProject.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mt-4">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {currentProject.techStack.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full"
+                          className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10"
                         >
                           {tech}
                         </span>
@@ -202,18 +202,17 @@ const Projects = () => {
                     </div>
 
                     {currentProject.live !== "#" && (
-                      <div className="mt-6">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="text-white hover:bg-white/20"
-                          asChild
-                        >
-                          <a href={currentProject.live} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </Button>
-                      </div>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm"
+                        asChild
+                      >
+                        <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>View Live</span>
+                        </a>
+                      </Button>
                     )}
                   </div>
                 </div>

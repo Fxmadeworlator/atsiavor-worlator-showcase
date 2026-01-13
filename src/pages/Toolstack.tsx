@@ -1,20 +1,34 @@
 // src/pages/Toolstack.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Palette, Github } from "lucide-react";
-
-const FLATICON = "https://cdn-icons-png.flaticon.com/512";
-
-const Logo = ({ src }: { src: string }) => (
-  <img src={src} alt="" className="h-10 w-10 object-contain" />
-);
+import { 
+  Figma, 
+  Github, 
+  Code2, 
+  Sparkles, 
+  Bot, 
+  Brush,
+  Layers,
+  Zap,
+  MessageSquare,
+  Video,
+  Calendar,
+  BarChart3,
+  FileText,
+  Table2,
+  Send,
+  Youtube,
+  Globe,
+  BookOpen
+} from "lucide-react";
 
 interface ToolCardProps {
   category: string;
+  icon: React.ReactNode;
   tools: { name: string; logo: React.ReactNode }[];
 }
 
-const ToolCard = ({ category, tools }: ToolCardProps) => {
+const ToolCard = ({ category, icon, tools }: ToolCardProps) => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   return (
     <div
@@ -24,16 +38,16 @@ const ToolCard = ({ category, tools }: ToolCardProps) => {
       }`}
     >
       <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
-        <Palette className="h-5 w-5 text-primary" />
+        {icon}
         {category}
       </h3>
       <div className="flex flex-wrap gap-3">
         {tools.map((t) => (
           <div
             key={t.name}
-            className="flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary"
+            className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-foreground"
           >
-            {t.logo}
+            <span className="h-5 w-5 flex items-center justify-center">{t.logo}</span>
             <span>{t.name}</span>
           </div>
         ))}
@@ -47,23 +61,18 @@ const OtherTools = () => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const tools = [
-    { name: "Excel",     img: `${FLATICON}/732212/732212.png` },
-    { name: "Word",      img: `${FLATICON}/732221/732221.png` },
-    { name: "Discord",   img: `${FLATICON}/2111370/2111370.png` },
-    { name: "Google",    img: `${FLATICON}/2991147/2991147.png` },
-    { name: "Telegram",  img: `${FLATICON}/2111646/2111646.png` },
-    { name: "YouTube",   img: `${FLATICON}/1384060/1384060.png` },
-    { name: "X",         img: `${FLATICON}/5969020/5969020.png` },
-    { name: "Pinterest", img: `${FLATICON}/2111378/2111378.png` },
-    { name: "Vercel",    img: `${FLATICON}/5967269/5967269.png` },
-    { name: "Kimi AI",   img: `${FLATICON}/9214907/9214907.png` },
-    { name: "DeepSeek",  img: `${FLATICON}/2889626/2889626.png` },
-    { name: "Notion",    img: `${FLATICON}/5968262/5968262.png` },
-    { name: "Google Meet",    img: `${FLATICON}/732219/732219.png` },
-    { name: "Google Analytics", img: `${FLATICON}/732204/732204.png` },
-    { name: "Wix",       img: `${FLATICON}/732283/732283.png` },
-    { name: "Zoom",      img: `${FLATICON}/732284/732284.png` },
-    { name: "Google Calendar", img: `${FLATICON}/732213/732213.png` },
+    { name: "Excel", icon: <Table2 className="h-6 w-6" /> },
+    { name: "Word", icon: <FileText className="h-6 w-6" /> },
+    { name: "Discord", icon: <MessageSquare className="h-6 w-6" /> },
+    { name: "Google", icon: <Globe className="h-6 w-6" /> },
+    { name: "Telegram", icon: <Send className="h-6 w-6" /> },
+    { name: "YouTube", icon: <Youtube className="h-6 w-6" /> },
+    { name: "Vercel", icon: <Zap className="h-6 w-6" /> },
+    { name: "Notion", icon: <BookOpen className="h-6 w-6" /> },
+    { name: "Google Meet", icon: <Video className="h-6 w-6" /> },
+    { name: "Google Analytics", icon: <BarChart3 className="h-6 w-6" /> },
+    { name: "Zoom", icon: <Video className="h-6 w-6" /> },
+    { name: "Google Calendar", icon: <Calendar className="h-6 w-6" /> },
   ];
 
   return (
@@ -78,10 +87,11 @@ const OtherTools = () => {
         {tools.map((t) => (
           <div
             key={t.name}
-            className="text-foreground/70 hover:text-foreground transition-colors"
+            className="flex flex-col items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
             title={t.name}
           >
-            <Logo src={t.img} />
+            {t.icon}
+            <span className="text-xs">{t.name}</span>
           </div>
         ))}
       </div>
@@ -96,30 +106,34 @@ const Toolstack = () => {
   const toolGroups: ToolCardProps[] = [
     {
       category: "Design & Prototyping",
+      icon: <Brush className="h-5 w-5 text-primary" />,
       tools: [
-        { name: "Figma", logo: <Logo src={`${FLATICON}/732234/732234.png`} /> },
-        { name: "Canva", logo: <Logo src={`${FLATICON}/732204/732204.png`} /> },
+        { name: "Figma", logo: <Figma className="h-5 w-5" /> },
+        { name: "Canva", logo: <Layers className="h-5 w-5" /> },
       ],
     },
     {
       category: "Development",
+      icon: <Code2 className="h-5 w-5 text-primary" />,
       tools: [
-        { name: "GitHub", logo: <Github className="h-10 w-10" /> },
-        { name: "VS Code", logo: <Logo src={`${FLATICON}/732244/732244.png`} /> },
+        { name: "GitHub", logo: <Github className="h-5 w-5" /> },
+        { name: "VS Code", logo: <Code2 className="h-5 w-5" /> },
       ],
     },
     {
       category: "No-Code",
+      icon: <Zap className="h-5 w-5 text-primary" />,
       tools: [
-        { name: "Lovable", logo: <Logo src={`${FLATICON}/732283/732283.png`} /> },
-        { name: "Cursor AI", logo: <Logo src={`${FLATICON}/732244/732244.png`} /> },
+        { name: "Lovable", logo: <Sparkles className="h-5 w-5" /> },
+        { name: "Cursor AI", logo: <Bot className="h-5 w-5" /> },
       ],
     },
     {
       category: "AI & Productivity",
+      icon: <Bot className="h-5 w-5 text-primary" />,
       tools: [
-        { name: "ChatGPT", logo: <Logo src={`${FLATICON}/732230/732230.png`} /> },
-        { name: "Gemini", logo: <Logo src={`${FLATICON}/732221/732221.png`} /> },
+        { name: "ChatGPT", logo: <Bot className="h-5 w-5" /> },
+        { name: "Gemini", logo: <Sparkles className="h-5 w-5" /> },
       ],
     },
   ];
@@ -142,19 +156,16 @@ const Toolstack = () => {
 
         <div className="max-w-3xl mx-auto grid gap-6 md:grid-cols-2">
           {toolGroups.map((g) => (
-            <ToolCard key={g.category} category={g.category} tools={g.tools} />
+            <ToolCard key={g.category} category={g.category} icon={g.icon} tools={g.tools} />
           ))}
         </div>
 
         <OtherTools />
 
-        {/* -----  FLATICON ATTRIBUTION  ----- */}
+        {/* -----  LUCIDE ATTRIBUTION  ----- */}
         <div className="max-w-5xl mx-auto mt-12 text-center text-xs text-muted-foreground">
           Icons by{" "}
-          <a href="https://www.flaticon.com/free-icons/figma" target="_blank" rel="noreferrer" className="underline">Freepik (Figma)</a>,{" "}
-          <a href="https://www.flaticon.com/free-icons/discord" target="_blank" rel="noreferrer" className="underline">Pixel perfect (Discord, Pinterest, YouTube, GitHub)</a>,{" "}
-          <a href="https://www.flaticon.com/free-icons/google" target="_blank" rel="noreferrer" className="underline">Freepik (Google)</a> from{" "}
-          <a href="https://www.flaticon.com/" target="_blank" rel="noreferrer" className="underline">www.flaticon.com</a>
+          <a href="https://lucide.dev/" target="_blank" rel="noreferrer" className="underline">Lucide Icons</a>
         </div>
       </main>
     </div>
