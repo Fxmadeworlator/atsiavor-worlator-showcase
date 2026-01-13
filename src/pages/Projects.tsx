@@ -84,43 +84,23 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("projects");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const collapseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isMouseNearSidebarRef = useRef(false);
-  const lastInteractionRef = useRef<number>(0);
+  const isInteractingRef = useRef(false);
 
   const filteredProjects = allProjects.filter(p => p.category === activeCategory);
 
-  // Function to start collapse timeout
-  const startCollapseTimeout = useCallback(() => {
-    if (collapseTimeoutRef.current) {
-      clearTimeout(collapseTimeoutRef.current);
-    }
-    
-    collapseTimeoutRef.current = setTimeout(() => {
-      if (!isMouseNearSidebarRef.current) {
-        setIsSidebarCollapsed(true);
-      }
-    }, 2000);
-  }, []);
-
   // Function to handle any user interaction
   const handleUserInteraction = useCallback(() => {
-    lastInteractionRef.current = Date.now();
+    isInteractingRef.current = true;
     setIsSidebarCollapsed(false);
-    startCollapseTimeout();
-  }, [startCollapseTimeout]);
+    
+    // Reset interaction flag after a short delay
+    setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 100);
+  }, []);
 
-  // Start timeout on mount and whenever category changes
-  useEffect(() => {
-    handleUserInteraction();
-    return () => {
-      if (collapseTimeoutRef.current) {
-        clearTimeout(collapseTimeoutRef.current);
-      }
-    };
-  }, [activeCategory, handleUserInteraction]);
-
-  // Mouse proximity detection
+  // Mouse proximity detection - taskbar-style behavior
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!sidebarRef.current) return;
@@ -145,22 +125,19 @@ const Projects = () => {
       // Update mouse proximity state
       isMouseNearSidebarRef.current = distance < 100;
 
-      // Expand when mouse is near
+      // Taskbar logic: expand when mouse is near, collapse when leaving
       if (distance < 100) {
+        // Mouse is near - expand
         setIsSidebarCollapsed(false);
-        // Clear timeout when mouse is near
-        if (collapseTimeoutRef.current) {
-          clearTimeout(collapseTimeoutRef.current);
-        }
-      } else if (wasMouseNear && !isMouseNearSidebarRef.current) {
-        // Mouse just moved away - restart collapse timeout
-        startCollapseTimeout();
+      } else if (wasMouseNear && !isMouseNearSidebarRef.current && !isInteractingRef.current) {
+        // Mouse just left the area and no interaction happening - collapse immediately
+        setIsSidebarCollapsed(true);
       }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [startCollapseTimeout]);
+  }, [handleUserInteraction]);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
