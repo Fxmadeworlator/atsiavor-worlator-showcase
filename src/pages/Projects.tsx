@@ -8,7 +8,7 @@ import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
 
-type Category = "projects" | "apps" | "pet-projects" | "cybersecurity";
+type Category = "projects" | "apps" | "pet-projects";
 
 interface Project {
   title: string;
@@ -25,7 +25,7 @@ const allProjects: Project[] = [
     description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/",
+    live: "https://agtv.vercel.app/ ",
     category: "projects",
   },
   {
@@ -33,7 +33,7 @@ const allProjects: Project[] = [
     description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/",
+    live: "https://maxwellandoh.vercel.app/ ",
     category: "projects",
   },
   {
@@ -58,7 +58,7 @@ const allProjects: Project[] = [
     description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/",
+    live: "https://ootie-web.vercel.app/ ",
     category: "apps",
   },
   // Pet Projects category
@@ -70,30 +70,12 @@ const allProjects: Project[] = [
     live: "/",
     category: "pet-projects",
   },
-  // Cybersecurity category
-  {
-    title: "CTF Write-ups",
-    description: "A collection of Capture The Flag competition write-ups documenting my journey through various security challenges and vulnerabilities.",
-    techStack: ["Python", "Bash", "Wireshark"],
-    image: "🚩",
-    live: "#",
-    category: "cybersecurity",
-  },
-  {
-    title: "Security Research",
-    description: "Ongoing research into web application security, penetration testing methodologies, and vulnerability assessment techniques.",
-    techStack: ["Burp Suite", "OWASP", "Kali Linux"],
-    image: "🔒",
-    live: "#",
-    category: "cybersecurity",
-  },
 ];
 
 const categories: { label: string; value: Category }[] = [
   { label: "Projects", value: "projects" },
   { label: "Apps", value: "apps" },
   { label: "Pet Projects", value: "pet-projects" },
-  { label: "Cybersecurity", value: "cybersecurity" },
 ];
 
 const Projects = () => {
