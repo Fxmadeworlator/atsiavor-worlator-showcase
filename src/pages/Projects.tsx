@@ -84,7 +84,7 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("projects");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const isMouseNearSidebarRef = useRef(false);
+  const isMouseOverSidebarRef = useRef(false);
   const isInteractingRef = useRef(false);
 
   const filteredProjects = allProjects.filter(p => p.category === activeCategory);
@@ -100,7 +100,7 @@ const Projects = () => {
     }, 100);
   }, []);
 
-  // Mouse proximity detection - taskbar-style behavior
+  // Mouse detection with precise container boundaries
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!sidebarRef.current) return;
@@ -109,35 +109,47 @@ const Projects = () => {
       const mouseX = e.clientX;
       const mouseY = e.clientY;
 
-      // Calculate distance from mouse to sidebar
-      const distanceX = Math.max(
-        0,
-        Math.max(sidebarRect.left - mouseX, mouseX - sidebarRect.right)
-      );
-      const distanceY = Math.max(
-        0,
-        Math.max(sidebarRect.top - mouseY, mouseY - sidebarRect.bottom)
-      );
+      // Check if mouse is actually inside the sidebar container
+      const isOverSidebar = 
+        mouseX >= sidebarRect.left && 
+        mouseX <= sidebarRect.right && 
+        mouseY >= sidebarRect.top && 
+        mouseY <= sidebarRect.bottom;
 
-      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-      const wasMouseNear = isMouseNearSidebarRef.current;
+      const wasMouseOverSidebar = isMouseOverSidebarRef.current;
       
-      // Update mouse proximity state
-      isMouseNearSidebarRef.current = distance < 100;
+      // Update mouse over state
+      isMouseOverSidebarRef.current = isOverSidebar;
 
-      // Taskbar logic: expand when mouse is near, collapse when leaving
-      if (distance < 100) {
-        // Mouse is near - expand
+      // Expand when mouse is over the sidebar (immediate)
+      if (isOverSidebar) {
         setIsSidebarCollapsed(false);
-      } else if (wasMouseNear && !isMouseNearSidebarRef.current && !isInteractingRef.current) {
-        // Mouse just left the area and no interaction happening - collapse immediately
+      } else if (wasMouseOverSidebar && !isOverSidebar && !isInteractingRef.current) {
+        // Mouse just left the sidebar container - collapse immediately
         setIsSidebarCollapsed(true);
+      }
+
+      // Proximity expansion (50px) when collapsed
+      if (isSidebarCollapsed && !isOverSidebar) {
+        const distanceX = Math.max(
+          0,
+          Math.max(sidebarRect.left - mouseX, mouseX - sidebarRect.right)
+        );
+        const distanceY = Math.max(
+          0,
+          Math.max(sidebarRect.top - mouseY, mouseY - sidebarRect.bottom)
+        );
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+        if (distance < 50) {
+          setIsSidebarCollapsed(false);
+        }
       }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleUserInteraction]);
+  }, [isSidebarCollapsed, handleUserInteraction]);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
