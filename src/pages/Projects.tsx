@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
-import productImage from "@/assets/c1764876-a278-49ea-92db-be3ec393cf01.jpg";
+import productImage from "@/assets/product-apps.jpg"; // <-- fixed import
 
 type Category = "experience" | "apps" | "pet-projects";
 
