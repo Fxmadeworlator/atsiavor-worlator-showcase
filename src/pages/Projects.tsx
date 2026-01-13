@@ -247,11 +247,11 @@ const Projects = () => {
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* AGTV Container */}
-                <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 shadow-sm">
+                <div className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm" style={{ fontFamily: 'Arimo, sans-serif', fontWeight: 400 }}>
                   <div className="text-left space-y-3 mb-6">
-                    <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
-                    <p className="text-lg text-muted-foreground">web design and developer</p>
-                    <p className="text-base text-muted-foreground">2026 - Present</p>
+                    <h3 className="text-2xl font-medium" style={{ color: '#2a2a2a' }}>AGTV</h3>
+                    <p className="text-xl text-muted-foreground">web design and developer</p>
+                    <p className="text-lg text-muted-foreground">2026 - Present</p>
                   </div>
                   
                   {/* Action buttons row */}
@@ -259,18 +259,19 @@ const Projects = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className={`text-muted-foreground hover:text-foreground transition-transform ${
+                      className={`text-blue-500 hover:text-blue-600 transition-transform rounded-full p-2 ${
                         expandedProject === "AGTV" ? 'rotate-45' : ''
                       }`}
                       onClick={() => toggleProjectExpansion("AGTV")}
                     >
-                      <Plus className="w-5 h-5" />
+                      <Plus className="w-6 h-6" />
                     </Button>
                     
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-muted-foreground hover:text-foreground"
+                      className="rounded-full px-4 py-2"
+                      style={{ color: '#2a2a2a', fontWeight: 500 }}
                       asChild
                     >
                       <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
