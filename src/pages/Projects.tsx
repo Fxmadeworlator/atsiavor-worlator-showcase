@@ -282,23 +282,15 @@ const Projects = () => {
                     </Button>
                   </div>
                   
-                  {/* Expanded content */}
+                  {/* Expanded content - Two paragraphs as requested */}
                   {expandedProject === "AGTV" && (
                     <div className="mt-6 pt-6 border-t border-gray-200">
                       <p className="text-muted-foreground mb-4" style={{ fontSize: '1.1rem' }}>
-                        A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.
+                        I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {["HTML", "Node.js", "MongoDB"].map((tech, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground rounded-md"
-                            style={{ fontSize: '1rem' }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                      <p className="text-muted-foreground" style={{ fontSize: '1.1rem' }}>
+                        On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
+                      </p>
                     </div>
                   )}
                 </div>
