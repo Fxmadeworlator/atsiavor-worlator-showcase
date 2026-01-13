@@ -227,6 +227,19 @@ const Projects = () => {
         {/* Projects category with 4-container layout */}
         {activeCategory === "projects" && (
           <div className="flex-1 py-8">
+            {/* Intro text positioned at container start */}
+            <div className="max-w-6xl mx-auto mb-8">
+              <div className="text-left">
+                <p className="text-lg leading-relaxed">
+                  <span className="text-muted-foreground">I've worked as a hands-on </span>
+                  <span className="text-foreground font-medium">web developer</span>
+                  <span className="text-muted-foreground">, delivering </span>
+                  <span className="text-foreground font-medium">production-ready</span>
+                  <span className="text-muted-foreground"> websites for:</span>
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
               {showcaseProjects.map((project, index) => (
                 <div 
