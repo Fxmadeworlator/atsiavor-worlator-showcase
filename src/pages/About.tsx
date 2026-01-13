@@ -46,7 +46,7 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
             {year}{endYear ? ` — ${endYear}` : ""}
           </span>
           {isCurrent && (
-            <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
+            <span className="px-2 py-0.5 text-xs font-medium bg-black text-white rounded-full">
               Current
             </span>
           )}
