@@ -1,7 +1,7 @@
 // src/pages/Projects.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
@@ -82,8 +82,65 @@ const Projects = () => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<Category>("projects");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const collapseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const filteredProjects = allProjects.filter(p => p.category === activeCategory);
+
+  // Auto-collapse sidebar after 2 seconds when category changes
+  useEffect(() => {
+    // Reset collapse timeout when category changes
+    if (collapseTimeoutRef.current) {
+      clearTimeout(collapseTimeoutRef.current);
+    }
+
+    // Set new timeout to collapse after 2 seconds
+    collapseTimeoutRef.current = setTimeout(() => {
+      setIsSidebarCollapsed(true);
+    }, 2000);
+
+    return () => {
+      if (collapseTimeoutRef.current) {
+        clearTimeout(collapseTimeoutRef.current);
+      }
+    };
+  }, [activeCategory]);
+
+  // Mouse proximity detection
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!sidebarRef.current) return;
+
+      const sidebarRect = sidebarRef.current.getBoundingClientRect();
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      // Calculate distance from mouse to sidebar
+      const distanceX = Math.max(
+        0,
+        Math.max(sidebarRect.left - mouseX, mouseX - sidebarRect.right)
+      );
+      const distanceY = Math.max(
+        0,
+        Math.max(sidebarRect.top - mouseY, mouseY - sidebarRect.bottom)
+      );
+
+      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+      // Expand when mouse is within 100px of sidebar
+      if (distance < 100) {
+        setIsSidebarCollapsed(false);
+        // Reset collapse timeout when expanded by mouse proximity
+        if (collapseTimeoutRef.current) {
+          clearTimeout(collapseTimeoutRef.current);
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
@@ -111,8 +168,13 @@ const Projects = () => {
       <Sidebar />
       
       {/* Project Categories Navigation - Left Side */}
-      <aside className="fixed left-24 top-0 h-screen flex items-center justify-center z-40">
-        <nav className="flex flex-col gap-2 p-3 bg-nav-bg/80 backdrop-blur-sm rounded-2xl border border-border shadow-lg">
+      <aside 
+        ref={sidebarRef}
+        className={`fixed left-24 top-0 h-screen flex items-center justify-center z-40 transition-all duration-300 ease-in-out ${
+          isSidebarCollapsed ? 'w-16' : 'w-48'
+        }`}
+      >
+        <nav className={`flex flex-col gap-2 p-3 bg-nav-bg/80 backdrop-blur-sm rounded-2xl border border-border shadow-lg w-full transition-all duration-300`}>
           {categories.map((category) => (
             <button
               key={category.value}
@@ -124,7 +186,11 @@ const Projects = () => {
               }`}
             >
               <span className="text-muted-foreground">/</span>
-              <span className="whitespace-nowrap">{category.label.toLowerCase()}</span>
+              <span className={`whitespace-nowrap transition-all duration-300 ${
+                isSidebarCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+              }`}>
+                {category.label.toLowerCase()}
+              </span>
             </button>
           ))}
         </nav>
