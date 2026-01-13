@@ -265,42 +265,43 @@ export default function Projects() {
         )}
 
         {/* ---------- APPS ---------- */}
-        {activeCategory === "apps" && (
-          <div className="flex-1 py-8">
-            {/* headline aligned to the same x-start as /experience */}
-            <div className="max-w-6xl mx-auto mb-10">
-              <p className="text-4xl font-bold leading-tight">
-                <span className="text-muted-foreground">From utility to play: </span>
-                <span className="text-foreground">apps that matter </span>
-                <span className="text-muted-foreground">to users.</span>
-              </p>
-            </div>
+        // src/pages/Projects.tsx  (only the /apps block changed)
+{activeCategory === "apps" && (
+  <div className="flex-1 flex flex-col items-center justify-center py-8">
+    {/* headline aligned to the same left edge as /experience */}
+    <div className="w-full max-w-6xl px-8">
+      <p className="text-4xl font-bold leading-tight">
+        <span className="text-muted-foreground">From utility to play: </span>
+        <span className="text-foreground">apps that matter </span>
+        <span className="text-muted-foreground">to users.</span>
+      </p>
+    </div>
 
-            {/* image + link – image centered, link mid-height */}
-            <div className="max-w-6xl mx-auto flex items-center justify-center gap-10">
-              <img
-                src={productImage}
-                alt="Product"
-                className="max-w-full h-auto rounded-lg shadow-lg"
-                style={{ maxHeight: "70vh" }}
-              />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="rounded-full px-6 py-3 bg-white shadow-sm border border-gray-300"
-                style={{
-                  color: "#2a2a2a",
-                  fontWeight: 500,
-                  fontSize: "1.1rem",
-                  fontFamily: "Arimo, sans-serif",
-                }}
-                asChild
-              >
-                <a href="#">view case story</a>
-              </Button>
-            </div>
-          </div>
-        )}
+    {/* stand-alone image + bigger link */}
+    <div className="mt-12 flex items-center gap-10">
+      <img
+        src={productImage}
+        alt="Product"
+        className="max-w-full h-auto rounded-lg shadow-lg"
+        style={{ maxHeight: "70vh" }}
+      />
+      <Button
+        variant="ghost"
+        size="default"                         // slightly taller
+        className="rounded-full px-8 py-4 bg-white shadow-sm border border-gray-300"
+        style={{
+          color: "#2a2a2a",
+          fontWeight: 500,
+          fontSize: "1.1rem",
+          fontFamily: "Arimo, sans-serif",
+        }}
+        asChild
+      >
+        <a href="#">view case story</a>
+      </Button>
+    </div>
+  </div>
+)}
 
         {/* ---------- PET PROJECTS (original carousel) ---------- */}
         {activeCategory === "pet-projects" && (
