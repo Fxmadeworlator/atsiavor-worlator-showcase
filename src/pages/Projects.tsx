@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
-import productImage from "@/assets/product-apps.png";
+import productImage from "@/assets/product-appsP.png";
 
 type Category = "experience" | "apps" | "pet-projects";
 
