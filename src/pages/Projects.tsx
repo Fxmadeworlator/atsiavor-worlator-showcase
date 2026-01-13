@@ -247,40 +247,41 @@ const Projects = () => {
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* AGTV Container */}
-                <div className="bg-white/90 rounded-lg border border-border p-8 shadow-sm">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="text-left space-y-3">
-                      <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
-                      <p className="text-lg text-muted-foreground">web design and developer</p>
-                      <p className="text-base text-muted-foreground">2026 - Present</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-muted-foreground hover:text-foreground"
-                        asChild
-                      >
-                        <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
-                          view work
-                        </a>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className={`text-muted-foreground hover:text-foreground transition-transform ${
-                          expandedProject === "AGTV" ? 'rotate-45' : ''
-                        }`}
-                        onClick={() => toggleProjectExpansion("AGTV")}
-                      >
-                        <Plus className="w-5 h-5" />
-                      </Button>
-                    </div>
+                <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 shadow-sm">
+                  <div className="text-left space-y-3 mb-6">
+                    <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
+                    <p className="text-lg text-muted-foreground">web design and developer</p>
+                    <p className="text-base text-muted-foreground">2026 - Present</p>
+                  </div>
+                  
+                  {/* Action buttons row */}
+                  <div className="flex items-center justify-between">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className={`text-muted-foreground hover:text-foreground transition-transform ${
+                        expandedProject === "AGTV" ? 'rotate-45' : ''
+                      }`}
+                      onClick={() => toggleProjectExpansion("AGTV")}
+                    >
+                      <Plus className="w-5 h-5" />
+                    </Button>
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-muted-foreground hover:text-foreground"
+                      asChild
+                    >
+                      <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
+                        view work
+                      </a>
+                    </Button>
                   </div>
                   
                   {/* Expanded content */}
                   {expandedProject === "AGTV" && (
-                    <div className="mt-6 pt-6 border-t border-border">
+                    <div className="mt-6 pt-6 border-t border-gray-200">
                       <p className="text-muted-foreground mb-4">
                         A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.
                       </p>
