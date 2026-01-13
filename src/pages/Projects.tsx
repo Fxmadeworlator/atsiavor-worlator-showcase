@@ -249,9 +249,11 @@ const Projects = () => {
                 {/* AGTV Container */}
                 <div className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm" style={{ fontFamily: 'Arimo, sans-serif', fontWeight: 400 }}>
                   <div className="text-left space-y-3 mb-6">
-                    <h3 className="text-2xl font-medium" style={{ color: '#2a2a2a' }}>AGTV</h3>
-                    <p className="text-xl text-muted-foreground">web design and developer</p>
-                    <p className="text-lg text-muted-foreground">2026 - Present</p>
+                    <h3 className="text-2xl font-bold" style={{ fontFamily: 'Arimo, sans-serif', fontWeight: 700, color: '#2a2a2a' }}>AGTV</h3>
+                    <p className="text-xl text-muted-foreground">
+                      web design and developer<br />
+                      2026 - Present
+                    </p>
                   </div>
                   
                   {/* Action buttons row */}
@@ -259,19 +261,19 @@ const Projects = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className={`text-blue-500 hover:text-blue-600 transition-transform rounded-full p-2 ${
+                      className={`text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm ${
                         expandedProject === "AGTV" ? 'rotate-45' : ''
                       }`}
                       onClick={() => toggleProjectExpansion("AGTV")}
                     >
-                      <Plus className="w-6 h-6" />
+                      <Plus className="w-7 h-7" />
                     </Button>
                     
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="rounded-full px-4 py-2"
-                      style={{ color: '#2a2a2a', fontWeight: 500 }}
+                      className="rounded-full px-6 py-3 bg-white shadow-sm"
+                      style={{ color: '#2a2a2a', fontWeight: 500, fontSize: '1.1rem' }}
                       asChild
                     >
                       <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
@@ -283,14 +285,15 @@ const Projects = () => {
                   {/* Expanded content */}
                   {expandedProject === "AGTV" && (
                     <div className="mt-6 pt-6 border-t border-gray-200">
-                      <p className="text-muted-foreground mb-4">
+                      <p className="text-muted-foreground mb-4" style={{ fontSize: '1.1rem' }}>
                         A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {["HTML", "Node.js", "MongoDB"].map((tech, i) => (
                           <span
                             key={i}
-                            className="px-2 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-md"
+                            className="px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground rounded-md"
+                            style={{ fontSize: '1rem' }}
                           >
                             {tech}
                           </span>
