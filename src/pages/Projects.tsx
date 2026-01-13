@@ -232,9 +232,9 @@ const Projects = () => {
               <div className="text-left">
                 <p className="text-4xl font-bold leading-tight">
                   <span className="text-muted-foreground">I've worked as a hands-on</span>
-                  <span className="text-foreground">web developer</span>
+                  <span className="text-foreground"> web developer, </span>
                   <br />
-                  <span className="text-muted-foreground">, delivering </span>
+                  <span className="text-muted-foreground">delivering </span>
                   <span className="text-foreground">production-ready</span>
                   <span className="text-muted-foreground"> websites for:</span>
                 </p>
