@@ -2,7 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
@@ -22,18 +22,18 @@ interface Project {
 const allProjects: Project[] = [
   {
     title: "Assemblies of God Ghana TV",
-    description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
+    description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/ ",
+    live: "https://agtv.vercel.app/",
     category: "projects",
   },
   {
     title: "Maxwell's Portfolio",
-    description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
+    description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/ ",
+    live: "https://maxwellandoh.vercel.app/",
     category: "projects",
   },
   {
@@ -46,7 +46,7 @@ const allProjects: Project[] = [
   },
   {
     title: "Podcast Series",
-    description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into the world of software development.",
+    description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into software development.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: "🎙️",
     live: "#",
@@ -55,10 +55,10 @@ const allProjects: Project[] = [
   // Apps category
   {
     title: "Ootie",
-    description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
+    description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/ ",
+    live: "https://ootie-web.vercel.app/",
     category: "apps",
   },
   // Pet Projects category
@@ -94,7 +94,6 @@ const Projects = () => {
     isInteractingRef.current = true;
     setIsSidebarCollapsed(false);
     
-    // Reset interaction flag after a short delay
     setTimeout(() => {
       isInteractingRef.current = false;
     }, 100);
@@ -180,6 +179,9 @@ const Projects = () => {
     return cat?.label || "Projects";
   };
 
+  // Get projects for the 4-container layout (only for projects category)
+  const showcaseProjects = allProjects.filter(p => p.category === "projects").slice(0, 4);
+
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
@@ -213,133 +215,224 @@ const Projects = () => {
         </nav>
       </aside>
 
-      <main className="min-h-screen flex flex-col items-center px-8">
-        <div 
-          ref={ref}
-          className={`max-w-3xl w-full mx-auto pt-[25vh] transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          {/* Header */}
-          <div className="mb-12">
-            <h1 className="text-4xl font-bold">/ {getCategoryTitle()}</h1>
+      <main className="min-h-screen flex flex-col px-8">
+        {/* Top left title - only show for projects category */}
+        {activeCategory === "projects" && (
+          <div className="pt-8 pb-4">
+            <h1 className="text-4xl font-bold">/projects</h1>
             <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
           </div>
+        )}
 
-          {filteredProjects.length > 0 ? (
-            <>
-              {/* Carousel Container */}
-              <div className="relative">
-                {/* Project Card with background image */}
+        {/* Projects category with 4-container layout */}
+        {activeCategory === "projects" && (
+          <div className="flex-1 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+              {showcaseProjects.map((project, index) => (
                 <div 
-                  className="relative rounded-2xl border border-border min-h-[450px] transition-all duration-500 bg-cover bg-center overflow-hidden"
-                  style={{ 
-                    boxShadow: 'var(--shadow-card)',
-                    backgroundImage: isImageUrl ? `url(${currentProject.image})` : 'none'
-                  }}
+                  key={index}
+                  className="group relative bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
-                  {/* dark scrim so text is readable */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
-
-                  {/* content pinned to bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    {/* emoji fallback (only when no real image) */}
-                    {!isImageUrl && (
-                      <div className="w-16 h-16 mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl">
-                        {currentProject.image}
+                  {/* Project Image/Icon */}
+                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-muted to-background">
+                    {project.image.startsWith('http') || project.image.includes('assets') ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-4xl bg-gradient-to-br from-muted/50 to-background/50">
+                        {project.image}
                       </div>
                     )}
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
 
-                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
-                    <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">
-                      {currentProject.description}
+                  {/* Project Info */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {project.description}
                     </p>
-
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {currentProject.techStack.map((tech, i) => (
+                    
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10"
+                          className="px-2 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-md"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    {currentProject.live !== "#" && (
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm"
-                        asChild
-                      >
-                        <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <ExternalLink className="w-4 h-4" />
-                          <span>View Live</span>
-                        </a>
-                      </Button>
-                    )}
+                    {/* Action Button */}
+                    <div className="flex items-center justify-between">
+                      {project.live !== "#" ? (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="group/button flex items-center gap-2 text-primary hover:text-primary"
+                          asChild
+                        >
+                          <a href={project.live} target="_blank" rel="noopener noreferrer">
+                            View Project
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover/button:translate-x-1" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <span className="text-xs text-muted-foreground">Coming Soon</span>
+                      )}
+                      <span className="text-xs text-muted-foreground">
+                        {index + 1}/4
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Navigation Arrows */}
-                {filteredProjects.length > 1 && (
-                  <>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={prevProject}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 rounded-full hover:bg-muted hidden md:flex"
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={nextProject}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 rounded-full hover:bg-muted hidden md:flex"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </Button>
-                  </>
-                )}
+                  {/* Hover Border Effect */}
+                  <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/30 rounded-xl transition-all duration-300 pointer-events-none" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Original carousel layout for other categories */}
+        {activeCategory !== "projects" && (
+          <div className="min-h-screen flex flex-col items-center">
+            <div 
+              ref={ref}
+              className={`max-w-3xl w-full mx-auto pt-[25vh] transition-all duration-700 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+            >
+              {/* Header */}
+              <div className="mb-12">
+                <h1 className="text-4xl font-bold">/ {getCategoryTitle()}</h1>
+                <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
               </div>
 
-              {/* Mobile Navigation */}
-              {filteredProjects.length > 1 && (
-                <div className="flex justify-center gap-4 mt-6 md:hidden">
-                  <Button variant="ghost" size="icon" onClick={prevProject} className="rounded-full">
-                    <ChevronLeft className="w-5 h-5" />
-                  </Button>
-                  <Button variant="ghost" size="icon" onClick={nextProject} className="rounded-full">
-                    <ChevronRight className="w-5 h-5" />
-                  </Button>
-                </div>
-              )}
+              {filteredProjects.length > 0 ? (
+                <>
+                  {/* Carousel Container */}
+                  <div className="relative">
+                    {/* Project Card with background image */}
+                    <div 
+                      className="relative rounded-2xl border border-border min-h-[450px] transition-all duration-500 bg-cover bg-center overflow-hidden"
+                      style={{ 
+                        boxShadow: 'var(--shadow-card)',
+                        backgroundImage: isImageUrl ? `url(${currentProject.image})` : 'none'
+                      }}
+                    >
+                      {/* dark scrim so text is readable */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
 
-              {/* Pagination Dots */}
-              {filteredProjects.length > 1 && (
-                <div className="flex justify-center gap-2 mt-8">
-                  {filteredProjects.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handlePaginationClick(index)}
-                      className={`w-8 h-1 rounded-full transition-all duration-300 ${
-                        index === currentIndex 
-                          ? 'bg-primary' 
-                          : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                      }`}
-                    />
-                  ))}
+                      {/* content pinned to bottom */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                        {/* emoji fallback (only when no real image) */}
+                        {!isImageUrl && (
+                          <div className="w-16 h-16 mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl">
+                            {currentProject.image}
+                          </div>
+                        )}
+
+                        <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
+                        <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">
+                          {currentProject.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-5">
+                          {currentProject.techStack.map((tech, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        {currentProject.live !== "#" && (
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm"
+                            asChild
+                          >
+                            <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                              <ExternalLink className="w-4 h-4" />
+                              <span>View Live</span>
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    {filteredProjects.length > 1 && (
+                      <>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={prevProject}
+                          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 rounded-full hover:bg-muted hidden md:flex"
+                        >
+                          <ChevronLeft className="w-6 h-6" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={nextProject}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 rounded-full hover:bg-muted hidden md:flex"
+                        >
+                          <ChevronRight className="w-6 h-6" />
+                        </Button>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Mobile Navigation */}
+                  {filteredProjects.length > 1 && (
+                    <div className="flex justify-center gap-4 mt-6 md:hidden">
+                      <Button variant="ghost" size="icon" onClick={prevProject} className="rounded-full">
+                        <ChevronLeft className="w-5 h-5" />
+                      </Button>
+                      <Button variant="ghost" size="icon" onClick={nextProject} className="rounded-full">
+                        <ChevronRight className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Pagination Dots */}
+                  {filteredProjects.length > 1 && (
+                    <div className="flex justify-center gap-2 mt-8">
+                      {filteredProjects.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handlePaginationClick(index)}
+                          className={`w-8 h-1 rounded-full transition-all duration-300 ${
+                            index === currentIndex 
+                              ? 'bg-primary' 
+                              : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="text-center text-muted-foreground py-16">
+                  <p>No projects in this category yet.</p>
                 </div>
               )}
-            </>
-          ) : (
-            <div className="text-center text-muted-foreground py-16">
-              <p>No projects in this category yet.</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </main>
     </div>
   );
