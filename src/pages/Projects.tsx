@@ -25,7 +25,7 @@ const allProjects: Project[] = [
     description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/",
+    live: "https://agtv.vercel.app/ ",
     category: "projects",
   },
   {
@@ -33,7 +33,7 @@ const allProjects: Project[] = [
     description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/",
+    live: "https://maxwellandoh.vercel.app/ ",
     category: "projects",
   },
   {
@@ -58,7 +58,7 @@ const allProjects: Project[] = [
     description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/",
+    live: "https://ootie-web.vercel.app/ ",
     category: "apps",
   },
   // Pet Projects category
@@ -179,9 +179,6 @@ const Projects = () => {
     return cat?.label || "Projects";
   };
 
-  // Get projects for the 4-container layout (only for projects category)
-  const showcaseProjects = allProjects.filter(p => p.category === "projects").slice(0, 4);
-
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
@@ -224,94 +221,32 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Projects category with 4-container layout */}
+        {/* Projects category with simple container */}
         {activeCategory === "projects" && (
           <div className="flex-1 py-8">
-            {/* Intro text - consolidated into two lines, same size as /projects */}
+            {/* Intro text - same size as /projects */}
             <div className="max-w-6xl mx-auto mb-8">
               <div className="text-left">
                 <p className="text-4xl font-bold leading-tight">
                   <span className="text-muted-foreground">I've worked as a hands-on</span>
-                  <span className="text-foreground"> web developer, </span>
                   <br />
-                  <span className="text-muted-foreground">delivering </span>
+                  <span className="text-foreground">web developer</span>
+                  <span className="text-muted-foreground">, delivering </span>
                   <span className="text-foreground">production-ready</span>
                   <span className="text-muted-foreground"> websites for:</span>
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              {showcaseProjects.map((project, index) => (
-                <div 
-                  key={index}
-                  className="group relative bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                >
-                  {/* Project Image/Icon */}
-                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-muted to-background">
-                    {project.image.startsWith('http') || project.image.includes('assets') ? (
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-4xl bg-gradient-to-br from-muted/50 to-background/50">
-                        {project.image}
-                      </div>
-                    )}
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Project Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-                    
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.techStack.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-md"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action Button */}
-                    <div className="flex items-center justify-between">
-                      {project.live !== "#" ? (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="group/button flex items-center gap-2 text-primary hover:text-primary"
-                          asChild
-                        >
-                          <a href={project.live} target="_blank" rel="noopener noreferrer">
-                            View Project
-                            <ArrowRight className="w-4 h-4 transition-transform group-hover/button:translate-x-1" />
-                          </a>
-                        </Button>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">Coming Soon</span>
-                      )}
-                      <span className="text-xs text-muted-foreground">
-                        {index + 1}/4
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Hover Border Effect */}
-                  <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/30 rounded-xl transition-all duration-300 pointer-events-none" />
+            {/* Simple milky white container */}
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-white/90 rounded-lg border border-border p-8 shadow-sm">
+                <div className="text-left space-y-2">
+                  <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
+                  <p className="text-lg text-muted-foreground">web design and developer</p>
+                  <p className="text-base text-muted-foreground">2026 - Present</p>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         )}
