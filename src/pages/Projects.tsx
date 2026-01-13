@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
-import productImage from "@/assets/product-appsP.png";
+import productImage from "@/assets/product-apps.png";
 
 type Category = "experience" | "apps" | "pet-projects";
 
@@ -32,7 +32,7 @@ const allProjects: Project[] = [
       "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/   ",
+    live: "https://agtv.vercel.app/",
     category: "experience",
   },
   {
@@ -41,7 +41,7 @@ const allProjects: Project[] = [
       "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/   ",
+    live: "https://maxwellandoh.vercel.app/",
     category: "experience",
   },
   {
@@ -69,7 +69,7 @@ const allProjects: Project[] = [
       "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/   ",
+    live: "https://ootie-web.vercel.app/",
     category: "apps",
   },
   // Pet Projects
@@ -146,13 +146,32 @@ export default function Projects() {
 
   const getCategoryTitle = () => categories.find((c) => c.value === activeCategory)?.label || "Experience";
 
-  const toggleProjectExpansion = (title: string) =>
-    setExpandedProject((prev) => (prev === title ? null : title));
+  const toggleProjectExpansion = (title: string) => setExpandedProject((prev) => (prev === title ? null : title));
+
+  /* ---------- reusable card ---------- */
+  const ProjectCard = ({ title, subtitle, live = "#", children }: {
+    title: string; subtitle: string; live?: string; children?: React.ReactNode;
+  }) => (
+    <div className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm" style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}>
+      <div className="text-left space-y-3 mb-6">
+        <h3 className="text-2xl font-bold" style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}>{title}</h3>
+        <p className="text-xl text-muted-foreground" dangerouslySetInnerHTML={{ __html: subtitle }} />
+      </div>
+      <div className="flex items-center justify-between">
+        <Button variant="ghost" size="icon" className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm">
+          <Plus className="w-7 h-7" />
+        </Button>
+        <Button variant="ghost" size="sm" className="rounded-full px-6 py-3 bg-white shadow-sm" style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }} asChild>
+          <a href={live} target="_blank" rel="noopener noreferrer">view work</a>
+        </Button>
+      </div>
+      {children}
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      {/* ---------- SIDE NAV ---------- */}
       <aside
         ref={sidebarRef}
         className={`fixed left-24 top-0 h-screen flex items-center justify-center z-40 transition-all duration-300 ease-in-out ${
@@ -171,11 +190,7 @@ export default function Projects() {
               }`}
             >
               <span className="text-muted-foreground">/</span>
-              <span
-                className={`whitespace-nowrap transition-all duration-300 ${
-                  isSidebarCollapsed ? "opacity-0 w-0" : "opacity-100 w-auto"
-                }`}
-              >
+              <span className={`whitespace-nowrap transition-all duration-300 ${isSidebarCollapsed ? "opacity-0 w-0" : "opacity-100 w-auto"}`}>
                 {cat.label.toLowerCase()}
               </span>
             </button>
@@ -183,17 +198,15 @@ export default function Projects() {
         </nav>
       </aside>
 
-      {/* ---------- MAIN CONTENT ---------- */}
       <main className="min-h-screen flex flex-col px-8">
-        {/* universal page title */}
-        {(activeCategory === "experience" || activeCategory === "apps") && (
+        {(activeCategory === "experience" || activeCategory === "apps" || activeCategory === "pet-projects") && (
           <div className="pt-8 pb-4">
             <h1 className="text-4xl font-bold">/{activeCategory}</h1>
             <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
           </div>
         )}
 
-        {/* ---------- EXPERIENCE ---------- */}
+        {/* EXPERIENCE */}
         {activeCategory === "experience" && (
           <div className="flex-1 py-8">
             <div className="max-w-6xl mx-auto mb-8">
@@ -206,195 +219,127 @@ export default function Projects() {
                 <span className="text-muted-foreground"> websites for:</span>
               </p>
             </div>
-
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* AGTV card */}
-              <div className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm" style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}>
-                <div className="text-left space-y-3 mb-6">
-                  <h3 className="text-2xl font-bold" style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}>
-                    AGTV
-                  </h3>
-                  <p className="text-xl text-muted-foreground">
-                    web design and developer
-                    <br />
-                    2026 - Present
+              <ProjectCard title="AGTV" subtitle="web design and developer<br />2026 - Present" live="https://agtv.vercel.app/">
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                    I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
+                  </p>
+                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                    On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
                   </p>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm ${
-                      expandedProject === "AGTV" ? "rotate-45" : ""
-                    }`}
-                    onClick={() => toggleProjectExpansion("AGTV")}
-                  >
-                    <Plus className="w-7 h-7" />
-                  </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="rounded-full px-6 py-3 bg-white shadow-sm"
-                    style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
-                    asChild
-                  >
-                    <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
-                      view work
-                    </a>
-                  </Button>
-                </div>
-
-                {expandedProject === "AGTV" && (
-                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                      I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
-                    </p>
-                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                      On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* empty column for symmetry */}
+              </ProjectCard>
               <div className="hidden lg:block" />
             </div>
           </div>
         )}
 
-        {/* ---------- APPS ---------- */}
-        // src/pages/Projects.tsx  (only the /apps block changed)
-{activeCategory === "apps" && (
-  <div className="flex-1 flex flex-col items-center justify-center py-8">
-    {/* headline aligned to the same left edge as /experience */}
-    <div className="w-full max-w-6xl px-8">
-      <p className="text-4xl font-bold leading-tight">
-        <span className="text-muted-foreground">From utility to play: </span>
-        <span className="text-foreground">apps that matter </span>
-        <span className="text-muted-foreground">to users.</span>
-      </p>
-    </div>
+        {/* APPS */}
+        {activeCategory === "apps" && (
+          <div className="flex-1 flex flex-col items-center justify-center py-8">
+            <div className="w-full max-w-6xl px-8">
+              <p className="text-4xl font-bold leading-tight">
+                <span className="text-muted-foreground">From utility to play: </span>
+                <span className="text-foreground">apps that matter </span>
+                <span className="text-muted-foreground">to users.</span>
+              </p>
+            </div>
+            <div className="mt-12 flex items-center gap-10">
+              <img src={productImage} alt="Product" className="max-w-full h-auto rounded-lg shadow-lg" style={{ maxHeight: "70vh" }} />
+              <Button
+                variant="ghost"
+                size="default"
+                className="rounded-full px-8 py-4 bg-white shadow-sm border border-gray-300"
+                style={{
+                  color: "#2a2a2a",
+                  fontWeight: 500,
+                  fontSize: "1.1rem",
+                  fontFamily: "Arimo, sans-serif",
+                }}
+                asChild
+              >
+                <a href="#">view case story</a>
+              </Button>
+            </div>
+          </div>
+        )}
 
-    {/* stand-alone image + bigger link */}
-    <div className="mt-12 flex items-center gap-10">
-      <img
-        src={productImage}
-        alt="Product"
-        className="max-w-full h-auto rounded-lg shadow-lg"
-        style={{ maxHeight: "70vh" }}
-      />
-      <Button
-        variant="ghost"
-        size="default"                         // slightly taller
-        className="rounded-full px-8 py-4 bg-white shadow-sm border border-gray-300"
-        style={{
-          color: "#2a2a2a",
-          fontWeight: 500,
-          fontSize: "1.1rem",
-          fontFamily: "Arimo, sans-serif",
-        }}
-        asChild
-      >
-        <a href="#">view case story</a>
-      </Button>
-    </div>
-  </div>
-)}
-
-        {/* ---------- PET PROJECTS (original carousel) ---------- */}
+        {/* PET PROJECTS */}
         {activeCategory === "pet-projects" && (
-          <div className="min-h-screen flex flex-col items-center">
-            <div
-              ref={ref}
-              className={`max-w-3xl w-full mx-auto pt-[25vh] transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
-              <div className="mb-12">
-                <h1 className="text-4xl font-bold">/ {getCategoryTitle()}</h1>
-                <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
-              </div>
+          <div className="flex-1 py-8">
+            <div className="max-w-6xl mx-auto mb-8">
+              <p className="text-4xl font-bold leading-tight">
+                <span className="text-muted-foreground">family, friends and mines: </span>
+              </p>
+            </div>
 
-              {filteredProjects.length ? (
-                <>
-                  <div className="relative">
-                    <div
-                      className="relative rounded-2xl border border-border min-h-[450px] transition-all duration-500 bg-cover bg-center overflow-hidden"
-                      style={{
-                        boxShadow: "var(--shadow-card)",
-                        backgroundImage: isImageUrl ? `url(${currentProject.image})` : undefined,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        {!isImageUrl && (
-                          <div className="w-16 h-16 mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl">
-                            {currentProject.image}
-                          </div>
-                        )}
-                        <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
-                        <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">{currentProject.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-5">
-                          {currentProject.techStack.map((t, i) => (
-                            <span key={i} className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10">
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                        {currentProject.live !== "#" && (
-                          <Button variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm" asChild>
-                            <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                              <ExternalLink className="w-4 h-4" />
-                              <span>View Live</span>
-                            </a>
-                          </Button>
-                        )}
-                      </div>
+            {/* slideshow carousel – arrows inside container */}
+            <div className="max-w-6xl mx-auto mb-10">
+              <div className="relative rounded-2xl border border-border overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
+                <div
+                  className="relative w-full h-[450px] bg-cover bg-center"
+                  style={{ backgroundImage: `url(${currentProject.image})` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
+                    <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">{currentProject.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {currentProject.techStack.map((t, i) => (
+                        <span key={i} className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10">
+                          {t}
+                        </span>
+                      ))}
                     </div>
-
-                    {filteredProjects.length > 1 && (
-                      <>
-                        <Button variant="ghost" size="icon" onClick={prevProject} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 rounded-full hover:bg-muted hidden md:flex">
-                          <ChevronLeft className="w-6 h-6" />
-                        </Button>
-                        <Button variant="ghost" size="icon" onClick={nextProject} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 rounded-full hover:bg-muted hidden md:flex">
-                          <ChevronRight className="w-6 h-6" />
-                        </Button>
-                      </>
+                    {currentProject.live !== "#" && (
+                      <Button variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm" asChild>
+                        <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" /><span>View Live</span>
+                        </a>
+                      </Button>
                     )}
                   </div>
 
-                  {filteredProjects.length > 1 && (
-                    <>
-                      <div className="flex justify-center gap-4 mt-6 md:hidden">
-                        <Button variant="ghost" size="icon" onClick={prevProject} className="rounded-full">
-                          <ChevronLeft className="w-5 h-5" />
-                        </Button>
-                        <Button variant="ghost" size="icon" onClick={nextProject} className="rounded-full">
-                          <ChevronRight className="w-5 h-5" />
-                        </Button>
-                      </div>
-                      <div className="flex justify-center gap-2 mt-8">
-                        {filteredProjects.map((_, i) => (
-                          <button
-                            key={i}
-                            onClick={() => handlePaginationClick(i)}
-                            className={`w-8 h-1 rounded-full transition-all duration-300 ${
-                              i === currentIndex ? "bg-primary" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </>
-              ) : (
-                <div className="text-center text-muted-foreground py-16">
-                  <p>No projects in this category yet.</p>
+                  {/* arrows inside container */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={prevProject}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/40 text-white"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={nextProject}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/40 text-white"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </Button>
                 </div>
-              )}
+              </div>
+
+              {/* pagination dots */}
+              <div className="flex justify-center gap-2 mt-6">
+                {filteredProjects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handlePaginationClick(i)}
+                    className={`w-8 h-1 rounded-full transition-all duration-300 ${
+                      i === currentIndex ? "bg-primary" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* three static containers below carousel */}
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <ProjectCard title="Personal Portfolio" subtitle="this very site you're on<br />React • TypeScript • Tailwind" live="/" />
+              <ProjectCard title="Soon…" subtitle="next fun project<br />—" live="#" />
+              <ProjectCard title="Soon…" subtitle="another fun project<br />—" live="#" />
             </div>
           </div>
         )}
