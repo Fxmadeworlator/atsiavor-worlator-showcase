@@ -227,15 +227,14 @@ const Projects = () => {
         {/* Projects category with 4-container layout */}
         {activeCategory === "projects" && (
           <div className="flex-1 py-8">
-            {/* Intro text positioned at container start - same size as /projects */}
+            {/* Intro text - consolidated into two lines, same size as /projects */}
             <div className="max-w-6xl mx-auto mb-8">
               <div className="text-left">
                 <p className="text-4xl font-bold leading-tight">
                   <span className="text-muted-foreground">I've worked as a hands-on</span>
                   <br />
                   <span className="text-foreground">web developer</span>
-                  <span className="text-muted-foreground">, delivering</span>
-                  <br />
+                  <span className="text-muted-foreground">, delivering </span>
                   <span className="text-foreground">production-ready</span>
                   <span className="text-muted-foreground"> websites for:</span>
                 </p>
