@@ -25,7 +25,7 @@ const allProjects: Project[] = [
     description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/ ",
+    live: "https://agtv.vercel.app/   ",
     category: "projects",
   },
   {
@@ -33,7 +33,7 @@ const allProjects: Project[] = [
     description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/ ",
+    live: "https://maxwellandoh.vercel.app/   ",
     category: "projects",
   },
   {
@@ -58,7 +58,7 @@ const allProjects: Project[] = [
     description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/ ",
+    live: "https://ootie-web.vercel.app/   ",
     category: "apps",
   },
   // Pet Projects category
@@ -226,6 +226,14 @@ const Projects = () => {
           </div>
         )}
 
+        {/* Top left title - only show for apps category */}
+        {activeCategory === "apps" && (
+          <div className="pt-8 pb-4">
+            <h1 className="text-4xl font-bold">/apps</h1>
+            <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
+          </div>
+        )}
+
         {/* Projects category with expandable container */}
         {activeCategory === "projects" && (
           <div className="flex-1 py-8">
@@ -276,7 +284,7 @@ const Projects = () => {
                       style={{ color: '#2a2a2a', fontWeight: 500, fontSize: '1.1rem' }}
                       asChild
                     >
-                      <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
+                      <a href="https://agtv.vercel.app/  " target="_blank" rel="noopener noreferrer">
                         view work
                       </a>
                     </Button>
@@ -304,8 +312,83 @@ const Projects = () => {
           </div>
         )}
 
+        {/* Apps category with header */}
+        {activeCategory === "apps" && (
+          <div className="flex-1 py-8">
+            {/* Intro text - same size as /apps */}
+            <div className="max-w-6xl mx-auto mb-8">
+              <div className="text-left">
+                <p className="text-4xl font-bold leading-tight">
+                  <span className="text-muted-foreground">From utility to play: </span>
+                  <span className="text-foreground">apps that matter </span>
+                  <span className="text-muted-foreground">to users.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Apps grid layout */}
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Ootie App Container */}
+                <div className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm" style={{ fontFamily: 'Arimo, sans-serif', fontWeight: 400 }}>
+                  <div className="text-left space-y-3 mb-6">
+                    <h3 className="text-2xl font-bold" style={{ fontFamily: 'Arimo, sans-serif', fontWeight: 700, color: '#2a2a2a' }}>Ootie</h3>
+                    <p className="text-xl text-muted-foreground">
+                      outfit planner & wardrobe manager<br />
+                      React • TypeScript • Tailwind
+                    </p>
+                  </div>
+                  
+                  {/* Action buttons row */}
+                  <div className="flex items-center justify-between">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className={`text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm ${
+                        expandedProject === "Ootie" ? 'rotate-45' : ''
+                      }`}
+                      onClick={() => toggleProjectExpansion("Ootie")}
+                    >
+                      <Plus className="w-7 h-7" />
+                    </Button>
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="rounded-full px-6 py-3 bg-white shadow-sm"
+                      style={{ color: '#2a2a2a', fontWeight: 500, fontSize: '1.1rem' }}
+                      asChild
+                    >
+                      <a href="https://ootie-web.vercel.app/   " target="_blank" rel="noopener noreferrer">
+                        view app
+                      </a>
+                    </Button>
+                  </div>
+                  
+                  {/* Expanded content */}
+                  {expandedProject === "Ootie" && (
+                    <div className="mt-6 pt-6 border-t border-gray-200">
+                      <p className="text-muted-foreground mb-4" style={{ fontSize: '1.1rem' }}>
+                        Ootie helps users organize their clothing collection and create stylish outfits effortlessly. Built with modern web technologies, it provides a seamless experience for wardrobe management and outfit planning.
+                      </p>
+                      <p className="text-muted-foreground" style={{ fontSize: '1.1rem' }}>
+                        The app features intuitive categorization, seasonal organization, and smart outfit suggestions based on weather and occasion, making daily dressing decisions easier and more enjoyable.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Space for future apps */}
+                <div className="hidden lg:block">
+                  {/* Empty space - same size as Ootie container for balance */}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Original carousel layout for other categories */}
-        {activeCategory !== "projects" && (
+        {activeCategory !== "projects" && activeCategory !== "apps" && (
           <div className="min-h-screen flex flex-col items-center">
             <div 
               ref={ref}
