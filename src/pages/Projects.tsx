@@ -2,7 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
@@ -22,7 +22,7 @@ interface Project {
 const allProjects: Project[] = [
   {
     title: "Assemblies of God Ghana TV",
-    description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected.",
+    description: "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
     live: "https://agtv.vercel.app/ ",
@@ -30,7 +30,7 @@ const allProjects: Project[] = [
   },
   {
     title: "Maxwell's Portfolio",
-    description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography.",
+    description: "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
     live: "https://maxwellandoh.vercel.app/ ",
@@ -46,7 +46,7 @@ const allProjects: Project[] = [
   },
   {
     title: "Podcast Series",
-    description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into software development.",
+    description: "A podcast platform featuring tech discussions, interviews with industry professionals, and insights into the world of software development.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: "🎙️",
     live: "#",
@@ -55,7 +55,7 @@ const allProjects: Project[] = [
   // Apps category
   {
     title: "Ootie",
-    description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection.",
+    description: "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
     live: "https://ootie-web.vercel.app/ ",
@@ -83,6 +83,7 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<Category>("projects");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const isMouseOverSidebarRef = useRef(false);
   const isInteractingRef = useRef(false);
@@ -179,6 +180,10 @@ const Projects = () => {
     return cat?.label || "Projects";
   };
 
+  const toggleProjectExpansion = (projectTitle: string) => {
+    setExpandedProject(expandedProject === projectTitle ? null : projectTitle);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
@@ -221,7 +226,7 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Projects category with simple container */}
+        {/* Projects category with expandable container */}
         {activeCategory === "projects" && (
           <div className="flex-1 py-8">
             {/* Intro text - same size as /projects */}
@@ -238,13 +243,64 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Simple milky white container */}
+            {/* Projects grid with space for future projects */}
             <div className="max-w-6xl mx-auto">
-              <div className="bg-white/90 rounded-lg border border-border p-8 shadow-sm">
-                <div className="text-left space-y-2">
-                  <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
-                  <p className="text-lg text-muted-foreground">web design and developer</p>
-                  <p className="text-base text-muted-foreground">2026 - Present</p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* AGTV Container */}
+                <div className="bg-white/90 rounded-lg border border-border p-8 shadow-sm">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="text-left space-y-3">
+                      <h3 className="text-2xl font-bold text-foreground">AGTV</h3>
+                      <p className="text-lg text-muted-foreground">web design and developer</p>
+                      <p className="text-base text-muted-foreground">2026 - Present</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-muted-foreground hover:text-foreground"
+                        asChild
+                      >
+                        <a href="https://agtv.vercel.app/" target="_blank" rel="noopener noreferrer">
+                          view work
+                        </a>
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className={`text-muted-foreground hover:text-foreground transition-transform ${
+                          expandedProject === "AGTV" ? 'rotate-45' : ''
+                        }`}
+                        onClick={() => toggleProjectExpansion("AGTV")}
+                      >
+                        <Plus className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {/* Expanded content */}
+                  {expandedProject === "AGTV" && (
+                    <div className="mt-6 pt-6 border-t border-border">
+                      <p className="text-muted-foreground mb-4">
+                        A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {["HTML", "Node.js", "MongoDB"].map((tech, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-md"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Space for future projects */}
+                <div className="hidden lg:block">
+                  {/* Empty space - same size as AGTV container for balance */}
                 </div>
               </div>
             </div>
