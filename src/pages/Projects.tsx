@@ -1,7 +1,7 @@
 // src/pages/Projects.tsx
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
@@ -85,27 +85,40 @@ const Projects = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const collapseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isMouseNearSidebarRef = useRef(false);
+  const lastInteractionRef = useRef<number>(0);
 
   const filteredProjects = allProjects.filter(p => p.category === activeCategory);
 
-  // Auto-collapse sidebar after 2 seconds when category changes
-  useEffect(() => {
-    // Reset collapse timeout when category changes
+  // Function to start collapse timeout
+  const startCollapseTimeout = useCallback(() => {
     if (collapseTimeoutRef.current) {
       clearTimeout(collapseTimeoutRef.current);
     }
-
-    // Set new timeout to collapse after 2 seconds
+    
     collapseTimeoutRef.current = setTimeout(() => {
-      setIsSidebarCollapsed(true);
+      if (!isMouseNearSidebarRef.current) {
+        setIsSidebarCollapsed(true);
+      }
     }, 2000);
+  }, []);
 
+  // Function to handle any user interaction
+  const handleUserInteraction = useCallback(() => {
+    lastInteractionRef.current = Date.now();
+    setIsSidebarCollapsed(false);
+    startCollapseTimeout();
+  }, [startCollapseTimeout]);
+
+  // Start timeout on mount and whenever category changes
+  useEffect(() => {
+    handleUserInteraction();
     return () => {
       if (collapseTimeoutRef.current) {
         clearTimeout(collapseTimeoutRef.current);
       }
     };
-  }, [activeCategory]);
+  }, [activeCategory, handleUserInteraction]);
 
   // Mouse proximity detection
   useEffect(() => {
@@ -127,32 +140,47 @@ const Projects = () => {
       );
 
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+      const wasMouseNear = isMouseNearSidebarRef.current;
+      
+      // Update mouse proximity state
+      isMouseNearSidebarRef.current = distance < 100;
 
-      // Expand when mouse is within 100px of sidebar
+      // Expand when mouse is near
       if (distance < 100) {
         setIsSidebarCollapsed(false);
-        // Reset collapse timeout when expanded by mouse proximity
+        // Clear timeout when mouse is near
         if (collapseTimeoutRef.current) {
           clearTimeout(collapseTimeoutRef.current);
         }
+      } else if (wasMouseNear && !isMouseNearSidebarRef.current) {
+        // Mouse just moved away - restart collapse timeout
+        startCollapseTimeout();
       }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [startCollapseTimeout]);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+    handleUserInteraction();
   };
 
   const prevProject = () => {
     setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+    handleUserInteraction();
   };
 
   const handleCategoryChange = (category: Category) => {
     setActiveCategory(category);
     setCurrentIndex(0);
+    handleUserInteraction();
+  };
+
+  const handlePaginationClick = (index: number) => {
+    setCurrentIndex(index);
+    handleUserInteraction();
   };
 
   const currentProject = filteredProjects[currentIndex];
@@ -306,7 +334,7 @@ const Projects = () => {
                   {filteredProjects.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentIndex(index)}
+                      onClick={() => handlePaginationClick(index)}
                       className={`w-8 h-1 rounded-full transition-all duration-300 ${
                         index === currentIndex 
                           ? 'bg-primary' 
