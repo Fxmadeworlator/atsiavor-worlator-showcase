@@ -157,7 +157,7 @@ export default function Projects() {
 
   const toggleProjectExpansion = (title: string) => setExpandedProject((prev) => (prev === title ? null : title));
 
-  /* ---------- reusable card ---------- */
+/* ---------- reusable card ---------- */
 const ProjectCard = ({
   title,
   subtitle,
@@ -170,15 +170,12 @@ const ProjectCard = ({
   children?: React.ReactNode;
 }) => {
   const isOpen = expandedProject === title;
-  const cardRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
-      ref={cardRef}
-      className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm relative"
+      className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm"
       style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
     >
-      {/* TOP ROW  */}
       <div className="text-left space-y-3 mb-6">
         <h3
           className="text-2xl font-bold"
@@ -191,6 +188,35 @@ const ProjectCard = ({
           dangerouslySetInnerHTML={{ __html: subtitle }}
         />
       </div>
+
+      <div className="flex items-center justify-between">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
+          onClick={() => toggleProjectExpansion(title)}
+          aria-label={isOpen ? "collapse" : "expand"}
+        >
+          {isOpen ? <X className="w-7 h-7" /> : <Plus className="w-7 h-7" />}
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          className="rounded-full px-6 py-3 bg-white shadow-sm"
+          style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
+          asChild
+        >
+          <a href={live} target="_blank" rel="noopener noreferrer">
+            view work
+          </a>
+        </Button>
+      </div>
+
+      {isOpen && children}
+    </div>
+  );
+};
 
       <div className="flex items-center justify-between">
         {/* LEFT: expand/collapse icon */}
