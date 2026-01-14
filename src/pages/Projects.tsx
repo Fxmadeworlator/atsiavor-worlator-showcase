@@ -8,6 +8,13 @@ import {
   ChevronRight,
   ExternalLink,
   Plus,
+  X, // <-- add only this line
+} from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Plus,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
