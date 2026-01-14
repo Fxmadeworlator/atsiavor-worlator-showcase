@@ -251,13 +251,14 @@ export default function Projects() {
         {/* APPS */}
         {activeCategory === "apps" && (
           <div className="flex-1 flex flex-col py-8">
-            <div className="max-w-6xl mx-auto mb-8">
-              <p className="text-4xl font-bold leading-tight">
-                <span className="text-muted-foreground">From utility to play: </span>
-                <span className="text-foreground">apps that matter </span>
-                <span className="text-muted-foreground">to users.</span>
-              </p>
-            </div>
+  <div className="max-w-6xl mx-auto w-full px-8 mb-8">
+    <p className="text-4xl font-bold leading-tight">
+      <span className="text-muted-foreground">From utility to play: </span>
+      <span className="text-foreground">apps that matter </span>
+      <span className="text-muted-foreground">to users.</span>
+    </p>
+    <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
+  </div>
             <div className="flex-1 flex items-center justify-center">
               <div
                 className="relative cursor-pointer group"
