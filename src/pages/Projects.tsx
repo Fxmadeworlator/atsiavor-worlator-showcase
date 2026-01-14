@@ -226,25 +226,57 @@ export default function Projects() {
                 <span className="text-muted-foreground"> websites for:</span>
               </p>
             </div>
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ProjectCard
-  title="AGTV"
-  subtitle="web design and developer<br />2026 - Present"
-  live="https://agtv.vercel.app/ "
->
-  {expandedProject === "AGTV" && (
-    <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-      <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-        I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
-      </p>
-      <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-        On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
-      </p>
-    </div>
-  )}
-</ProjectCard>
-              <div className="hidden lg:block" />
-            </div>
+           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+  {/* AGTV - left */}
+  <ProjectCard
+    title="AGTV"
+    subtitle="web design and developer<br />2026 - Present"
+    live="https://agtv.vercel.app/ "
+  >
+    {expandedProject === "AGTV" && (
+      <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+          I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
+        </p>
+        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+          On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
+        </p>
+      </div>
+    )}
+  </ProjectCard>
+
+  {/* Maxwell - right */}
+  <ProjectCard
+    title="Maxwell's Portfolio"
+    subtitle="photography portfolio<br />2025"
+    live="https://maxwellandoh.vercel.app/ "
+  >
+    {expandedProject === "Maxwell's Portfolio" && (
+      <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+          A clean, minimal portfolio built to showcase Maxwell’s photography work. The site emphasizes visual storytelling with a focus on responsive design and fast load times.
+        </p>
+      </div>
+    )}
+  </ProjectCard>
+
+  {/* Elibon - full width below */}
+  <div className="lg:col-span-2">
+    <ProjectCard
+      title="Elibon Events & Deco"
+      subtitle="event décor brand<br />2024"
+      live="#"
+    >
+      {expandedProject === "Elibon Events & Deco" && (
+        <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+          <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+            A contemporary event and décor brand transforming every space into a beautifully curated experience. The site highlights services, past work, and booking info.
+          </p>
+        </div>
+      )}
+    </ProjectCard>
+  </div>
+</div>
           </div>
         )}
 
