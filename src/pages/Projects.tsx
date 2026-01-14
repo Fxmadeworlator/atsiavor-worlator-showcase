@@ -97,7 +97,7 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<Category>("experience");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
-  const [isImageHovered, setIsImageHovered] = useState(false);
+  
   const sidebarRef = useRef<HTMLDivElement>(null);
   const isMouseOverSidebarRef = useRef(false);
   const isInteractingRef = useRef(false);
@@ -250,27 +250,18 @@ export default function Projects() {
             <div className="flex-1 flex items-center justify-center">
               <div
                 className="relative cursor-pointer group"
-                onMouseEnter={() => setIsImageHovered(true)}
-                onMouseLeave={() => setIsImageHovered(false)}
                 onClick={() => navigate("/ootie-case-story")}
               >
                 <img
                   src={productImage}
                   alt="Ootie App"
-                  className="max-w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                  className="max-w-full h-auto transition-all duration-300 group-hover:scale-105 group-hover:opacity-80"
                   style={{ maxHeight: "60vh", background: "transparent" }}
                 />
-                {/* Hover preview overlay */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center bg-black/60 rounded-2xl transition-opacity duration-300 ${
-                    isImageHovered ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  <div className="text-center text-white">
-                    <p className="text-2xl font-bold mb-2">Ootie Case Story</p>
-                    <p className="text-sm text-white/80">Click to read more</p>
-                  </div>
-                </div>
+                {/* Simple URL preview on hover */}
+                <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                  /ootie-case-story
+                </span>
               </div>
             </div>
           </div>
