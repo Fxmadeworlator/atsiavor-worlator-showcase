@@ -101,9 +101,12 @@ const About = () => {
             href="https://ootie-web.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
+            className="group inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors relative"
           >
             ootie
+            <span className="absolute -bottom-6 left-0 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              ootie-web.vercel.app
+            </span>
           </a>
         </>
       ),
