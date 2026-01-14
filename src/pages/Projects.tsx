@@ -163,9 +163,14 @@ export default function Projects() {
         <Button variant="ghost" size="icon" className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm">
           <Plus className="w-7 h-7" />
         </Button>
-        <Button variant="ghost" size="sm" className="rounded-full px-6 py-3 bg-white shadow-sm" style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }} asChild>
-          <a href={live} target="_blank" rel="noopener noreferrer">view work</a>
-        </Button>
+        <Button
+  variant="ghost"
+  size="icon"
+  className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
+  onClick={() => toggleProjectExpansion(title)}
+>
+  <Plus className="w-7 h-7" />
+</Button>
       </div>
       {children}
     </div>
@@ -222,16 +227,22 @@ export default function Projects() {
               </p>
             </div>
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ProjectCard title="AGTV" subtitle="web design and developer<br />2026 - Present" live="https://agtv.vercel.app/">
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                    I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
-                  </p>
-                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                    On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
-                  </p>
-                </div>
-              </ProjectCard>
+              <ProjectCard
+  title="AGTV"
+  subtitle="web design and developer<br />2026 - Present"
+  live="https://agtv.vercel.app/ "
+>
+  {expandedProject === "AGTV" && (
+    <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+      <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+        I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
+      </p>
+      <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+        On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
+      </p>
+    </div>
+  )}
+</ProjectCard>
               <div className="hidden lg:block" />
             </div>
           </div>
