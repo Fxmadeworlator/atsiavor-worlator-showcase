@@ -8,19 +8,14 @@ import {
   ChevronRight,
   ExternalLink,
   Plus,
-  X, // <-- add only this line
-} from "lucide-react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  Plus,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
 import productImage from "@/assets/product-apps.png";
+
 type Category = "experience" | "apps" | "pet-projects";
 
 interface Project {
@@ -39,7 +34,7 @@ const allProjects: Project[] = [
       "A dynamic online platform for AGTV that brings viewers together, showcases uplifting content, and keeps the community connected. Designed for seamless updates and smooth multimedia experiences.",
     techStack: ["HTML", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "https://agtv.vercel.app/",
+    live: "https://agtv.vercel.app/ ",
     category: "experience",
   },
   {
@@ -48,7 +43,7 @@ const allProjects: Project[] = [
       "A sleek portfolio showcasing Max's unique eye for detail, capturing stories through clean, expressive photography across portraits, events, and creative shoots.",
     techStack: ["HTML", "CSS", "Node.js"],
     image: projectMaxwell,
-    live: "https://maxwellandoh.vercel.app/",
+    live: "https://maxwellandoh.vercel.app/ ",
     category: "experience",
   },
   {
@@ -76,7 +71,7 @@ const allProjects: Project[] = [
       "A modern outfit planning and wardrobe management app that helps users organize their clothing collection and create stylish outfits effortlessly.",
     techStack: ["React", "TypeScript", "Tailwind CSS"],
     image: projectOotie,
-    live: "https://ootie-web.vercel.app/",
+    live: "https://ootie-web.vercel.app/ ",
     category: "apps",
   },
   // Pet Projects
@@ -104,7 +99,7 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<Category>("experience");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
-  
+
   const sidebarRef = useRef<HTMLDivElement>(null);
   const isMouseOverSidebarRef = useRef(false);
   const isInteractingRef = useRef(false);
@@ -153,120 +148,68 @@ export default function Projects() {
   const currentProject = filteredProjects[currentIndex];
   const isImageUrl = currentProject?.image?.startsWith("/") || currentProject?.image?.startsWith("http") || currentProject?.image.includes("assets");
 
-  const getCategoryTitle = () => categories.find((c) => c.value === activeCategory)?.label || "Experience";
-
   const toggleProjectExpansion = (title: string) => setExpandedProject((prev) => (prev === title ? null : title));
 
-/* ---------- reusable card ---------- */
-const ProjectCard = ({
-  title,
-  subtitle,
-  live = "#",
-  children,
-}: {
-  title: string;
-  subtitle: string;
-  live?: string;
-  children?: React.ReactNode;
-}) => {
-  const isOpen = expandedProject === title;
+  /* ---------- reusable card ---------- */
+  const ProjectCard = ({
+    title,
+    subtitle,
+    live = "#",
+    children,
+  }: {
+    title: string;
+    subtitle: string;
+    live?: string;
+    children?: React.ReactNode;
+  }) => {
+    const isOpen = expandedProject === title;
 
-  return (
-    <div
-      className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm"
-      style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
-    >
-      <div className="text-left space-y-3 mb-6">
-        <h3
-          className="text-2xl font-bold"
-          style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}
-        >
-          {title}
-        </h3>
-        <p
-          className="text-xl text-muted-foreground"
-          dangerouslySetInnerHTML={{ __html: subtitle }}
-        />
-      </div>
+    return (
+      <div
+        className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm"
+        style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
+      >
+        <div className="text-left space-y-3 mb-6">
+          <h3
+            className="text-2xl font-bold"
+            style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}
+          >
+            {title}
+          </h3>
+          <p
+            className="text-xl text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+          />
+        </div>
 
-      <div className="flex items-center justify-between">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
-          onClick={() => toggleProjectExpansion(title)}
-          aria-label={isOpen ? "collapse" : "expand"}
-        >
-          {isOpen ? <X className="w-7 h-7" /> : <Plus className="w-7 h-7" />}
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          className="rounded-full px-6 py-3 bg-white shadow-sm"
-          style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
-          asChild
-        >
-          <a href={live} target="_blank" rel="noopener noreferrer">
-            view work
-          </a>
-        </Button>
-      </div>
-
-      {isOpen && children}
-    </div>
-  );
-};
-
-      <div className="flex items-center justify-between">
-        {/* LEFT: expand/collapse icon */}
-        {!isOpen && (
+        <div className="flex items-center justify-between">
           <Button
             variant="ghost"
             size="icon"
             className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
             onClick={() => toggleProjectExpansion(title)}
-            aria-label="expand"
+            aria-label={isOpen ? "collapse" : "expand"}
           >
-            <Plus className="w-7 h-7" />
+            {isOpen ? <X className="w-7 h-7" /> : <Plus className="w-7 h-7" />}
           </Button>
-        )}
 
-        {/* RIGHT: view-work link */}
-        <Button
-          variant="ghost"
-          size="sm"
-          className="rounded-full px-6 py-3 bg-white shadow-sm"
-          style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
-          asChild
-        >
-          <a href={live} target="_blank" rel="noopener noreferrer">
-            view work
-          </a>
-        </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="rounded-full px-6 py-3 bg-white shadow-sm"
+            style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
+            asChild
+          >
+            <a href={live} target="_blank" rel="noopener noreferrer">
+              view work
+            </a>
+          </Button>
+        </div>
+
+        {isOpen && children}
       </div>
-
-      {/* EXPANDABLE CONTENT */}
-      {isOpen && (
-        <>
-          {children}
-          {/* BOTTOM-RIGHT CLOSE ICON */}
-          <div className="absolute bottom-4 right-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
-              onClick={() => toggleProjectExpansion(title)}
-              aria-label="collapse"
-            >
-              <X className="w-7 h-7" />
-            </Button>
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -318,83 +261,82 @@ const ProjectCard = ({
                 <span className="text-muted-foreground"> websites for:</span>
               </p>
             </div>
-           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-  {/* AGTV - left */}
-  <ProjectCard
-    title="AGTV"
-    subtitle="web design and developer<br />2026 - Present"
-    live="https://agtv.vercel.app/ "
-  >
-    {expandedProject === "AGTV" && (
-      <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-          I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
-        </p>
-        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-          On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
-        </p>
-      </div>
-    )}
-  </ProjectCard>
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* AGTV - left */}
+              <ProjectCard
+                title="AGTV"
+                subtitle="web design and developer<br />2026 - Present"
+                live="https://agtv.vercel.app/ "
+              >
+                {expandedProject === "AGTV" && (
+                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                      I designed and developed the official website for Assemblies of God TV Ghana, creating a responsive platform that centralizes all content for viewers. The site features live streaming, scheduled programming, and on-demand content, ensuring users can easily access broadcasts and updates from any device. I handled the overall design, ensuring a clean and accessible interface that aligns with the brand and audience expectations.
+                    </p>
+                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                      On the technical side, I implemented the front-end and back-end functionality, building a robust system to manage streaming, schedules, and content updates efficiently. This included setting up a content management workflow so the team could upload and organize broadcasts without technical support. The result is a seamless, user-friendly platform that connects the church with its audience while supporting future growth and content expansion.
+                    </p>
+                  </div>
+                )}
+              </ProjectCard>
 
-  {/* Maxwell - right */}
-  <ProjectCard
-    title="Maxwell's Portfolio"
-    subtitle="photography portfolio<br />2025"
-    live="https://maxwellandoh.vercel.app/ "
-  >
-    {expandedProject === "Maxwell's Portfolio" && (
-      <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-        <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-          A clean, minimal portfolio built to showcase Maxwell’s photography work. The site emphasizes visual storytelling with a focus on responsive design and fast load times.
-        </p>
-      </div>
-    )}
-  </ProjectCard>
+              {/* Maxwell - right */}
+              <ProjectCard
+                title="Maxwell's Portfolio"
+                subtitle="photography portfolio<br />2025"
+                live="https://maxwellandoh.vercel.app/ "
+              >
+                {expandedProject === "Maxwell's Portfolio" && (
+                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                      A clean, minimal portfolio built to showcase Maxwell’s photography work. The site emphasizes visual storytelling with a focus on responsive design and fast load times.
+                    </p>
+                  </div>
+                )}
+              </ProjectCard>
 
-  {/* Elibon - full width below */}
-  <div className="lg:col-span-2">
-    <ProjectCard
-      title="Elibon Events & Deco"
-      subtitle="event décor brand<br />2024"
-      live="#"
-    >
-      {expandedProject === "Elibon Events & Deco" && (
-        <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-          <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-            A contemporary event and décor brand transforming every space into a beautifully curated experience. The site highlights services, past work, and booking info.
-          </p>
-        </div>
-      )}
-    </ProjectCard>
-  </div>
-</div>
+              {/* Elibon - full width below */}
+              <div className="lg:col-span-2">
+                <ProjectCard
+                  title="Elibon Events & Deco"
+                  subtitle="event décor brand<br />2024"
+                  live="#"
+                >
+                  {expandedProject === "Elibon Events & Deco" && (
+                    <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                      <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                        A contemporary event and décor brand transforming every space into a beautifully curated experience. The site highlights services, past work, and booking info.
+                      </p>
+                    </div>
+                  )}
+                </ProjectCard>
+              </div>
+            </div>
           </div>
         )}
 
         {/* APPS */}
         {activeCategory === "apps" && (
           <div className="flex-1 flex flex-col py-8">
-  <div className="max-w-6xl mx-auto w-full px-8 mb-8">
-    <p className="text-4xl font-bold leading-tight">
-      <span className="text-muted-foreground">From utility to play: </span>
-      <span className="text-foreground">apps that matter </span>
-      <span className="text-muted-foreground">to users.</span>
-    </p>
-    <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
-  </div>
+            <div className="max-w-6xl mx-auto w-full px-8 mb-8">
+              <p className="text-4xl font-bold leading-tight">
+                <span className="text-muted-foreground">From utility to play: </span>
+                <span className="text-foreground">apps that matter </span>
+                <span className="text-muted-foreground">to users.</span>
+              </p>
+              <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
+            </div>
             <div className="flex-1 flex items-center justify-center">
               <div
                 className="relative cursor-pointer group"
                 onClick={() => navigate("/ootie-case-story")}
               >
                 <img
-  src={productImage}
-  alt="Ootie App"
-  className="max-w-full h-auto"
-  style={{ maxHeight: "60vh", background: "transparent" }}
-/>
-                {/* Simple URL preview on hover */}
+                  src={productImage}
+                  alt="Ootie App"
+                  className="max-w-full h-auto"
+                  style={{ maxHeight: "60vh", background: "transparent" }}
+                />
                 <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                   /ootie-case-story
                 </span>
