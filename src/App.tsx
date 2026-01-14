@@ -8,8 +8,9 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import Toolstack from "./pages/Toolstack"; // ← add this line
-import Verified from "./pages/Verified"; // ← add import
+import Toolstack from "./pages/Toolstack";
+import Verified from "./pages/Verified";
+import OotieCaseStory from "./pages/OotieCaseStory";
 
 const queryClient = new QueryClient();
 
@@ -24,8 +25,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/toolstack" element={<Toolstack />} /> // ← add this line
-          <Route path="/verified" element={<Verified />} /> {/* NEW */}
+          <Route path="/toolstack" element={<Toolstack />} />
+          <Route path="/verified" element={<Verified />} />
+          <Route path="/ootie-case-story" element={<OotieCaseStory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

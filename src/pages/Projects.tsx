@@ -2,6 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -13,7 +14,6 @@ import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
 import projectOotie from "@/assets/project-ootie.jpg";
 import productImage from "@/assets/product-apps.png";
-
 type Category = "experience" | "apps" | "pet-projects";
 
 interface Project {
@@ -91,11 +91,13 @@ const categories: { label: string; value: Category }[] = [
 ];
 
 export default function Projects() {
+  const navigate = useNavigate();
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<Category>("experience");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [isImageHovered, setIsImageHovered] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const isMouseOverSidebarRef = useRef(false);
   const isInteractingRef = useRef(false);
@@ -237,30 +239,39 @@ export default function Projects() {
 
         {/* APPS */}
         {activeCategory === "apps" && (
-          <div className="flex-1 flex flex-col items-center justify-center py-8">
-            <div className="w-full max-w-6xl px-8">
+          <div className="flex-1 flex flex-col py-8">
+            <div className="max-w-6xl mx-auto mb-8">
               <p className="text-4xl font-bold leading-tight">
                 <span className="text-muted-foreground">From utility to play: </span>
                 <span className="text-foreground">apps that matter </span>
                 <span className="text-muted-foreground">to users.</span>
               </p>
             </div>
-            <div className="mt-12 flex items-center gap-10">
-              <img src={productImage} alt="Product" className="max-w-full h-auto" style={{ maxHeight: "70vh", background: "transparent" }} />
-              <Button
-                variant="ghost"
-                size="default"
-                className="rounded-full px-8 py-4 bg-white shadow-sm border border-gray-300"
-                style={{
-                  color: "#2a2a2a",
-                  fontWeight: 500,
-                  fontSize: "1.1rem",
-                  fontFamily: "Arimo, sans-serif",
-                }}
-                asChild
+            <div className="flex-1 flex items-center justify-center">
+              <div
+                className="relative cursor-pointer group"
+                onMouseEnter={() => setIsImageHovered(true)}
+                onMouseLeave={() => setIsImageHovered(false)}
+                onClick={() => navigate("/ootie-case-story")}
               >
-                <a href="#">view case story</a>
-              </Button>
+                <img
+                  src={productImage}
+                  alt="Ootie App"
+                  className="max-w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                  style={{ maxHeight: "60vh", background: "transparent" }}
+                />
+                {/* Hover preview overlay */}
+                <div
+                  className={`absolute inset-0 flex items-center justify-center bg-black/60 rounded-2xl transition-opacity duration-300 ${
+                    isImageHovered ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <div className="text-center text-white">
+                    <p className="text-2xl font-bold mb-2">Ootie Case Story</p>
+                    <p className="text-sm text-white/80">Click to read more</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
