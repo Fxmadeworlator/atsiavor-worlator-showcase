@@ -161,52 +161,79 @@ const ProjectCard = ({
   subtitle: string;
   live?: string;
   children?: React.ReactNode;
-}) => (
-  <div
-    className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm"
-    style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
-  >
-    <div className="text-left space-y-3 mb-6">
-      <h3
-        className="text-2xl font-bold"
-        style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-xl text-muted-foreground"
-        dangerouslySetInnerHTML={{ __html: subtitle }}
-      />
+}) => {
+  const isOpen = expandedProject === title;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={cardRef}
+      className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm relative"
+      style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
+    >
+      {/* TOP ROW  */}
+      <div className="text-left space-y-3 mb-6">
+        <h3
+          className="text-2xl font-bold"
+          style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}
+        >
+          {title}
+        </h3>
+        <p
+          className="text-xl text-muted-foreground"
+          dangerouslySetInnerHTML={{ __html: subtitle }}
+        />
+      </div>
+
+      <div className="flex items-center justify-between">
+        {/* LEFT: expand/collapse icon */}
+        {!isOpen && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
+            onClick={() => toggleProjectExpansion(title)}
+            aria-label="expand"
+          >
+            <Plus className="w-7 h-7" />
+          </Button>
+        )}
+
+        {/* RIGHT: view-work link */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="rounded-full px-6 py-3 bg-white shadow-sm"
+          style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
+          asChild
+        >
+          <a href={live} target="_blank" rel="noopener noreferrer">
+            view work
+          </a>
+        </Button>
+      </div>
+
+      {/* EXPANDABLE CONTENT */}
+      {isOpen && (
+        <>
+          {children}
+          {/* BOTTOM-RIGHT CLOSE ICON */}
+          <div className="absolute bottom-4 right-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
+              onClick={() => toggleProjectExpansion(title)}
+              aria-label="collapse"
+            >
+              <X className="w-7 h-7" />
+            </Button>
+          </div>
+        </>
+      )}
     </div>
-
-    <div className="flex items-center justify-between">
-      {/* LEFT: expand toggle */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
-        onClick={() => toggleProjectExpansion(title)}
-      >
-        <Plus className="w-7 h-7" />
-      </Button>
-
-      {/* RIGHT: view-work link */}
-      <Button
-        variant="ghost"
-        size="sm"
-        className="rounded-full px-6 py-3 bg-white shadow-sm"
-        style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
-        asChild
-      >
-        <a href={live} target="_blank" rel="noopener noreferrer">
-          view work
-        </a>
-      </Button>
-    </div>
-
-    {children}
-  </div>
-);
+  );
+};
 
   return (
     <div className="min-h-screen bg-background">
