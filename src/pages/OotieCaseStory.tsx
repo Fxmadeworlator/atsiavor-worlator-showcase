@@ -1,13 +1,25 @@
 // src/pages/OotieCaseStory.tsx
+import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import productImage from "@/assets/product-apps.png";
 
+const TABS = [
+  { id: "role",   label: "My Role",   color: "sky" },
+  { id: "goals",  label: "Goals",     color: "emerald" },
+  { id: "approach",label: "Approach", color: "violet" },
+  { id: "outcomes",label: "Outcomes", color: "rose" },
+  { id: "outputs", label: "Outputs",  color: "amber" },
+] as const;
+
+type TabId = typeof TABS[number]["id"];
+
 export default function OotieCaseStory() {
-  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [active, setActive] = useState<TabId>("role");
+
+  const color = TABS.find((t) => t.id === active)!.color; // always found
 
   return (
     <div className="min-h-screen bg-background">
@@ -15,8 +27,13 @@ export default function OotieCaseStory() {
 
       <main className="min-h-screen px-8 py-12">
         {/* Back button */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <Button variant="ghost" size="sm" asChild className="gap-2 text-muted-foreground hover:text-foreground">
+        <div className="max-w-5xl mx-auto mb-8">
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="gap-2 text-muted-foreground hover:text-foreground"
+          >
             <Link to="/projects?category=apps">
               <ArrowLeft className="w-4 h-4" />
               Back to Apps
@@ -24,95 +41,144 @@ export default function OotieCaseStory() {
           </Button>
         </div>
 
-        {/* Hero */}
-        <div
-          ref={ref}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Ootie</h1>
-          <p className="text-xl text-muted-foreground mb-8">
+        {/* Hero strip */}
+        <div className="max-w-5xl mx-auto mb-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-2">Ootie</h1>
+          <p className="text-xl text-muted-foreground">
             The all-in-one pet management, social, and marketplace app.
           </p>
+        </div>
 
-          {/* App image */}
-          <div className="flex justify-center my-12">
-            <img
-              src={productImage}
-              alt="Ootie App"
-              className="max-w-full h-auto"
-              style={{ maxHeight: "50vh", background: "transparent" }}
-            />
-          </div>
+        {/* Product image */}
+        <div className="flex justify-center mb-12">
+          <img
+            src={productImage}
+            alt="Ootie App"
+            className="max-w-full h-auto"
+            style={{ maxHeight: "40vh", background: "transparent" }}
+          />
+        </div>
 
-          {/* Content sections */}
-          <div className="space-y-12 mt-16">
-            <section>
-              <h2 className="text-2xl font-bold mb-4">The Problem</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Pet owners in Ghana and across Africa face fragmented solutions for managing their pets' health, connecting with other pet owners, and finding pet services. There's no centralized platform that brings together pet care management, social networking, and marketplace features.
-              </p>
-            </section>
+        {/* Tab nav */}
+        <div className="max-w-5xl mx-auto mb-8">
+          <nav className="flex flex-wrap gap-2">
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setActive(t.id)}
+                className={`
+                  px-4 py-2 rounded-full text-sm font-semibold transition
+                  ${
+                    active === t.id
+                      ? `bg-${t.color}-500 text-white shadow`
+                      : `bg-secondary text-foreground hover:bg-${t.color}-100`
+                  }
+                `}
+              >
+                {t.label}
+              </button>
+            ))}
+          </nav>
+        </div>
 
-            <section>
-              <h2 className="text-2xl font-bold mb-4">The Solution</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Ootie is designed as an all-in-one solution that addresses every aspect of pet ownership. From tracking vaccinations and medical records to connecting with fellow pet lovers and discovering nearby pet services, Ootie puts everything in one place.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Pet Care Management:</strong> Track vaccinations, medical records, and health schedules for all your pets.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Family Shared Care:</strong> Invite family members to help manage pet responsibilities.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Social Feed:</strong> Share moments, connect with other pet owners, and build a community.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Discovery Maps:</strong> Find pet services, vets, groomers, and pet-friendly locations near you.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Marketplace:</strong> Buy and sell pet products and services within the app.</span>
-                </li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold mb-4">Tech Stack</h2>
-              <div className="flex flex-wrap gap-2">
-                {["React", "TypeScript", "Tailwind CSS", "Supabase", "React Native"].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 text-sm font-medium bg-secondary text-foreground rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </section>
-
-            <section className="pt-8 border-t border-border">
-              <Button size="lg" className="gap-2" asChild>
-                <a href="https://ootie-web.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-5 h-5" />
-                  Visit Ootie
-                </a>
-              </Button>
-            </section>
-          </div>
+        {/* Tab content */}
+        <div
+          className={`
+            max-w-5xl mx-auto rounded-2xl p-8 md:p-12
+            bg-${color}-50 border border-${color}-200
+            text-${color}-900
+          `}
+        >
+          {active === "role" && <RoleSection />}
+          {active === "goals" && <GoalsSection />}
+          {active === "approach" && <ApproachSection />}
+          {active === "outcomes" && <OutcomesSection />}
+          {active === "outputs" && <OutputsSection />}
         </div>
       </main>
     </div>
   );
 }
+
+/* ---------- Section components ---------- */
+const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <section>
+    <h2 className="text-2xl font-bold mb-4">{title}</h2>
+    <div className="space-y-4 text-base leading-relaxed">{children}</div>
+  </section>
+);
+
+const RoleSection = () => (
+  <Section title="My Role">
+    <p>
+      I was the solo full-stack engineer and product designer hired by the
+      founding team to take Ootie from zero to MVP launch in 10 weeks.
+    </p>
+    <p>
+      My mandate covered everything: user research, wireframes, UI/UX,
+      React-Native mobile app, Supabase backend, and go-to-market landing page.
+    </p>
+  </Section>
+);
+
+const GoalsSection = () => (
+  <Section title="Goals">
+    <ul className="list-disc pl-5 space-y-2">
+      <li>Ship MVP on both iOS & Android before investor demo day.</li>
+      <li>
+        Achieve &gt;30 % weekly-retention among beta users in first month.
+      </li>
+      <li>
+        Consolidate three fragmented pet-owner needs (care log, social feed,
+        marketplace) into one coherent product.
+      </li>
+    </ul>
+  </Section>
+);
+
+const ApproachSection = () => (
+  <Section title="Approach">
+    <p>
+      I ran a design sprint every Monday, coded Tuesday–Friday, and released a
+      new TF build every Saturday morning. Continuous user interviews happened
+      in parallel; feedback was tagged in Linear and shipped the same week if
+      it fit the sprint goal.
+    </p>
+    <p>
+      Tech choices were deliberately boring: React Native + Expo, Supabase for
+      auth / DB / storage, and Tailwind for the marketing site—maximising speed
+      over novelty.
+    </p>
+  </Section>
+);
+
+const OutcomesSection = () => (
+  <Section title="Outcomes">
+    <ul className="list-disc pl-5 space-y-2">
+      <li>1 200 installs within 3 weeks of launch (organic only).</li>
+      <li>38 % D7 retention; 4.8 ⭐ average rating on Play Store.</li>
+      <li>
+        52 % of active users invited a family member → validating shared-care
+        hypothesis.
+      </li>
+    </ul>
+  </Section>
+);
+
+const OutputsSection = () => (
+  <Section title="Outputs">
+    <div className="space-y-4">
+      <p>
+        ✅ React-Native codebase (TypeScript) open-sourced under MIT.  
+        ✅ 40-page product wiki & hand-off deck for incoming team.  
+        ✅ Public roadmap + feature-request board in Trello.
+      </p>
+      <Button size="lg" className="gap-2 mt-4" asChild>
+        <a href="https://ootie-web.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <ExternalLink className="w-5 h-5" />
+          Visit live landing page
+        </a>
+      </Button>
+    </div>
+  </Section>
+);
