@@ -265,11 +265,11 @@ export default function Projects() {
                 onClick={() => navigate("/ootie-case-story")}
               >
                 <img
-                  src={productImage}
-                  alt="Ootie App"
-                  className="max-w-full h-auto transition-all duration-300 group-hover:scale-105 group-hover:opacity-80"
-                  style={{ maxHeight: "60vh", background: "transparent" }}
-                />
+  src={productImage}
+  alt="Ootie App"
+  className="max-w-full h-auto"
+  style={{ maxHeight: "60vh", background: "transparent" }}
+/>
                 {/* Simple URL preview on hover */}
                 <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                   /ootie-case-story
