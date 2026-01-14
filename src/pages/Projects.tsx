@@ -246,7 +246,7 @@ export default function Projects() {
               </p>
             </div>
             <div className="mt-12 flex items-center gap-10">
-              <img src={productImage} alt="Product" className="max-w-full h-auto rounded-lg shadow-lg" style={{ maxHeight: "70vh" }} />
+              <img src={productImage} alt="Product" className="max-w-full h-auto" style={{ maxHeight: "70vh", background: "transparent" }} />
               <Button
                 variant="ghost"
                 size="default"
