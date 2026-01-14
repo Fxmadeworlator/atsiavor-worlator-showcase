@@ -14,22 +14,6 @@ const achievements = [
     icon: <Award className="w-6 h-6" />,
     image: "/images/certs/ftmo.jpg",
   },
-  {
-    title: "Funded Trader",
-    issuer: "MyForexFunds",
-    date: "2023",
-    credential: "#",
-    icon: <CheckCircle className="w-6 h-6" />,
-    image: "/images/certs/mff.jpg",
-  },
-  {
-    title: "Prop Firm Payout",
-    issuer: "The5ers",
-    date: "2023",
-    credential: "#",
-    icon: <TrendingUp className="w-6 h-6" />,
-    image: "/images/certs/payout.jpg",
-  },
 ];
 
 /* ----------  Page  ---------- */
@@ -112,14 +96,11 @@ export default function Verified() {
 
         {/* Achievements grid - 2x2 layout */}
         <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
-          {/* First row */}
-          {achievements.slice(0, 2).map((a, i) => (
+          {/* Main achievement */}
+          {achievements.map((a, i) => (
             <div
               key={i}
               className="group rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
-              style={{
-                animationDelay: `${i * 100}ms`,
-              }}
             >
               {/* Image placeholder */}
               <div className="aspect-video bg-muted flex items-center justify-center text-6xl">
@@ -154,7 +135,7 @@ export default function Verified() {
             </div>
           ))}
 
-          {/* "Soon..." placeholder - side by side with first row visually in second row */}
+          {/* "Soon..." placeholder - side by side */}
           <div className="group rounded-2xl border border-border bg-card/50 overflow-hidden shadow-sm">
             <div className="aspect-video bg-muted/50 flex items-center justify-center">
               <span className="text-4xl text-muted-foreground/50">🔒</span>
@@ -172,7 +153,7 @@ export default function Verified() {
             </div>
           </div>
 
-          {/* Second "Soon..." placeholder */}
+          {/* Third "Soon..." placeholder - below */}
           <div className="group rounded-2xl border border-border bg-card/50 overflow-hidden shadow-sm">
             <div className="aspect-video bg-muted/50 flex items-center justify-center">
               <span className="text-4xl text-muted-foreground/50">🔒</span>
@@ -185,6 +166,24 @@ export default function Verified() {
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-muted-foreground/70">Soon...</h3>
                   <p className="text-sm text-muted-foreground/50">Stay tuned</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Fourth "Soon..." placeholder */}
+          <div className="group rounded-2xl border border-border bg-card/50 overflow-hidden shadow-sm">
+            <div className="aspect-video bg-muted/50 flex items-center justify-center">
+              <span className="text-4xl text-muted-foreground/50">🔒</span>
+            </div>
+            <div className="p-6">
+              <div className="flex items-start gap-3">
+                <div className="text-muted-foreground/50">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-muted-foreground/70">Soon...</h3>
+                  <p className="text-sm text-muted-foreground/50">Coming soon</p>
                 </div>
               </div>
             </div>
