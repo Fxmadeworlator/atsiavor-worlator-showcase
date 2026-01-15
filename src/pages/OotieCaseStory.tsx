@@ -1,37 +1,153 @@
-// src/pages/OotieCaseStory.tsx
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Flag, TrendingUp, ArrowUp, Users, Target, ListChecks, DollarSign, Heart, PawPrint, MapPin, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import ootieImage from "@/assets/project-ootie.jpg";
 
-const PANES = [
-  { id: "role",    label: "My Role",    color: "sky"     },
-  { id: "goals",   label: "Goals",      color: "emerald" },
-  { id: "approach",label: "Approach",   color: "violet"  },
-  { id: "outcomes",label: "Outcomes",   color: "rose"    },
-  { id: "outputs", label: "Outputs",    color: "amber"   },
+const SECTIONS = [
+  { id: "role", label: "My Role" },
+  { id: "opportunities", label: "Opportunities" },
+  { id: "approach", label: "Approach" },
+  { id: "outcomes", label: "Impact & Outcomes" },
+  { id: "outputs", label: "Glimpse of Outputs" },
 ] as const;
 
-type PaneId = typeof PANES[number]["id"];
+type SectionId = typeof SECTIONS[number]["id"];
 
 export default function OotieCaseStory() {
-  const [pane, setPane] = useState<PaneId>("role");
-  const active = PANES.find((p) => p.id === pane)!;
+  const [activeSection, setActiveSection] = useState<SectionId>("role");
+  const sectionRefs = useRef<Record<SectionId, HTMLElement | null>>({
+    role: null,
+    opportunities: null,
+    approach: null,
+    outcomes: null,
+    outputs: null,
+  });
+
+  const scrollToSection = (id: SectionId) => {
+    sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id as SectionId);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: "-100px 0px -50% 0px" }
+    );
+
+    Object.values(sectionRefs.current).forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const skillTags = [
+    "PRODUCT DESIGN",
+    "FULL-STACK DEV",
+    "REACT NATIVE",
+    "USER RESEARCH",
+    "MVP STRATEGY",
+    "SUPABASE",
+    "EXPO",
+  ];
+
+  const opportunities = [
+    {
+      icon: Flag,
+      title: "Unified Experience",
+      description: "How might we merge pet care logging, social networking, and marketplace into one seamless product?",
+    },
+    {
+      icon: TrendingUp,
+      title: "Increase Retention",
+      description: "How might we reduce friction at critical drop-off moments in the pet owner journey?",
+    },
+    {
+      icon: ArrowUp,
+      title: "Drive Adoption",
+      description: "How might we make pet owners feel the immediate value of consistent care logging?",
+    },
+    {
+      icon: Users,
+      title: "Family Sharing",
+      description: "How might we enable families to collaborate on pet care without confusion?",
+    },
+    {
+      icon: Heart,
+      title: "Emotional Connection",
+      description: "How might we help owners celebrate and share their pet's milestones?",
+    },
+    {
+      icon: MapPin,
+      title: "Local Discovery",
+      description: "How might we connect pet owners with nearby services, vets, and pet-friendly places?",
+    },
+  ];
+
+  const approaches = [
+    {
+      icon: Flag,
+      title: "Sprint-Based Delivery",
+      description: "Weekly design sprint Monday; build Tue–Fri; TestFlight drop Saturday. Continuous iteration with real user feedback shipped same week.",
+    },
+    {
+      icon: Users,
+      title: "User-Centered Research",
+      description: "Continuous user interviews with pet owners in Ghana. Feedback tagged in Linear and prioritized based on impact and feasibility.",
+    },
+    {
+      icon: DollarSign,
+      title: "Lean Tech Stack",
+      description: "React-Native + Expo, Supabase, Tailwind—optimised for speed, not novelty. Every tool chosen for rapid iteration capability.",
+    },
+  ];
+
+  const outcomes = [
+    {
+      icon: Flag,
+      title: "Rapid Launch",
+      description: "Shipped iOS & Android MVP in 10 weeks from zero. Achieved 1,200 installs in first 3 weeks through organic growth alone.",
+    },
+    {
+      icon: Users,
+      title: "Strong Retention",
+      description: "38% D7 retention rate exceeded industry benchmarks. 52% of active users added a family member to share pet care duties.",
+    },
+    {
+      icon: Target,
+      title: "User Satisfaction",
+      description: "4.8 ⭐ Play Store rating. Users praised the intuitive care logging and family sharing features as standout capabilities.",
+    },
+    {
+      icon: ListChecks,
+      title: "Complete Handoff",
+      description: "Delivered MIT-licensed codebase, 40-page product wiki, hand-off deck, and public roadmap for continued development.",
+    },
+  ];
+
+  const features = [
+    { icon: PawPrint, title: "Pet Care Logs", description: "Track vaccinations, medications, and health records" },
+    { icon: Users, title: "Family Sharing", description: "Collaborate on pet care with household members" },
+    { icon: Heart, title: "Social Feed", description: "Share moments and connect with pet community" },
+    { icon: MapPin, title: "Discovery Map", description: "Find pet services, vets, and pet-friendly spots" },
+    { icon: ShoppingBag, title: "Marketplace", description: "Buy and sell pet products locally" },
+  ];
 
   return (
     <div className="min-h-screen bg-background flex">
       <Sidebar />
 
-      {/* full-page main area */}
-      <main
-        key={pane}
-        className={`flex-1 bg-${active.color}-50 text-${active.color}-900
-                   flex flex-col items-center justify-center p-8 md:p-16`}
-      >
-        {/* top nav */}
-        <nav className="absolute top-0 left-0 right-0 p-6">
-          <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <main className="flex-1 ml-12">
+        {/* Sticky Navigation */}
+        <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
             <Button
               variant="ghost"
               size="sm"
@@ -40,99 +156,244 @@ export default function OotieCaseStory() {
             >
               <Link to="/projects?category=apps">
                 <ArrowLeft className="w-4 h-4" />
-                Back to Apps
+                Back
               </Link>
             </Button>
 
-            <div className="flex gap-2">
-              {PANES.map((p) => (
+            <div className="flex gap-1 md:gap-2">
+              {SECTIONS.map((section) => (
                 <button
-                  key={p.id}
-                  onClick={() => setPane(p.id)}
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
                   className={`
-                    px-4 py-2 rounded-full text-sm font-semibold transition
+                    px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all
                     ${
-                      pane === p.id
-                        ? `bg-${p.color}-500 text-white shadow`
-                        : `bg-secondary text-foreground hover:bg-${p.color}-100`
+                      activeSection === section.id
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }
                   `}
                 >
-                  {p.label}
+                  {section.label}
                 </button>
               ))}
             </div>
           </div>
         </nav>
 
-        {/* content */}
-        <div className="max-w-3xl w-full space-y-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold">{active.label}</h1>
+        {/* My Role Section */}
+        <section
+          id="role"
+          ref={(el) => (sectionRefs.current.role = el)}
+          className="min-h-screen py-20 px-6"
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl font-bold">My Role</h1>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  I was the solo full-stack engineer & product designer hired to
+                  ship Ootie from zero to MVP in 10 weeks, targeting pet owners
+                  in Ghana and the broader African market.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  My focus was on creating a seamless experience that merges
+                  pet care management, social networking, and local marketplace
+                  into one cohesive product. I led user research, UX design,
+                  React-Native development, and Supabase backend architecture.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-4">
+                  {skillTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 bg-secondary text-secondary-foreground text-xs font-medium rounded-full border border-border"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <div className="relative">
+                  <img
+                    src={ootieImage}
+                    alt="Ootie App"
+                    className="w-64 md:w-80 rounded-3xl shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          {pane === "role" && (
-            <>
-              <p className="text-lg">
-                I was the solo full-stack engineer & product designer hired to
-                ship Ootie from zero to MVP in 10 weeks.
-              </p>
-              <p className="text-lg">
-                Scope: user research, UX, React-Native mobile app, Supabase
-                backend, go-to-market site.
-              </p>
-            </>
-          )}
+        {/* Opportunities Section */}
+        <section
+          id="opportunities"
+          ref={(el) => (sectionRefs.current.opportunities = el)}
+          className="min-h-screen py-20 px-6 bg-secondary/30"
+        >
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">Opportunities</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {opportunities.map((item, index) => (
+                <div
+                  key={index}
+                  className="p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors"
+                >
+                  <item.icon className="w-8 h-8 text-primary mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          {pane === "goals" && (
-            <ul className="list-disc pl-5 space-y-2 text-lg">
-              <li>Launch iOS & Android MVP before investor demo day.</li>
-              <li>Hit &gt;30 % weekly retention in first month.</li>
-              <li>
-                Merge three pet-owner jobs (care log, social, marketplace) into
-                one coherent product.
-              </li>
-            </ul>
-          )}
+        {/* Approach Section */}
+        <section
+          id="approach"
+          ref={(el) => (sectionRefs.current.approach = el)}
+          className="min-h-screen py-20 px-6"
+        >
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">Approach</h2>
+            <div className="grid md:grid-cols-3 gap-6 mb-16">
+              {approaches.map((item, index) => (
+                <div
+                  key={index}
+                  className="p-6 bg-card rounded-xl border border-border"
+                >
+                  <item.icon className="w-8 h-8 text-primary mb-4" />
+                  <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
 
-          {pane === "approach" && (
-            <>
-              <p className="text-lg">
-                Weekly design sprint Monday; build Tue–Fri; TestFlight drop
-                Saturday. Continuous user interviews; feedback tagged in Linear
-                and shipped same week if in scope.
-              </p>
-              <p className="text-lg">
-                Tech: React-Native + Expo, Supabase, Tailwind—optimised for
-                speed, not novelty.
-              </p>
-            </>
-          )}
+            {/* Features Grid */}
+            <h3 className="text-2xl font-semibold mb-8">Core Features Built</h3>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-secondary/50 rounded-xl text-center"
+                >
+                  <feature.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <h4 className="font-medium text-sm mb-1">{feature.title}</h4>
+                  <p className="text-xs text-muted-foreground">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          {pane === "outcomes" && (
-            <ul className="list-disc pl-5 space-y-2 text-lg">
-              <li>1 200 installs in 3 weeks (organic).</li>
-              <li>38 % D7 retention; 4.8 ⭐ Play Store rating.</li>
-              <li>52 % of active users added a family member.</li>
-            </ul>
-          )}
+        {/* Impact & Outcomes Section */}
+        <section
+          id="outcomes"
+          ref={(el) => (sectionRefs.current.outcomes = el)}
+          className="min-h-screen py-20 px-6 bg-secondary/30"
+        >
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">Impact & Outcomes</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {outcomes.map((item, index) => (
+                <div
+                  key={index}
+                  className="p-8 bg-card rounded-xl border border-border"
+                >
+                  <item.icon className="w-8 h-8 text-primary mb-4" />
+                  <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-lg">{item.description}</p>
+                </div>
+              ))}
+            </div>
 
-          {pane === "outputs" && (
-            <div className="space-y-4">
-              <p className="text-lg">✅ MIT-licensed React-Native repo</p>
-              <p className="text-lg">✅ 40-page product wiki + hand-off deck</p>
-              <p className="text-lg">✅ Public roadmap & feature-request board</p>
-              <Button size="lg" className="gap-2 mt-4" asChild>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+              <div className="text-center p-6 bg-primary/10 rounded-xl">
+                <p className="text-3xl md:text-4xl font-bold text-primary">10</p>
+                <p className="text-sm text-muted-foreground mt-1">Weeks to MVP</p>
+              </div>
+              <div className="text-center p-6 bg-primary/10 rounded-xl">
+                <p className="text-3xl md:text-4xl font-bold text-primary">1,200</p>
+                <p className="text-sm text-muted-foreground mt-1">Installs in 3 weeks</p>
+              </div>
+              <div className="text-center p-6 bg-primary/10 rounded-xl">
+                <p className="text-3xl md:text-4xl font-bold text-primary">38%</p>
+                <p className="text-sm text-muted-foreground mt-1">D7 Retention</p>
+              </div>
+              <div className="text-center p-6 bg-primary/10 rounded-xl">
+                <p className="text-3xl md:text-4xl font-bold text-primary">4.8⭐</p>
+                <p className="text-sm text-muted-foreground mt-1">Play Store Rating</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Glimpse of Outputs Section */}
+        <section
+          id="outputs"
+          ref={(el) => (sectionRefs.current.outputs = el)}
+          className="min-h-screen py-20 px-6"
+        >
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">Glimpse of Outputs</h2>
+            
+            {/* App Screenshots Showcase */}
+            <div className="bg-gradient-to-br from-primary/20 via-secondary to-primary/10 rounded-3xl p-8 md:p-12 mb-12">
+              <div className="flex justify-center items-end gap-4 md:gap-8">
+                <img
+                  src={ootieImage}
+                  alt="Ootie App Screen 1"
+                  className="w-32 md:w-48 lg:w-56 rounded-2xl shadow-xl transform -rotate-6"
+                />
+                <img
+                  src={ootieImage}
+                  alt="Ootie App Screen 2"
+                  className="w-40 md:w-56 lg:w-64 rounded-2xl shadow-2xl z-10"
+                />
+                <img
+                  src={ootieImage}
+                  alt="Ootie App Screen 3"
+                  className="w-32 md:w-48 lg:w-56 rounded-2xl shadow-xl transform rotate-6"
+                />
+              </div>
+            </div>
+
+            {/* Deliverables */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="p-6 bg-card rounded-xl border border-border text-center">
+                <p className="text-4xl mb-3">📦</p>
+                <h4 className="font-semibold mb-2">MIT-Licensed Codebase</h4>
+                <p className="text-sm text-muted-foreground">Complete React-Native repo with documentation</p>
+              </div>
+              <div className="p-6 bg-card rounded-xl border border-border text-center">
+                <p className="text-4xl mb-3">📚</p>
+                <h4 className="font-semibold mb-2">40-Page Product Wiki</h4>
+                <p className="text-sm text-muted-foreground">Comprehensive hand-off documentation</p>
+              </div>
+              <div className="p-6 bg-card rounded-xl border border-border text-center">
+                <p className="text-4xl mb-3">🗺️</p>
+                <h4 className="font-semibold mb-2">Public Roadmap</h4>
+                <p className="text-sm text-muted-foreground">Feature-request board for community input</p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center">
+              <Button size="lg" className="gap-2" asChild>
                 <a
                   href="https://ootie-web.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <ExternalLink className="w-5 h-5" />
-                  Live landing page
+                  Visit Live Landing Page
                 </a>
               </Button>
             </div>
-          )}
-        </div>
+          </div>
+        </section>
       </main>
     </div>
   );
