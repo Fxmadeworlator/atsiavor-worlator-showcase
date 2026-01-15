@@ -107,23 +107,25 @@ export default function OotieCaseStory() {
           {/* Sticky Tab Navigation */}
           <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
             <div className="max-w-6xl mx-auto px-6 py-4">
-              <TabsList className="bg-secondary/50 p-1 rounded-full">
-                <TabsTrigger value="role" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  My Role
-                </TabsTrigger>
-                <TabsTrigger value="opportunities" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Opportunities
-                </TabsTrigger>
-                <TabsTrigger value="approach" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Approach
-                </TabsTrigger>
-                <TabsTrigger value="outcomes" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Impact & Outcomes
-                </TabsTrigger>
-                <TabsTrigger value="outputs" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Glimpse of Outputs
-                </TabsTrigger>
-              </TabsList>
+              <div className="flex justify-center">
+                <TabsList className="bg-secondary/50 p-1 rounded-full">
+                  <TabsTrigger value="role" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    My Role
+                  </TabsTrigger>
+                  <TabsTrigger value="opportunities" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Opportunities
+                  </TabsTrigger>
+                  <TabsTrigger value="approach" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Approach
+                  </TabsTrigger>
+                  <TabsTrigger value="outcomes" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Impact & Outcomes
+                  </TabsTrigger>
+                  <TabsTrigger value="outputs" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Glimpse of Outputs
+                  </TabsTrigger>
+                </TabsList>
+              </div>
             </div>
           </div>
 
@@ -313,7 +315,7 @@ export default function OotieCaseStory() {
                 <div className="text-center">
                   <Button size="lg" className="gap-2" asChild>
                     <a
-                      href="https://ootie-web.vercel.app/"
+                      href="https://ootie-web.vercel.app/ "
                       target="_blank"
                       rel="noopener noreferrer"
                     >
