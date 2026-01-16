@@ -1,14 +1,16 @@
 import { NavLink } from "./NavLink";
-import { Briefcase, Smartphone, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProjectsSidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   const categories = [
-    { icon: Briefcase, label: "Experience", path: "/experience" },
-    { icon: Smartphone, label: "Apps", path: "/apps" },
-    { icon: Sparkles, label: "Pet Projects", path: "/pet-projects" },
+    { label: "/experience", path: "/experience" },
+    { label: "/apps", path: "/apps" },
+    { label: "/pet-projects", path: "/pet-projects" },
   ];
 
   return (
@@ -22,28 +24,36 @@ const ProjectsSidebar = () => {
           isHovered ? "py-5" : ""
         }`}
       >
-        {categories.map((item) => {
-          const Icon = item.icon;
-          return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                isHovered ? "w-auto pr-4" : "w-12"
-              }`}
-              activeClassName="!text-nav-item-active !bg-secondary font-medium"
-            >
-              <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-              <span
-                className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                  isHovered ? "opacity-100" : "opacity-0 w-0"
-                }`}
-              >
-                {item.label}
-              </span>
-            </NavLink>
-          );
-        })}
+        {/* Back button */}
+        <button
+          onClick={() => navigate("/")}
+          className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
+            isHovered ? "w-auto pr-4" : "w-12"
+          }`}
+        >
+          <ArrowLeft className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
+          <span
+            className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
+              isHovered ? "opacity-100" : "opacity-0 w-0"
+            }`}
+          >
+            Back
+          </span>
+        </button>
+
+        {/* Category links */}
+        {categories.map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
+              isHovered ? "w-auto pr-4" : "w-12"
+            }`}
+            activeClassName="!text-nav-item-active !bg-secondary font-medium"
+          >
+            <span className="text-sm font-medium">{item.label}</span>
+          </NavLink>
+        ))}
       </nav>
     </aside>
   );

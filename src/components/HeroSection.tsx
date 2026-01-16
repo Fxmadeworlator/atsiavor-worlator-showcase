@@ -34,7 +34,7 @@ const HeroSection = () => {
           size="lg"
           className="rounded-full px-8"
         >
-          Contact
+          Say Hi
         </Button>
       </div>
     </section>
