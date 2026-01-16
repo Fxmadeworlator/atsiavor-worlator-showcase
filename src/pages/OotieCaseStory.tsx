@@ -99,13 +99,13 @@ export default function OotieCaseStory() {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-gradient-to-br from-green-900 via-black to-green-950 flex">
       <BackSidebar to="/apps" />
 
       <main className="flex-1 ml-12">
         <Tabs defaultValue="role" className="w-full">
           {/* Sticky Tab Navigation with Enhanced Liquid Glass Effect */}
-          <div className="sticky top-0 z-50 backdrop-blur-2xl bg-white/5 border-b border-white/10 shadow-2xl">
+          <div className="sticky top-0 z-50 backdrop-blur-2xl bg-transparent border-b border-white/10 shadow-2xl">
             <div className="max-w-6xl mx-auto px-6 py-6">
               <div className="flex justify-center">
                 <TabsList className="bg-transparent p-0 gap-2">
@@ -144,9 +144,9 @@ export default function OotieCaseStory() {
             </div>
           </div>
 
-          {/* My Role Tab with Dark Green/Black Gradient */}
+          {/* My Role Tab with Dark Gradient (matches page background) */}
           <TabsContent value="role" className="mt-0">
-            <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-gradient-to-br from-green-900 via-black to-green-950">
+            <section className="min-h-[calc(100vh-80px)] py-20 px-6">
               <div className="max-w-6xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
@@ -187,20 +187,20 @@ export default function OotieCaseStory() {
             </section>
           </TabsContent>
 
-          {/* Opportunities Tab */}
+          {/* Opportunities Tab with Black Background and White Text */}
           <TabsContent value="opportunities" className="mt-0">
-            <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-secondary/30">
+            <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-black">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold mb-12">Opportunities</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Opportunities</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {opportunities.map((item, index) => (
                     <div
                       key={index}
-                      className="p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-colors"
+                      className="p-6 bg-gray-900/50 rounded-xl border border-white/20 hover:border-white/40 transition-colors backdrop-blur-sm"
                     >
-                      <item.icon className="w-8 h-8 text-primary mb-4" />
-                      <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
+                      <item.icon className="w-8 h-8 text-white mb-4" />
+                      <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
+                      <p className="text-gray-300">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -212,30 +212,30 @@ export default function OotieCaseStory() {
           <TabsContent value="approach" className="mt-0">
             <section className="min-h-[calc(100vh-80px)] py-20 px-6">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold mb-12">Approach</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Approach</h2>
                 <div className="grid md:grid-cols-3 gap-6 mb-16">
                   {approaches.map((item, index) => (
                     <div
                       key={index}
-                      className="p-6 bg-card rounded-xl border border-border"
+                      className="p-6 bg-gray-900/50 rounded-xl border border-white/20 backdrop-blur-sm"
                     >
-                      <item.icon className="w-8 h-8 text-primary mb-4" />
-                      <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                      <item.icon className="w-8 h-8 text-white mb-4" />
+                      <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
+                      <p className="text-gray-300 leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>
 
-                <h3 className="text-2xl font-semibold mb-8">Core Features Built</h3>
+                <h3 className="text-2xl font-semibold mb-8 text-white">Core Features Built</h3>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {features.map((feature, index) => (
                     <div
                       key={index}
-                      className="p-4 bg-secondary/50 rounded-xl text-center"
+                      className="p-4 bg-gray-900/50 rounded-xl text-center backdrop-blur-sm border border-white/20"
                     >
-                      <feature.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                      <h4 className="font-medium text-sm mb-1">{feature.title}</h4>
-                      <p className="text-xs text-muted-foreground">{feature.description}</p>
+                      <feature.icon className="w-8 h-8 text-white mx-auto mb-3" />
+                      <h4 className="font-medium text-sm mb-1 text-white">{feature.title}</h4>
+                      <p className="text-xs text-gray-400">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -245,38 +245,38 @@ export default function OotieCaseStory() {
 
           {/* Impact & Outcomes Tab */}
           <TabsContent value="outcomes" className="mt-0">
-            <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-secondary/30">
+            <section className="min-h-[calc(100vh-80px)] py-20 px-6">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold mb-12">Impact & Outcomes</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Impact & Outcomes</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {outcomes.map((item, index) => (
                     <div
                       key={index}
-                      className="p-8 bg-card rounded-xl border border-border"
+                      className="p-8 bg-gray-900/50 rounded-xl border border-white/20 backdrop-blur-sm"
                     >
-                      <item.icon className="w-8 h-8 text-primary mb-4" />
-                      <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed text-lg">{item.description}</p>
+                      <item.icon className="w-8 h-8 text-white mb-4" />
+                      <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
+                      <p className="text-gray-300 leading-relaxed text-lg">{item.description}</p>
                     </div>
                   ))}
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-                  <div className="text-center p-6 bg-primary/10 rounded-xl">
-                    <p className="text-3xl md:text-4xl font-bold text-primary">10</p>
-                    <p className="text-sm text-muted-foreground mt-1">Weeks to MVP</p>
+                  <div className="text-center p-6 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                    <p className="text-3xl md:text-4xl font-bold text-white">10</p>
+                    <p className="text-sm text-gray-300 mt-1">Weeks to MVP</p>
                   </div>
-                  <div className="text-center p-6 bg-primary/10 rounded-xl">
-                    <p className="text-3xl md:text-4xl font-bold text-primary">1,200</p>
-                    <p className="text-sm text-muted-foreground mt-1">Installs in 3 weeks</p>
+                  <div className="text-center p-6 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                    <p className="text-3xl md:text-4xl font-bold text-white">1,200</p>
+                    <p className="text-sm text-gray-300 mt-1">Installs in 3 weeks</p>
                   </div>
-                  <div className="text-center p-6 bg-primary/10 rounded-xl">
-                    <p className="text-3xl md:text-4xl font-bold text-primary">38%</p>
-                    <p className="text-sm text-muted-foreground mt-1">D7 Retention</p>
+                  <div className="text-center p-6 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                    <p className="text-3xl md:text-4xl font-bold text-white">38%</p>
+                    <p className="text-sm text-gray-300 mt-1">D7 Retention</p>
                   </div>
-                  <div className="text-center p-6 bg-primary/10 rounded-xl">
-                    <p className="text-3xl md:text-4xl font-bold text-primary">4.8⭐</p>
-                    <p className="text-sm text-muted-foreground mt-1">Play Store Rating</p>
+                  <div className="text-center p-6 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                    <p className="text-3xl md:text-4xl font-bold text-white">4.8⭐</p>
+                    <p className="text-sm text-gray-300 mt-1">Play Store Rating</p>
                   </div>
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function OotieCaseStory() {
           <TabsContent value="outputs" className="mt-0">
             <section className="min-h-[calc(100vh-80px)] py-20 px-6">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold mb-12">Glimpse of Outputs</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Glimpse of Outputs</h2>
                 
                 <div className="bg-gradient-to-br from-primary/20 via-secondary to-primary/10 rounded-3xl p-8 md:p-12 mb-12">
                   <div className="flex justify-center items-end gap-4 md:gap-8">
@@ -310,20 +310,20 @@ export default function OotieCaseStory() {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-12">
-                  <div className="p-6 bg-card rounded-xl border border-border text-center">
+                  <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
                     <p className="text-4xl mb-3">📦</p>
-                    <h4 className="font-semibold mb-2">MIT-Licensed Codebase</h4>
-                    <p className="text-sm text-muted-foreground">Complete React-Native repo with documentation</p>
+                    <h4 className="font-semibold mb-2 text-white">MIT-Licensed Codebase</h4>
+                    <p className="text-sm text-gray-400">Complete React-Native repo with documentation</p>
                   </div>
-                  <div className="p-6 bg-card rounded-xl border border-border text-center">
+                  <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
                     <p className="text-4xl mb-3">📚</p>
-                    <h4 className="font-semibold mb-2">40-Page Product Wiki</h4>
-                    <p className="text-sm text-muted-foreground">Comprehensive hand-off documentation</p>
+                    <h4 className="font-semibold mb-2 text-white">40-Page Product Wiki</h4>
+                    <p className="text-sm text-gray-400">Comprehensive hand-off documentation</p>
                   </div>
-                  <div className="p-6 bg-card rounded-xl border border-border text-center">
+                  <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
                     <p className="text-4xl mb-3">🗺️</p>
-                    <h4 className="font-semibold mb-2">Public Roadmap</h4>
-                    <p className="text-sm text-muted-foreground">Feature-request board for community input</p>
+                    <h4 className="font-semibold mb-2 text-white">Public Roadmap</h4>
+                    <p className="text-sm text-gray-400">Feature-request board for community input</p>
                   </div>
                 </div>
 
