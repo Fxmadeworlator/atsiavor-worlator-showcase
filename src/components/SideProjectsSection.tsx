@@ -7,24 +7,16 @@ const SideProjectsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
   const projects = [
     {
-      icon: "📂",
-      title: "/ projects",
-      url: "/projects",
+      title: "/experience",
+      url: "/experience",
     },
     {
-      icon: "📱",
-      title: "/ apps",
-      url: "/projects?category=apps",
+      title: "/apps",
+      url: "/apps",
     },
     {
-      icon: "📚",
-      title: "/ pet projects",
-      url: "/projects?category=pet-projects",
-    },
-    {
-      icon: "🛡️",
-      title: "/ cybersecurity",
-      url: "/projects?category=cybersecurity",
+      title: "/pet-projects",
+      url: "/pet-projects",
     },
   ];
 
@@ -56,9 +48,6 @@ const SideProjectsSection = () => {
             }}
           >
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
-                {project.icon}
-              </div>
               <span className="font-medium transition-colors duration-200 group-hover:text-primary">{project.title}</span>
             </div>
             <Button 
