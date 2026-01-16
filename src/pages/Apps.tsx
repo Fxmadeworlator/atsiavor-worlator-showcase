@@ -1,4 +1,4 @@
-import Sidebar from "@/components/Sidebar";
+import ProjectsSidebar from "@/components/ProjectsSidebar";
 import { useNavigate } from "react-router-dom";
 import productImage from "@/assets/product-apps.png";
 
@@ -7,7 +7,7 @@ export default function Apps() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar />
+      <ProjectsSidebar />
 
       <main className="min-h-screen flex flex-col px-8 ml-12">
         <div className="pt-8 pb-4">
