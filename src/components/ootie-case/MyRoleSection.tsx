@@ -12,27 +12,24 @@ const skillTags = [
 
 export default function MyRoleSection() {
   return (
-    <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-gradient-to-br from-teal-900 via-black to-gray-900">
+    <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-gradient-to-br from-teal-900 via-black to-teal-950">
       <div className="max-w-6xl mx-auto">
-        {/* Main Heading Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight mb-6">
+        {/* Main Heading Section - Left Aligned & Compact */}
+        <div className="text-left mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
             Built to Support
             <br />
-            Every Step of
-            <br />
-            Pet Parenthood.
+            Every step of parenthood
           </h1>
-          <div className="w-24 h-1 bg-white/50 mx-auto mb-6"></div>
-          <h2 className="text-2xl md:text-3xl font-light text-white/90 tracking-wide">
+          <h2 className="text-xl md:text-2xl font-light text-white/90 tracking-wide mt-4">
             Ootie | Founder and Developer
           </h2>
         </div>
 
         {/* My Role Content */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center mt-16">
           <div className="space-y-6">
-            <h3 className="text-4xl md:text-5xl font-bold text-white">My Role</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">My Role</h3>
             <p className="text-lg text-gray-200 leading-relaxed">
               I was the solo full-stack engineer & product designer hired to
               ship Ootie from zero to MVP in 10 weeks, targeting pet owners
