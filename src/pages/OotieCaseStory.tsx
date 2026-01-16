@@ -104,24 +104,39 @@ export default function OotieCaseStory() {
 
       <main className="flex-1 ml-12">
         <Tabs defaultValue="role" className="w-full">
-          {/* Sticky Tab Navigation with Liquid Glass Effect */}
-          <div className="sticky top-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg">
-            <div className="max-w-6xl mx-auto px-6 py-4">
+          {/* Sticky Tab Navigation with Enhanced Liquid Glass Effect */}
+          <div className="sticky top-0 z-50 backdrop-blur-2xl bg-white/5 border-b border-white/10 shadow-2xl">
+            <div className="max-w-6xl mx-auto px-6 py-6">
               <div className="flex justify-center">
-                <TabsList className="bg-black/20 p-1 rounded-full backdrop-blur-sm">
-                  <TabsTrigger value="role" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsList className="bg-transparent p-0 gap-2">
+                  <TabsTrigger 
+                    value="role" 
+                    className="rounded-full px-6 py-3 text-sm backdrop-blur-md bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:scale-105 font-medium"
+                  >
                     My Role
                   </TabsTrigger>
-                  <TabsTrigger value="opportunities" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger 
+                    value="opportunities" 
+                    className="rounded-full px-6 py-3 text-sm backdrop-blur-md bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:scale-105 font-medium"
+                  >
                     Opportunities
                   </TabsTrigger>
-                  <TabsTrigger value="approach" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger 
+                    value="approach" 
+                    className="rounded-full px-6 py-3 text-sm backdrop-blur-md bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:scale-105 font-medium"
+                  >
                     Approach
                   </TabsTrigger>
-                  <TabsTrigger value="outcomes" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger 
+                    value="outcomes" 
+                    className="rounded-full px-6 py-3 text-sm backdrop-blur-md bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:scale-105 font-medium"
+                  >
                     Impact & Outcomes
                   </TabsTrigger>
-                  <TabsTrigger value="outputs" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger 
+                    value="outputs" 
+                    className="rounded-full px-6 py-3 text-sm backdrop-blur-md bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:scale-105 font-medium"
+                  >
                     Glimpse of Outputs
                   </TabsTrigger>
                 </TabsList>
