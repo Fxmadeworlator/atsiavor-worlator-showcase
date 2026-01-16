@@ -104,24 +104,24 @@ export default function OotieCaseStory() {
 
       <main className="flex-1 ml-12">
         <Tabs defaultValue="role" className="w-full">
-          {/* Sticky Tab Navigation */}
-          <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+          {/* Sticky Tab Navigation with Liquid Glass Effect */}
+          <div className="sticky top-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg">
             <div className="max-w-6xl mx-auto px-6 py-4">
               <div className="flex justify-center">
-                <TabsList className="bg-secondary/50 p-1 rounded-full">
-                  <TabsTrigger value="role" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsList className="bg-black/20 p-1 rounded-full backdrop-blur-sm">
+                  <TabsTrigger value="role" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     My Role
                   </TabsTrigger>
-                  <TabsTrigger value="opportunities" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="opportunities" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     Opportunities
                   </TabsTrigger>
-                  <TabsTrigger value="approach" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="approach" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     Approach
                   </TabsTrigger>
-                  <TabsTrigger value="outcomes" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="outcomes" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     Impact & Outcomes
                   </TabsTrigger>
-                  <TabsTrigger value="outputs" className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="outputs" className="rounded-full px-4 py-2 text-sm text-white hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     Glimpse of Outputs
                   </TabsTrigger>
                 </TabsList>
@@ -129,19 +129,19 @@ export default function OotieCaseStory() {
             </div>
           </div>
 
-          {/* My Role Tab */}
+          {/* My Role Tab with Dark Green/Black Gradient */}
           <TabsContent value="role" className="mt-0">
-            <section className="min-h-[calc(100vh-80px)] py-20 px-6">
+            <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-gradient-to-br from-green-900 via-black to-green-950">
               <div className="max-w-6xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
-                    <h1 className="text-4xl md:text-5xl font-bold">My Role</h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white">My Role</h1>
+                    <p className="text-lg text-gray-200 leading-relaxed">
                       I was the solo full-stack engineer & product designer hired to
                       ship Ootie from zero to MVP in 10 weeks, targeting pet owners
                       in Ghana and the broader African market.
                     </p>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-gray-200 leading-relaxed">
                       My focus was on creating a seamless experience that merges
                       pet care management, social networking, and local marketplace
                       into one cohesive product. I led user research, UX design,
@@ -151,7 +151,7 @@ export default function OotieCaseStory() {
                       {skillTags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1.5 bg-secondary text-secondary-foreground text-xs font-medium rounded-full border border-border"
+                          className="px-3 py-1.5 bg-white/10 text-white text-xs font-medium rounded-full border border-white/20 backdrop-blur-sm"
                         >
                           {tag}
                         </span>
@@ -163,7 +163,7 @@ export default function OotieCaseStory() {
                       <img
                         src={ootieImage}
                         alt="Ootie App"
-                        className="w-64 md:w-80 rounded-3xl shadow-2xl"
+                        className="w-64 md:w-80 rounded-3xl shadow-2xl border border-white/20"
                       />
                     </div>
                   </div>
@@ -315,7 +315,7 @@ export default function OotieCaseStory() {
                 <div className="text-center">
                   <Button size="lg" className="gap-2" asChild>
                     <a
-                      href="https://ootie-web.vercel.app/ "
+                      href="https://ootie-web.vercel.app/  "
                       target="_blank"
                       rel="noopener noreferrer"
                     >
