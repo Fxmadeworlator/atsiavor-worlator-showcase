@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProjectsSidebar from "@/components/ProjectsSidebar";
+import Sidebar from "@/components/Sidebar";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -8,105 +8,128 @@ interface Project {
   description: string;
   techStack: string[];
   image: string;
-  live: string;
+  link?: string;
 }
-
-const projects: Project[] = [
-  {
-    title: "Personal Portfolio",
-    description:
-      "This very website you're looking at! A clean, minimal portfolio showcasing my work and journey as a developer.",
-    techStack: ["React", "TypeScript", "Tailwind CSS"],
-    image: "🌐",
-    live: "/",
-  },
-];
 
 export default function PetProjects() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextProject = () => setCurrentIndex((i) => (i + 1) % projects.length);
-  const prevProject = () => setCurrentIndex((i) => (i - 1 + projects.length) % projects.length);
+  const projects: Project[] = [
+    {
+      title: "Portfolio Website",
+      description:
+        "A personal portfolio website showcasing my work, skills, and experience. Built with React, TypeScript, and Tailwind CSS.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "Weather Dashboard",
+      description:
+        "A weather application that provides real-time weather data and forecasts using the OpenWeather API.",
+      techStack: ["React", "OpenWeather API", "Chart.js"],
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "Task Manager",
+      description:
+        "A productivity app for managing tasks with drag-and-drop functionality and local storage persistence.",
+      techStack: ["React", "DnD Kit", "Local Storage"],
+      image: "/placeholder.svg",
+      link: "#",
+    },
+  ];
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  };
 
   const currentProject = projects[currentIndex];
 
   return (
     <div className="min-h-screen bg-background">
-      <ProjectsSidebar />
+      <Sidebar />
 
-      <main className="min-h-screen flex flex-col px-8 ml-12">
-        <div className="pt-8 pb-4">
-          <h1 className="text-4xl font-bold">/pet-projects</h1>
-          <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
-        </div>
+      <main className="ml-24 px-6 py-16 max-w-5xl">
+        <h1 className="text-4xl font-bold text-foreground mb-4">/pet-projects</h1>
+        <p className="text-muted-foreground mb-12 max-w-2xl">
+          Side projects and experiments I've built to learn new technologies and explore ideas.
+        </p>
 
-        <div className="flex-1 py-8">
-          <div className="max-w-6xl mx-auto mb-8">
-            <p className="text-4xl font-bold leading-tight">
-              <span className="text-muted-foreground">family, friends and mines: </span>
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto mb-10">
-            <div className="relative rounded-2xl border border-border overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
-              <div className="relative w-full h-[450px] bg-secondary flex items-center justify-center">
-                <span className="text-9xl">{currentProject.image}</span>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">{currentProject.title}</h2>
-                  <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">{currentProject.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {currentProject.techStack.map((t, i) => (
-                      <span key={i} className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  {currentProject.live !== "#" && (
-                    <Button variant="secondary" size="sm" className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm" asChild>
-                      <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4" /><span>View Live</span>
-                      </a>
-                    </Button>
-                  )}
-                </div>
-
-                {projects.length > 1 && (
-                  <>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={prevProject}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/40 text-white"
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={nextProject}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/40 text-white"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </Button>
-                  </>
-                )}
-              </div>
+        {/* Carousel */}
+        <div className="relative">
+          {/* Project Card */}
+          <div className="bg-card border border-border rounded-2xl overflow-hidden">
+            <div className="aspect-video bg-secondary/20 flex items-center justify-center">
+              <img
+                src={currentProject.image}
+                alt={currentProject.title}
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            {projects.length > 1 && (
-              <div className="flex justify-center gap-2 mt-6">
-                {projects.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${
-                      currentIndex === i ? "bg-primary w-8" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                    }`}
-                  />
+            <div className="p-6">
+              <h2 className="text-2xl font-semibold text-foreground mb-2">
+                {currentProject.title}
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                {currentProject.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {currentProject.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-secondary text-secondary-foreground text-sm rounded-full"
+                  >
+                    {tech}
+                  </span>
                 ))}
               </div>
-            )}
+
+              {currentProject.link && (
+                <Button variant="secondary" className="gap-2" asChild>
+                  <a
+                    href={currentProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Project
+                  </a>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between mt-6">
+            <Button variant="ghost" size="icon" onClick={goToPrevious}>
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+
+            <div className="flex gap-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentIndex
+                      ? "bg-foreground"
+                      : "bg-muted-foreground/30"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <Button variant="ghost" size="icon" onClick={goToNext}>
+              <ChevronRight className="w-6 h-6" />
+            </Button>
           </div>
         </div>
       </main>
