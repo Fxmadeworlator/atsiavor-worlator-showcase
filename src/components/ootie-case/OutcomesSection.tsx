@@ -50,7 +50,7 @@ export default function OutcomesSection() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <nav
-          className={`flex flex-col gap-3 p-4 bg-black/80 backdrop-blur-sm rounded-3xl border border-white/20 shadow-lg ml-6 transition-all duration-200 ${
+          className={`flex flex-col gap-3 p-4 bg-black/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-lg ml-6 transition-all duration-200 ${
             isHovered ? "py-5" : ""
           }`}
         >
@@ -73,9 +73,9 @@ export default function OutcomesSection() {
       </aside>
 
       <main className="flex-1 ml-12">
-        {/* Header with matching tabs effect */}
-        <div className="sticky top-0 z-40 backdrop-blur-2xl bg-transparent border-b border-white/10 shadow-2xl">
-          <div className="max-w-6xl mx-auto px-6 py-6 border-l-0 border-r-0">
+        {/* TRANSPARENT / LIQUID-GLASS HEADER */}
+        <div className="sticky top-0 z-40 bg-black/20 backdrop-blur-xl border-b border-white/20 shadow-lg">
+          <div className="max-w-6xl mx-auto px-6 py-6">
             <div className="flex justify-center gap-2 flex-wrap">
               {tabs.map((tab) => (
                 <button
@@ -94,7 +94,7 @@ export default function OutcomesSection() {
           </div>
         </div>
 
-        {/* Content */}
+        {/* Content – scrolls under glass header */}
         <section className="min-h-[calc(100vh-80px)] py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Impact & Outcomes</h2>
