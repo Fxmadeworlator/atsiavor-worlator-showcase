@@ -1,4 +1,4 @@
-import Sidebar from "@/components/Sidebar";
+import ProjectsSidebar from "@/components/ProjectsSidebar";
 import { useNavigate } from "react-router-dom";
 import productImage from "@/assets/product-apps.png";
 
@@ -7,32 +7,37 @@ export default function Apps() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar />
+      <ProjectsSidebar />
 
-      <main className="ml-24 px-6 py-16 max-w-5xl">
-        <h1 className="text-4xl font-bold text-foreground mb-4">/apps</h1>
-        <p className="text-muted-foreground mb-12 max-w-2xl">
-          Mobile and web applications I've designed and developed from scratch.
-        </p>
+      <main className="min-h-screen flex flex-col px-8 ml-12">
+        <div className="pt-8 pb-4">
+          <h1 className="text-4xl font-bold">/apps</h1>
+          <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
+        </div>
 
-        {/* Ootie App Card */}
-        <div 
-          className="group relative cursor-pointer"
-          onClick={() => navigate("/ootie-case-story")}
-        >
-          <div className="flex justify-center items-center py-12">
-            <img
-              src={productImage}
-              alt="Ootie App"
-              className="w-64 md:w-80 transition-transform duration-300 group-hover:scale-105"
-            />
+        <div className="flex-1 flex flex-col py-8">
+          <div className="max-w-6xl mx-auto w-full mb-8">
+            <p className="text-4xl font-bold leading-tight">
+              <span className="text-muted-foreground">From utility to play: </span>
+              <span className="text-foreground">apps that matter </span>
+              <span className="text-muted-foreground">to users.</span>
+            </p>
           </div>
-          
-          {/* URL Preview on Hover */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="text-sm text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full border border-border">
-              ootie-web.vercel.app
-            </span>
+          <div className="flex-1 flex items-center justify-center">
+            <div
+              className="relative cursor-pointer group"
+              onClick={() => navigate("/ootie-case-story")}
+            >
+              <img
+                src={productImage}
+                alt="Ootie App"
+                className="max-w-full h-auto group-hover:opacity-80 transition-opacity"
+                style={{ maxHeight: "60vh", background: "transparent" }}
+              />
+              <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                /ootie-case-story
+              </span>
+            </div>
           </div>
         </div>
       </main>

@@ -13,11 +13,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack";
 import Verified from "./pages/Verified";
-import OotieMyRole from "./pages/ootie/OotieMyRole";
-import OotieOpportunities from "./pages/ootie/OotieOpportunities";
-import OotieApproach from "./pages/ootie/OotieApproach";
-import OotieOutcomes from "./pages/ootie/OotieOutcomes";
-import OotieOutputs from "./pages/ootie/OotieOutputs";
+import OotieCaseStory from "./pages/OotieCaseStory";
 
 const queryClient = new QueryClient();
 
@@ -37,12 +33,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/toolstack" element={<Toolstack />} />
           <Route path="/verified" element={<Verified />} />
-          {/* Ootie Case Study Pages */}
-          <Route path="/ootie-case-story" element={<OotieMyRole />} />
-          <Route path="/ootie-opportunities" element={<OotieOpportunities />} />
-          <Route path="/ootie-approach" element={<OotieApproach />} />
-          <Route path="/ootie-outcomes" element={<OotieOutcomes />} />
-          <Route path="/ootie-outputs" element={<OotieOutputs />} />
+          <Route path="/ootie-case-story" element={<OotieCaseStory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

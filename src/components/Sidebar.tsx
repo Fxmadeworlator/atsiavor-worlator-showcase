@@ -1,16 +1,14 @@
-import { useState } from "react";
 import { NavLink } from "./NavLink";
-import { Home, User, Briefcase, Mail, Wrench, TrendingUp, ArrowLeft } from "lucide-react";
+import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showProjectsSubmenu, setShowProjectsSubmenu] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const projectRoutes = ["/projects", "/experience", "/apps", "/pet-projects"];
-  const isProjectsRoute = projectRoutes.includes(location.pathname);
+  const isProjectsRoute = ["/projects", "/experience", "/apps", "/pet-projects"].includes(location.pathname);
 
   const core = [
     { icon: Home, label: "Home", path: "/" },
@@ -19,29 +17,14 @@ const Sidebar = () => {
     { icon: Mail, label: "Contact", path: "/contact" },
   ];
 
-  const projectCategories = [
-    { emoji: "💼", label: "Experience", path: "/experience" },
-    { emoji: "📱", label: "Apps", path: "/apps" },
-    { emoji: "✨", label: "Pet Projects", path: "/pet-projects" },
-  ];
-
   const extra = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
     { icon: TrendingUp, label: "Trading", path: "/verified" },
   ];
 
   const handleProjectsClick = () => {
-    setShowProjectsSubmenu(true);
     navigate("/experience");
   };
-
-  const handleBackFromProjects = () => {
-    setShowProjectsSubmenu(false);
-    navigate("/");
-  };
-
-  // Show projects submenu when on project routes
-  const shouldShowProjectsSubmenu = isProjectsRoute || showProjectsSubmenu;
 
   return (
     <aside
@@ -54,36 +37,20 @@ const Sidebar = () => {
           isHovered ? "py-5" : ""
         }`}
       >
-        {shouldShowProjectsSubmenu ? (
-          <>
-            {/* Back button */}
-            <button
-              onClick={handleBackFromProjects}
-              className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                isHovered ? "w-auto pr-4" : "w-12"
-              }`}
-            >
-              <ArrowLeft className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-              <span
-                className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                  isHovered ? "opacity-100" : "opacity-0 w-0"
-                }`}
-              >
-                Back
-              </span>
-            </button>
-
-            {/* Project category links */}
-            {projectCategories.map((item) => (
-              <NavLink
+        {/* CORE – always visible icons */}
+        {core.map((item) => {
+          const Icon = item.icon;
+          
+          if (item.isProjects) {
+            return (
+              <button
                 key={item.path}
-                to={item.path}
+                onClick={handleProjectsClick}
                 className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
                   isHovered ? "w-auto pr-4" : "w-12"
-                }`}
-                activeClassName="!text-nav-item-active !bg-secondary font-medium"
+                } ${isProjectsRoute ? "!text-nav-item-active !bg-secondary font-medium" : ""}`}
               >
-                <span className="text-lg flex-shrink-0">{item.emoji}</span>
+                <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
                 <span
                   className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
                     isHovered ? "opacity-100" : "opacity-0 w-0"
@@ -91,88 +58,60 @@ const Sidebar = () => {
                 >
                   {item.label}
                 </span>
-              </NavLink>
-            ))}
-          </>
-        ) : (
-          <>
-            {/* CORE – always visible icons */}
-            {core.map((item) => {
-              const Icon = item.icon;
+              </button>
+            );
+          }
 
-              if (item.isProjects) {
-                return (
-                  <button
-                    key={item.path}
-                    onClick={handleProjectsClick}
-                    className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                      isHovered ? "w-auto pr-4" : "w-12"
-                    } ${isProjectsRoute ? "!text-nav-item-active !bg-secondary font-medium" : ""}`}
-                  >
-                    <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                    <span
-                      className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                        isHovered ? "opacity-100" : "opacity-0 w-0"
-                      }`}
-                    >
-                      {item.label}
-                    </span>
-                  </button>
-                );
-              }
-
-              return (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                    isHovered ? "w-auto pr-4" : "w-12"
-                  }`}
-                  activeClassName="!text-nav-item-active !bg-secondary font-medium"
-                >
-                  <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                  <span
-                    className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                      isHovered ? "opacity-100" : "opacity-0 w-0"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </NavLink>
-              );
-            })}
-
-            {/* COLLAPSIBLE SECTION */}
-            <div
-              className={`overflow-hidden transition-[max-height] duration-200 ease-out ${
-                isHovered ? "max-h-96" : "max-h-0"
+          return (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
+                isHovered ? "w-auto pr-4" : "w-12"
               }`}
+              activeClassName="!text-nav-item-active !bg-secondary font-medium"
             >
-              {extra.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden mt-3 ${
-                      isHovered ? "w-auto pr-4" : "w-12"
-                    }`}
-                    activeClassName="!text-nav-item-active !bg-secondary font-medium"
-                  >
-                    <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                    <span
-                      className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                        isHovered ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      {item.label}
-                    </span>
-                  </NavLink>
-                );
-              })}
-            </div>
-          </>
-        )}
+              <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
+              <span
+                className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
+                  isHovered ? "opacity-100" : "opacity-0 w-0"
+                }`}
+              >
+                {item.label}
+              </span>
+            </NavLink>
+          );
+        })}
+
+        {/* COLLAPSIBLE SECTION */}
+        <div
+          className={`overflow-hidden transition-[max-height] duration-200 ease-out ${
+            isHovered ? "max-h-96" : "max-h-0"
+          }`}
+        >
+          {extra.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-nav-item hover:text-nav-item-hover bg-background hover:bg-secondary transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden mt-3 ${
+                  isHovered ? "w-auto pr-4" : "w-12"
+                }`}
+                activeClassName="!text-nav-item-active !bg-secondary font-medium"
+              >
+                <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
+                <span
+                  className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
+                    isHovered ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </NavLink>
+            );
+          })}
+        </div>
       </nav>
     </aside>
   );
