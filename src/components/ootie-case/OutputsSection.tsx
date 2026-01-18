@@ -17,15 +17,15 @@ export default function OutputsSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 via-black to-green-950 flex">
-      {/* Standalone Sidebar */}
+    <div className="min-h-screen bg-black flex">
+      {/* Sidebar */}
       <aside
         className="fixed left-0 top-0 h-screen flex items-center z-50"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <nav
-          className={`flex flex-col gap-3 p-4 bg-black/80 backdrop-blur-sm rounded-3xl border border-white/20 shadow-lg ml-6 transition-all duration-200 ${
+          className={`flex flex-col gap-3 p-4 bg-black/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-lg ml-6 transition-all duration-200 ${
             isHovered ? "py-5" : ""
           }`}
         >
@@ -48,18 +48,18 @@ export default function OutputsSection() {
       </aside>
 
       <main className="flex-1 ml-12">
-        {/* Standalone Tab Navigation */}
-        <div className="sticky top-0 z-40 backdrop-blur-2xl bg-transparent border-b border-white/10 shadow-2xl">
+        {/* Transparent / liquid-glass header */}
+        <div className="sticky top-0 z-40 bg-black/20 backdrop-blur-xl border-b border-white/20 shadow-lg">
           <div className="max-w-6xl mx-auto px-6 py-6">
             <div className="flex justify-center gap-2 flex-wrap">
               {tabs.map((tab) => (
                 <button
                   key={tab.path}
                   onClick={() => navigate(tab.path)}
-                  className={`rounded-full px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium ${
+                  className={`px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium border-b-2 ${
                     tab.path === "/ootie-outputs"
-                      ? "bg-white text-black shadow-lg scale-105"
-                      : "bg-white/10 text-white/80 hover:text-white hover:bg-white/20"
+                      ? "text-white border-white rounded-full"
+                      : "text-gray-400 border-transparent hover:text-white"
                   }`}
                 >
                   {tab.label}
@@ -74,7 +74,7 @@ export default function OutputsSection() {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Glimpse of Outputs</h2>
             
-            <div className="bg-gradient-to-br from-green-800/20 via-black to-green-900/10 rounded-3xl p-8 md:p-12 mb-12 border border-white/10">
+            <div className="rounded-3xl p-8 md:p-12 mb-12 border border-white/10" style={{ backgroundColor: "#181818" }}>
               <div className="flex justify-center items-end gap-4 md:gap-8">
                 <img
                   src={ootieImage}
@@ -95,17 +95,17 @@ export default function OutputsSection() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
+              <div className="p-6 rounded-xl border border-white/20 text-center backdrop-blur-sm" style={{ backgroundColor: "#181818" }}>
                 <p className="text-4xl mb-3">📦</p>
                 <h4 className="font-semibold mb-2 text-white">MIT-Licensed Codebase</h4>
                 <p className="text-sm text-gray-400">Complete React-Native repo with documentation</p>
               </div>
-              <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
+              <div className="p-6 rounded-xl border border-white/20 text-center backdrop-blur-sm" style={{ backgroundColor: "#181818" }}>
                 <p className="text-4xl mb-3">📚</p>
                 <h4 className="font-semibold mb-2 text-white">40-Page Product Wiki</h4>
                 <p className="text-sm text-gray-400">Comprehensive hand-off documentation</p>
               </div>
-              <div className="p-6 bg-gray-900/50 rounded-xl border border-white/20 text-center backdrop-blur-sm">
+              <div className="p-6 rounded-xl border border-white/20 text-center backdrop-blur-sm" style={{ backgroundColor: "#181818" }}>
                 <p className="text-4xl mb-3">🗺️</p>
                 <h4 className="font-semibold mb-2 text-white">Public Roadmap</h4>
                 <p className="text-sm text-gray-400">Feature-request board for community input</p>
@@ -115,7 +115,7 @@ export default function OutputsSection() {
             <div className="text-center">
               <Button size="lg" className="gap-2 bg-white text-black hover:bg-white/90" asChild>
                 <a
-                  href="https://ootie-web.vercel.app/"
+                  href="https://ootie-web.vercel.app/ "
                   target="_blank"
                   rel="noopener noreferrer"
                 >
