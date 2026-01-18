@@ -26,7 +26,7 @@ export default function Apps() {
           <div className="flex-1 flex items-center justify-center">
             <div
               className="relative cursor-pointer group"
-              onClick={() => navigate("/ootie-case-story")}
+              onClick={() => navigate("/ootie-case")}
             >
               <img
                 src={productImage}
@@ -35,7 +35,7 @@ export default function Apps() {
                 style={{ maxHeight: "60vh", background: "transparent" }}
               />
               <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                /ootie-case-story
+                /ootie-case
               </span>
             </div>
           </div>
