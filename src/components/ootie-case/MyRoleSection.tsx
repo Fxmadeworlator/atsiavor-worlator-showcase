@@ -57,7 +57,7 @@ export default function MyRoleSection() {
       </aside>
 
       <main className="flex-1 ml-12">
-        {/* Standalone Tab Navigation */}
+        {/* Header identical to Opportunities page */}
         <div className="sticky top-0 z-40 backdrop-blur-2xl bg-transparent border-b border-white/10 shadow-2xl">
           <div className="max-w-6xl mx-auto px-6 py-6 border-l-0 border-r-0">
             <div className="flex justify-center gap-2 flex-wrap">
@@ -65,10 +65,10 @@ export default function MyRoleSection() {
                 <button
                   key={tab.path}
                   onClick={() => navigate(tab.path)}
-                  className={`rounded-full px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium ${
+                  className={`px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium border-b-2 ${
                     tab.path === "/ootie-my-role"
-                      ? "bg-white text-black shadow-lg scale-105"
-                      : "bg-white/10 text-white/80 hover:text-white hover:bg-white/20"
+                      ? "text-white border-white rounded-full"
+                      : "text-gray-400 border-transparent hover:text-white"
                   }`}
                 >
                   {tab.label}
