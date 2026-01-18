@@ -26,7 +26,7 @@ export default function MyRoleSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 via-black to-green-950 flex">
+    <div className="min-h-screen bg-gradient-to-br from-teal-900 via-black to-black flex">
       {/* Standalone Sidebar */}
       <aside
         className="fixed left-0 top-0 h-screen flex items-center z-50"
@@ -59,7 +59,7 @@ export default function MyRoleSection() {
       <main className="flex-1 ml-12">
         {/* Standalone Tab Navigation */}
         <div className="sticky top-0 z-40 backdrop-blur-2xl bg-transparent border-b border-white/10 shadow-2xl">
-          <div className="max-w-6xl mx-auto px-6 py-6">
+          <div className="max-w-6xl mx-auto px-6 py-6 border-l-0 border-r-0">
             <div className="flex justify-center gap-2 flex-wrap">
               {tabs.map((tab) => (
                 <button
