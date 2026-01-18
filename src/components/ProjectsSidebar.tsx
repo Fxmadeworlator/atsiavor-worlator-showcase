@@ -1,5 +1,5 @@
 import { NavLink } from "./NavLink";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Briefcase, Smartphone, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,9 +8,9 @@ const ProjectsSidebar = () => {
   const navigate = useNavigate();
 
   const categories = [
-    { label: "/experience", path: "/experience" },
-    { label: "/apps", path: "/apps" },
-    { label: "/pet-projects", path: "/pet-projects" },
+    { label: "Experience", path: "/experience", icon: Briefcase },
+    { label: "Apps", path: "/apps", icon: Smartphone },
+    { label: "Pet Projects", path: "/pet-projects", icon: Sparkles },
   ];
 
   return (
@@ -51,7 +51,14 @@ const ProjectsSidebar = () => {
             }`}
             activeClassName="!text-nav-item-active !bg-secondary font-medium"
           >
-            <span className="text-sm font-medium">{item.label}</span>
+            <item.icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
+            <span
+              className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
+                isHovered ? "opacity-100" : "opacity-0 w-0"
+              }`}
+            >
+              {item.label}
+            </span>
           </NavLink>
         ))}
       </nav>

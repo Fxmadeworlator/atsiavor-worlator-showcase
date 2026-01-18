@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -13,7 +13,11 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack";
 import Verified from "./pages/Verified";
-import OotieCaseStory from "./pages/OotieCaseStory";
+import MyRoleSection from "./components/ootie-case/MyRoleSection";
+import OpportunitiesSection from "./components/ootie-case/OpportunitiesSection";
+import ApproachSection from "./components/ootie-case/ApproachSection";
+import OutcomesSection from "./components/ootie-case/OutcomesSection";
+import OutputsSection from "./components/ootie-case/OutputsSection";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +37,13 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/toolstack" element={<Toolstack />} />
           <Route path="/verified" element={<Verified />} />
-          <Route path="/ootie-case-story" element={<OotieCaseStory />} />
+          {/* Ootie case study - each tab is its own page */}
+          <Route path="/ootie-case-story" element={<Navigate to="/ootie-my-role" replace />} />
+          <Route path="/ootie-my-role" element={<MyRoleSection />} />
+          <Route path="/ootie-opportunities" element={<OpportunitiesSection />} />
+          <Route path="/ootie-approach" element={<ApproachSection />} />
+          <Route path="/ootie-outcomes" element={<OutcomesSection />} />
+          <Route path="/ootie-outputs" element={<OutputsSection />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
