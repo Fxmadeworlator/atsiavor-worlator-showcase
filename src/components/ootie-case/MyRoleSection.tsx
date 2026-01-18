@@ -82,16 +82,16 @@ export default function MyRoleSection() {
         <section className="min-h-[calc(100vh-80px)] py-20 px-6">
           <div className="max-w-6xl mx-auto">
             {/* Main Heading Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight mb-6">
+            <div className="mb-16 text-left">
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
                 Built to Support
                 <br />
                 Every Step of
                 <br />
                 Pet Parenthood.
               </h1>
-              <div className="w-24 h-1 bg-white/50 mx-auto mb-6"></div>
-              <h2 className="text-2xl md:text-3xl font-light text-white/90 tracking-wide">
+              <div className="w-24 h-1 bg-white/50 mb-4"></div>
+              <h2 className="text-xl md:text-2xl font-light text-white/90 tracking-wide">
                 Ootie | Founder and Developer
               </h2>
             </div>
