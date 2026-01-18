@@ -48,7 +48,7 @@ export default function OpportunitiesSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-900 via-black to-black flex">
+    <div className="min-h-screen bg-black flex">
       {/* Standalone Sidebar */}
       <aside
         className="fixed left-0 top-0 h-screen flex items-center z-50"
@@ -101,7 +101,7 @@ export default function OpportunitiesSection() {
         </div>
 
         {/* Opportunities Content */}
-        <section className="min-h-[calc(100vh-80px)] py-20 px-6">
+        <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-black">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Opportunities</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
