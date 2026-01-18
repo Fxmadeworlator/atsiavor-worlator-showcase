@@ -47,6 +47,9 @@ export default function OpportunitiesSection() {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
+  // Utility to generate a random vertical offset (in pixels) for each card
+  const randomOffset = () => Math.floor(Math.random() * 41) - 20; // -20px to +20px
+
   return (
     <div className="min-h-screen bg-black flex">
       {/* Standalone Sidebar */}
@@ -108,7 +111,11 @@ export default function OpportunitiesSection() {
               {opportunities.map((item, index) => (
                 <div
                   key={index}
-                  className="p-6 bg-gray-900/60 rounded-xl border border-white/20 hover:border-white/40 transition-colors backdrop-blur-sm"
+                  className="p-6 rounded-xl border border-white/20 hover:border-white/40 transition-colors backdrop-blur-sm"
+                  style={{
+                    backgroundColor: "#181818",
+                    transform: `translateY(${randomOffset()}px)`,
+                  }}
                 >
                   <item.icon className="w-8 h-8 text-white mb-4" />
                   <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
