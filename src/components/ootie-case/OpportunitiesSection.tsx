@@ -87,10 +87,10 @@ export default function OpportunitiesSection() {
                 <button
                   key={tab.path}
                   onClick={() => navigate(tab.path)}
-                  className={`rounded-full px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium ${
+                  className={`px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium border-b-2 ${
                     tab.path === "/ootie-opportunities"
-                      ? "bg-white text-black shadow-lg scale-105"
-                      : "bg-white/10 text-white/80 hover:text-white hover:bg-white/20"
+                      ? "text-white border-white rounded-full"
+                      : "text-gray-400 border-transparent hover:text-white"
                   }`}
                 >
                   {tab.label}
