@@ -14,8 +14,7 @@ export default function MyRoleSection() {
   return (
     <section
       id="my-role"
-      className="py-20 px-6"
-      style={{ backgroundColor: "#7B3F00" }}
+      className="py-20 px-6 bg-gradient-to-b from-[#6F4E37] to-black"
     >
       <div className="max-w-6xl mx-auto">
         {/* Main Heading Section */}
