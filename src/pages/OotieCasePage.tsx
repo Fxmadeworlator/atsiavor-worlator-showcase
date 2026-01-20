@@ -138,15 +138,19 @@ export default function OotieCasePage() {
       </aside>
 
       <main className="flex-1 ml-12">
-        {/* Sticky Tab Navigation */}
-        <div className="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-b border-white/20 shadow-lg">
+        {/* Liquid-Glass Header with Rounded Buttons */}
+        <div className="sticky top-0 z-40 bg-black/20 backdrop-blur-xl border-b border-white/20 shadow-lg">
           <div className="max-w-6xl mx-auto px-6 py-4">
             <div className="flex justify-center gap-2 flex-wrap">
-              {tabs.map((tab) => (
+              {tabs.map((tab, index) => (
                 <button
                   key={tab.anchor}
                   onClick={() => scrollToSection(tab.anchor)}
-                  className="px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white/50"
+                  className={`px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium rounded-full ${
+                    index === 0
+                      ? "text-white bg-white/10 border border-white/30"
+                      : "text-gray-400 hover:text-white hover:bg-white/10"
+                  }`}
                 >
                   {tab.label}
                 </button>
