@@ -23,20 +23,23 @@ export default function Apps() {
               <span className="text-muted-foreground">to users.</span>
             </p>
           </div>
-          <div className="flex-1 flex items-center justify-center">
-            <div
-              className="relative cursor-pointer group"
+          <div className="flex-1 flex flex-col items-center justify-center gap-8">
+            {/* View Case Story Button */}
+            <button
               onClick={() => navigate("/ootie-case")}
+              className="px-8 py-4 text-lg font-medium rounded-full border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
             >
+              View Case Story
+            </button>
+
+            {/* Phone Image */}
+            <div className="relative">
               <img
                 src={productImage}
                 alt="Ootie App"
-                className="max-w-full h-auto group-hover:opacity-80 transition-opacity"
-                style={{ maxHeight: "60vh", background: "transparent" }}
+                className="max-w-full h-auto"
+                style={{ maxHeight: "55vh", background: "transparent" }}
               />
-              <span className="absolute left-1/2 -translate-x-1/2 bottom-4 text-xs text-foreground/70 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                /ootie-case
-              </span>
             </div>
           </div>
         </div>
