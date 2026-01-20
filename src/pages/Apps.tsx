@@ -38,7 +38,7 @@ export default function Apps() {
                 src={productHeroImage}
                 alt="App Preview"
                 className="max-w-full h-auto mix-blend-multiply dark:mix-blend-screen dark:opacity-90"
-                style={{ maxHeight: "45vh", background: "transparent" }}
+                style={{ maxHeight: "60vh", background: "transparent" }}
               />
             </div>
 
@@ -53,7 +53,7 @@ export default function Apps() {
             {/* Down Arrow */}
             <button
               onClick={scrollToPhone}
-              className="p-2 text-muted-foreground hover:text-foreground transition-colors animate-bounce"
+              className="p-2 text-muted-foreground hover:text-foreground hover:scale-125 transition-all duration-200"
               aria-label="Scroll to phone image"
             >
               <ChevronDown className="w-8 h-8" />
