@@ -12,7 +12,10 @@ const skillTags = [
 
 export default function MyRoleSection() {
   return (
-    <section id="my-role" className="py-20 px-6">
+    <section
+      id="my-role"
+      className="py-20 px-6 bg-gradient-to-b from-teal-900 to-black"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Main Heading Section */}
         <div className="mb-16 text-left">
