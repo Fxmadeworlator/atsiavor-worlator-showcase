@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "@/components/NavLink";
 import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -30,6 +30,7 @@ const extra = [
 
 export default function OotieCasePage() {
   const [isHovered, setIsHovered] = useState(false);
+  const [activeSection, setActiveSection] = useState("#my-role");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -45,6 +46,31 @@ export default function OotieCasePage() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Scroll spy to highlight active tab
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = tabs.map(tab => ({
+        anchor: tab.anchor,
+        element: document.querySelector(tab.anchor)
+      }));
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            setActiveSection(section.anchor);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black flex">
@@ -142,19 +168,22 @@ export default function OotieCasePage() {
         <div className="sticky top-0 z-40 bg-black/20 backdrop-blur-xl border-b border-white/20 shadow-lg">
           <div className="max-w-6xl mx-auto px-6 py-4">
             <div className="flex justify-center gap-2 flex-wrap">
-              {tabs.map((tab, index) => (
-                <button
-                  key={tab.anchor}
-                  onClick={() => scrollToSection(tab.anchor)}
-                  className={`px-6 py-3 text-sm backdrop-blur-md transition-all duration-300 font-medium rounded-full ${
-                    index === 0
-                      ? "text-white bg-white/10 border border-white/30"
-                      : "text-gray-400 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              {tabs.map((tab) => {
+                const active = activeSection === tab.anchor;
+                return (
+                  <button
+                    key={tab.anchor}
+                    onClick={() => scrollToSection(tab.anchor)}
+                    className={`px-6 py-3 text-sm rounded-full transition-all duration-300 font-medium border-b-2 ${
+                      active
+                        ? "text-white border-white bg-black/20 backdrop-blur-md"
+                        : "text-gray-400 border-transparent hover:text-white"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
