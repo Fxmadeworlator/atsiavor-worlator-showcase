@@ -15,7 +15,7 @@ export default function MyRoleSection() {
     <section
       id="my-role"
       className="py-20 px-6"
-      style={{ backgroundColor: "#C19A6B" }}
+      style={{ backgroundColor: "#7B3F00" }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Main Heading Section */}
