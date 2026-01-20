@@ -4,7 +4,7 @@ import ootieImage from "@/assets/project-ootie.jpg";
 
 export default function OutputsSection() {
   return (
-    <section className="min-h-[calc(100vh-80px)] py-20 px-6 bg-black">
+    <section id="outputs" className="min-h-[calc(100vh-80px)] py-20 px-6 bg-black">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white">Glimpse of Outputs</h2>
 
