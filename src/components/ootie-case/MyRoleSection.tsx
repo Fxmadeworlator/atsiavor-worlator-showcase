@@ -19,15 +19,15 @@ export default function MyRoleSection() {
       <div className="max-w-6xl mx-auto">
         {/* Main Heading Section */}
         <div className="mb-16 text-left">
-          {/* TWO-LINE HEADLINE */}
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight max-w-[16ch]">
-            Built to Support Every Step of Pet Parenthood.
+          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+            Built to Support
+            <br />
+            Every Step of
+            <br />
+            Pet Parenthood.
           </h1>
-
-          <div className="w-24 h-1 bg-white/50 my-4"></div>
-
-          {/* SMALLER / REGULAR WEIGHT */}
-          <h2 className="text-lg md:text-xl text-white/90 tracking-wide">
+          <div className="w-24 h-1 bg-white/50 mb-4"></div>
+          <h2 className="text-xl md:text-2xl font-light text-white/90 tracking-wide">
             Ootie | Founder and Developer
           </h2>
         </div>
@@ -35,9 +35,7 @@ export default function MyRoleSection() {
         {/* My Role Content */}
         <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
           <div className="space-y-6">
-            {/* SMALLER / REGULAR WEIGHT */}
-            <h3 className="text-3xl md:text-4xl text-white">My Role</h3>
-
+            <h3 className="text-4xl md:text-5xl font-bold text-white">My Role</h3>
             <p className="text-lg text-gray-200 leading-relaxed">
               I was the solo full-stack engineer & product designer hired to
               ship Ootie from zero to MVP in 10 weeks, targeting pet owners
@@ -49,7 +47,6 @@ export default function MyRoleSection() {
               into one cohesive product. I led user research, UX design,
               React-Native development, and Supabase backend architecture.
             </p>
-
             <div className="flex flex-wrap gap-2 pt-4">
               {skillTags.map((tag) => (
                 <span
@@ -61,7 +58,6 @@ export default function MyRoleSection() {
               ))}
             </div>
           </div>
-
           <div className="flex justify-center">
             <div className="relative">
               <img
