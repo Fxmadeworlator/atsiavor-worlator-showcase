@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { GraduationCap, Code, Building2, PawPrint } from "lucide-react";
+import { GraduationCap, Code, Building2, PawPrint, Banknote } from "lucide-react";
 
 interface TimelineItemProps {
   year: string;
@@ -111,6 +111,15 @@ const About = () => {
         </>
       ),
       icon: <PawPrint className="w-5 h-5" />,
+      isCurrent: true,
+    },
+    {
+      year: "2026",
+      title: "cediX",
+      subtitle: "Founder & Developer",
+      description:
+        "Building cediX — a B2B loan platform where individuals can request loans from others and lenders can offer financing. Making peer-to-peer lending accessible and trustworthy.",
+      icon: <Banknote className="w-5 h-5" />,
       isCurrent: true,
       isLast: true,
     },
