@@ -12,7 +12,6 @@ import PetProjects from "./pages/PetProjects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack";
-import Verified from "./pages/Verified";
 import OotieCasePage from "./pages/OotieCasePage";
 
 const queryClient = new QueryClient();
@@ -32,7 +31,7 @@ const App = () => (
           <Route path="/pet-projects" element={<PetProjects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/toolstack" element={<Toolstack />} />
-          <Route path="/verified" element={<Verified />} />
+          
           <Route path="/ootie-case" element={<OotieCasePage />} />
           <Route path="/ootie-case-story" element={<Navigate to="/ootie-case" replace />} />
           <Route path="/ootie-my-role" element={<Navigate to="/ootie-case" replace />} />

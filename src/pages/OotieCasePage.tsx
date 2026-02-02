@@ -25,7 +25,6 @@ const core = [
 
 const extra = [
   { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
-  { icon: TrendingUp, label: "Trading", path: "/verified" },
 ];
 
 export default function OotieCasePage() {
@@ -73,7 +72,7 @@ export default function OotieCasePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex">
+    <div className="min-h-screen bg-background flex">
       {/* Main Sidebar */}
       <aside
         className="fixed left-0 top-0 h-screen flex items-center z-50"
