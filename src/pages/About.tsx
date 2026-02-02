@@ -1,6 +1,10 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { GraduationCap, Code, Building2, PawPrint, Banknote } from "lucide-react";
+import { useState } from "react";
+
+import presecImg from "@/assets/presec.jpg";
+import accraImg from "@/assets/accra-tech.jpg";
 
 interface TimelineItemProps {
   year: string;
@@ -11,10 +15,12 @@ interface TimelineItemProps {
   icon: React.ReactNode;
   isLast?: boolean;
   isCurrent?: boolean;
+  hoverImage?: string;
 }
 
-const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent }: TimelineItemProps) => {
+const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent, hoverImage }: TimelineItemProps) => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [showImage, setShowImage] = useState(false);
 
   return (
     <div
@@ -51,7 +57,32 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
             </span>
           )}
         </div>
-        <h3 className="text-2xl font-bold mb-1">{title}</h3>
+        <div className="relative inline-block">
+          <h3 
+            className={`text-2xl font-bold mb-1 ${hoverImage ? "cursor-pointer" : ""}`}
+            onMouseEnter={() => hoverImage && setShowImage(true)}
+            onMouseLeave={() => setShowImage(false)}
+          >
+            {title}
+          </h3>
+          {/* Hover Image Preview */}
+          {hoverImage && (
+            <div 
+              className={`absolute left-0 top-full mt-2 z-50 transition-all duration-300 pointer-events-none ${
+                showImage ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-2 scale-95"
+              }`}
+            >
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border/50 bg-card">
+                <img 
+                  src={hoverImage} 
+                  alt={title}
+                  className="w-64 h-40 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            </div>
+          )}
+        </div>
         <p className="text-muted-foreground mb-4">{subtitle}</p>
         <p className="text-foreground/80 leading-relaxed max-w-xl">{description}</p>
       </div>
@@ -71,6 +102,7 @@ const About = () => {
       description:
         "Where it all started. PRESEC shaped my foundation — discipline, curiosity, and the drive to always ask 'why?' and 'what if?'. The friendships and lessons from those years still guide me today.",
       icon: <GraduationCap className="w-5 h-5" />,
+      hoverImage: presecImg,
     },
     {
       year: "2021",
@@ -80,6 +112,7 @@ const About = () => {
       description:
         "Studied Mechanical Engineering, gaining a strong foundation in core engineering principles such as mechanics, thermodynamics, and materials science. I developed skills in problem-solving, design thinking, and analytical reasoning, which help me apply my knowledge to practical challenges.",
       icon: <Building2 className="w-5 h-5" />,
+      hoverImage: accraImg,
     },
     {
       year: "2024",
