@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { GraduationCap, Code, Building2, Rocket, PawPrint } from "lucide-react";
+import { GraduationCap, Code, Building2, PawPrint } from "lucide-react";
 
 interface TimelineItemProps {
   year: string;
@@ -112,15 +112,6 @@ const About = () => {
       ),
       icon: <PawPrint className="w-5 h-5" />,
       isCurrent: true,
-    },
-    {
-      year: "Sep 2026",
-      title: "Leeds Beckett University",
-      subtitle: "Pursuing further studies in the UK",
-      description:
-        "Preparing for my next academic chapter at Leeds Beckett University. I will be studying abroad later this year or next, embracing new challenges, meeting diverse people, and continuing to grow both personally and professionally.",
-      icon: <Rocket className="w-5 h-5" />,
-      isCurrent: false,
       isLast: true,
     },
   ];

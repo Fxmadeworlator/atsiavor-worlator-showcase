@@ -1,5 +1,5 @@
 import { NavLink } from "./NavLink";
-import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
+import { Home, User, Briefcase, Mail, Wrench } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -19,7 +19,6 @@ const Sidebar = () => {
 
   const extra = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
-    { icon: TrendingUp, label: "Trading", path: "/verified" },
   ];
 
   const handleProjectsClick = () => {
