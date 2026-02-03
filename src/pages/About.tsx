@@ -98,7 +98,7 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
               className="fixed z-[100] transition-all duration-300 pointer-events-none"
               style={{
                 top: '50%',
-                right: '5%',
+                right: '2%',
                 transform: 'translateY(-50%)',
               }}
             >

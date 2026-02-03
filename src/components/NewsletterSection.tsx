@@ -37,12 +37,16 @@ const NewsletterSection = () => {
         </div>
         
         <div className="flex justify-center gap-4">
-          <Button variant="outline" size="icon" className="rounded-full w-12 h-12">
-            <Instagram className="w-5 h-5" />
-          </Button>
-          <Button variant="outline" size="icon" className="rounded-full w-12 h-12">
-            <XIcon />
-          </Button>
+          <a href="https://instagram.com/worlator_" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="icon" className="rounded-full w-12 h-12">
+              <Instagram className="w-5 h-5" />
+            </Button>
+          </a>
+          <a href="https://x.com/worlator_" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="icon" className="rounded-full w-12 h-12">
+              <XIcon />
+            </Button>
+          </a>
         </div>
       </div>
     </section>
