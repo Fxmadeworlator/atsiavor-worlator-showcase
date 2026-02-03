@@ -9,7 +9,7 @@ import accraImg from "@/assets/accra-tech.jpg";
 interface TimelineItemProps {
   year: string;
   endYear?: string;
-  title: string | React.ReactNode;
+  title: string;
   subtitle: string;
   description: React.ReactNode;
   icon: React.ReactNode;
@@ -17,12 +17,35 @@ interface TimelineItemProps {
   isCurrent?: boolean;
   hoverImage?: string;
   hoverColor?: string;
+  splitColor?: { baseText: string; highlightText: string; highlightColor: string };
 }
 
-const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent, hoverImage, hoverColor }: TimelineItemProps) => {
+const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent, hoverImage, hoverColor, splitColor }: TimelineItemProps) => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [showImage, setShowImage] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const renderTitle = () => {
+    if (splitColor) {
+      return (
+        <>
+          <span 
+            className="transition-colors duration-300"
+            style={{ color: isHovered ? splitColor.highlightColor : undefined }}
+          >
+            {splitColor.baseText}
+          </span>
+          <span 
+            className="transition-colors duration-300"
+            style={{ color: isHovered ? splitColor.highlightColor : undefined }}
+          >
+            {splitColor.highlightText}
+          </span>
+        </>
+      );
+    }
+    return title;
+  };
 
   return (
     <div
@@ -61,31 +84,34 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
         </div>
         <div className="relative inline-block">
           <h3 
-            className={`text-2xl font-bold mb-1 transition-colors duration-300 ${hoverImage || hoverColor ? "cursor-pointer" : ""}`}
-            style={isHovered && hoverColor ? { color: hoverColor } : undefined}
+            className={`text-2xl font-bold mb-1 transition-colors duration-300 ${hoverImage || hoverColor || splitColor ? "cursor-pointer" : ""}`}
+            style={isHovered && hoverColor && !splitColor ? { color: hoverColor } : undefined}
             onMouseEnter={() => {
               if (hoverImage) setShowImage(true);
-              if (hoverColor) setIsHovered(true);
+              if (hoverColor || splitColor) setIsHovered(true);
             }}
             onMouseLeave={() => {
               setShowImage(false);
               setIsHovered(false);
             }}
           >
-            {title}
+            {renderTitle()}
           </h3>
-          {/* Hover Image Preview - positioned to the right */}
-          {hoverImage && (
+          {/* Hover Image Preview - fixed position to avoid clipping */}
+          {hoverImage && showImage && (
             <div 
-              className={`absolute left-full top-0 ml-4 z-50 transition-all duration-300 pointer-events-none ${
-                showImage ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-2 scale-95"
-              }`}
+              className="fixed z-[100] transition-all duration-300 pointer-events-none"
+              style={{
+                top: '50%',
+                right: '15%',
+                transform: 'translateY(-50%)',
+              }}
             >
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border/50 bg-card">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border/50 bg-card animate-scale-in">
                 <img 
                   src={hoverImage} 
-                  alt={typeof title === 'string' ? title : 'Timeline image'}
-                  className="w-64 h-40 object-cover"
+                  alt={title}
+                  className="w-72 h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
@@ -158,13 +184,14 @@ const About = () => {
     },
     {
       year: "2026",
-      title: <span><span className="text-foreground">Cedi</span><span style={{ color: "#FF6B00" }}>X</span></span>,
+      title: "CediX",
       subtitle: "Founder & Developer",
       description:
         "Building CediX — a B2B loan platform where individuals can request loans from others and lenders can offer financing. Making peer-to-peer lending accessible and trustworthy.",
       icon: <Banknote className="w-5 h-5" />,
       isCurrent: true,
       isLast: true,
+      splitColor: { baseText: "Cedi", highlightText: "X", highlightColor: "#FF6B00" },
     },
   ];
 
