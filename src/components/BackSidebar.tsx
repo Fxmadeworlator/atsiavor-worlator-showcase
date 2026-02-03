@@ -9,7 +9,7 @@ const BackSidebar = ({ to = "/projects" }: BackSidebarProps) => {
   const navigate = useNavigate();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen flex items-center z-50">
+    <aside className="hidden lg:flex fixed left-0 top-0 h-screen items-center z-50">
       <nav className="flex flex-col gap-3 p-4 bg-nav-bg/80 backdrop-blur-sm rounded-3xl border border-border shadow-lg ml-6">
         <button
           onClick={() => navigate(to)}

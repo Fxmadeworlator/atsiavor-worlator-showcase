@@ -15,7 +15,7 @@ const ProjectsSidebar = () => {
 
   return (
     <aside
-      className="fixed left-0 top-0 h-screen flex items-center z-50"
+      className="hidden lg:flex fixed left-0 top-0 h-screen items-center z-50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
