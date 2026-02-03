@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "@/components/NavLink";
-import { Home, User, Briefcase, Mail, Wrench, TrendingUp } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MyRoleSection from "@/components/ootie-case/MyRoleSection";
 import OpportunitiesSection from "@/components/ootie-case/OpportunitiesSection";
 import ApproachSection from "@/components/ootie-case/ApproachSection";
@@ -16,29 +14,17 @@ const tabs = [
   { label: "Outputs", anchor: "#outputs" },
 ];
 
-const core = [
-  { icon: Home, label: "Home", path: "/" },
-  { icon: User, label: "About", path: "/about" },
-  { icon: Briefcase, label: "Projects", path: "/experience", isProjects: true },
-  { icon: Mail, label: "Contact", path: "/contact" },
-];
-
-const extra = [
-  { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
-  { icon: TrendingUp, label: "Trading", path: "/verified" },
+const navLinks = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Projects", path: "/experience" },
+  { label: "Tool Stack", path: "/toolstack" },
+  { label: "Contact", path: "/contact" },
 ];
 
 export default function OotieCasePage() {
-  const [isHovered, setIsHovered] = useState(false);
   const [activeSection, setActiveSection] = useState("#my-role");
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const isProjectsRoute = ["/projects", "/experience", "/apps", "/pet-projects", "/ootie-case"].includes(location.pathname);
-
-  const handleProjectsClick = () => {
-    navigate("/experience");
-  };
 
   const scrollToSection = (anchor: string) => {
     const element = document.querySelector(anchor);
@@ -73,100 +59,27 @@ export default function OotieCasePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex">
-      {/* Main Sidebar */}
-      <aside
-        className="fixed left-0 top-0 h-screen flex items-center z-50"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <nav
-          className={`flex flex-col gap-3 p-4 bg-black/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-lg ml-6 transition-all duration-200 ${
-            isHovered ? "py-5" : ""
-          }`}
-        >
-          {/* CORE – always visible icons */}
-          {core.map((item) => {
-            const Icon = item.icon;
-            
-            if (item.isProjects) {
-              return (
-                <button
-                  key={item.path}
-                  onClick={handleProjectsClick}
-                  className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-white/70 hover:text-white bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                    isHovered ? "w-auto pr-4" : "w-12"
-                  } ${isProjectsRoute ? "!text-white !bg-white/20 font-medium" : ""}`}
-                >
-                  <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                  <span
-                    className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                      isHovered ? "opacity-100" : "opacity-0 w-0"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </button>
-              );
-            }
-
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-white/70 hover:text-white bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden ${
-                  isHovered ? "w-auto pr-4" : "w-12"
-                }`}
-                activeClassName="!text-white !bg-white/20 font-medium"
+    <div className="min-h-screen bg-black">
+      {/* Top Navigation Header */}
+      <header className="sticky top-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
+        {/* Main Site Navigation */}
+        <nav className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
               >
-                <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                <span
-                  className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                    isHovered ? "opacity-100" : "opacity-0 w-0"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </NavLink>
-            );
-          })}
-
-          {/* COLLAPSIBLE SECTION */}
-          <div
-            className={`overflow-hidden transition-[max-height] duration-200 ease-out ${
-              isHovered ? "max-h-96" : "max-h-0"
-            }`}
-          >
-            {extra.map((item) => {
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={`relative flex items-center gap-0 px-3 py-3 rounded-2xl text-white/70 hover:text-white bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:translate-x-1 overflow-hidden mt-3 ${
-                    isHovered ? "w-auto pr-4" : "w-12"
-                  }`}
-                  activeClassName="!text-white !bg-white/20 font-medium"
-                >
-                  <Icon className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isHovered ? "scale-110" : ""}`} />
-                  <span
-                    className={`ml-3 whitespace-nowrap transition-opacity duration-200 ${
-                      isHovered ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </NavLink>
-              );
-            })}
+                {link.label}
+              </Link>
+            ))}
           </div>
         </nav>
-      </aside>
 
-      <main className="flex-1 ml-12">
-        {/* Liquid-Glass Header with Rounded Buttons */}
-        <div className="sticky top-0 z-40 bg-black/20 backdrop-blur-xl border-b border-white/20 shadow-lg">
-          <div className="max-w-6xl mx-auto px-6 py-4">
+        {/* Case Study Section Navigation */}
+        <div className="border-t border-white/10">
+          <div className="max-w-6xl mx-auto px-6 py-3">
             <div className="flex justify-center gap-2 flex-wrap">
               {tabs.map((tab) => {
                 const active = activeSection === tab.anchor;
@@ -174,9 +87,9 @@ export default function OotieCasePage() {
                   <button
                     key={tab.anchor}
                     onClick={() => scrollToSection(tab.anchor)}
-                    className={`px-6 py-3 text-sm rounded-full transition-all duration-300 font-medium border-b-2 ${
+                    className={`px-6 py-2.5 text-sm rounded-full transition-all duration-300 font-medium border-b-2 ${
                       active
-                        ? "text-white border-white bg-black/20 backdrop-blur-md"
+                        ? "text-white border-white bg-white/10 backdrop-blur-md"
                         : "text-gray-400 border-transparent hover:text-white"
                     }`}
                   >
@@ -187,15 +100,15 @@ export default function OotieCasePage() {
             </div>
           </div>
         </div>
+      </header>
 
-        {/* All sections scroll vertically */}
-        <div className="divide-y divide-white/10">
-          <MyRoleSection />
-          <OpportunitiesSection />
-          <ApproachSection />
-          <OutcomesSection />
-          <OutputsSection />
-        </div>
+      {/* All sections scroll vertically */}
+      <main className="divide-y divide-white/10">
+        <MyRoleSection />
+        <OpportunitiesSection />
+        <ApproachSection />
+        <OutcomesSection />
+        <OutputsSection />
       </main>
     </div>
   );
