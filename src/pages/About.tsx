@@ -9,18 +9,20 @@ import accraImg from "@/assets/accra-tech.jpg";
 interface TimelineItemProps {
   year: string;
   endYear?: string;
-  title: string;
+  title: string | React.ReactNode;
   subtitle: string;
   description: React.ReactNode;
   icon: React.ReactNode;
   isLast?: boolean;
   isCurrent?: boolean;
   hoverImage?: string;
+  hoverColor?: string;
 }
 
-const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent, hoverImage }: TimelineItemProps) => {
+const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLast, isCurrent, hoverImage, hoverColor }: TimelineItemProps) => {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [showImage, setShowImage] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
@@ -59,23 +61,30 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
         </div>
         <div className="relative inline-block">
           <h3 
-            className={`text-2xl font-bold mb-1 ${hoverImage ? "cursor-pointer" : ""}`}
-            onMouseEnter={() => hoverImage && setShowImage(true)}
-            onMouseLeave={() => setShowImage(false)}
+            className={`text-2xl font-bold mb-1 transition-colors duration-300 ${hoverImage || hoverColor ? "cursor-pointer" : ""}`}
+            style={isHovered && hoverColor ? { color: hoverColor } : undefined}
+            onMouseEnter={() => {
+              if (hoverImage) setShowImage(true);
+              if (hoverColor) setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+              setShowImage(false);
+              setIsHovered(false);
+            }}
           >
             {title}
           </h3>
-          {/* Hover Image Preview */}
+          {/* Hover Image Preview - positioned to the right */}
           {hoverImage && (
             <div 
-              className={`absolute left-0 top-full mt-2 z-50 transition-all duration-300 pointer-events-none ${
-                showImage ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-2 scale-95"
+              className={`absolute left-full top-0 ml-4 z-50 transition-all duration-300 pointer-events-none ${
+                showImage ? "opacity-100 translate-x-0 scale-100" : "opacity-0 -translate-x-2 scale-95"
               }`}
             >
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border/50 bg-card">
                 <img 
                   src={hoverImage} 
-                  alt={title}
+                  alt={typeof title === 'string' ? title : 'Timeline image'}
                   className="w-64 h-40 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -145,13 +154,14 @@ const About = () => {
       ),
       icon: <PawPrint className="w-5 h-5" />,
       isCurrent: true,
+      hoverColor: "#FF6B00",
     },
     {
       year: "2026",
-      title: "cediX",
+      title: <span><span className="text-foreground">Cedi</span><span style={{ color: "#FF6B00" }}>X</span></span>,
       subtitle: "Founder & Developer",
       description:
-        "Building cediX — a B2B loan platform where individuals can request loans from others and lenders can offer financing. Making peer-to-peer lending accessible and trustworthy.",
+        "Building CediX — a B2B loan platform where individuals can request loans from others and lenders can offer financing. Making peer-to-peer lending accessible and trustworthy.",
       icon: <Banknote className="w-5 h-5" />,
       isCurrent: true,
       isLast: true,
