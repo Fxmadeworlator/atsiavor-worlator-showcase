@@ -37,7 +37,7 @@ const NewsletterSection = () => {
         </div>
         
         <div className="flex justify-center gap-4">
-          <a href="https://instagram.com/worlator_" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/worlator_/" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="icon" className="rounded-full w-12 h-12">
               <Instagram className="w-5 h-5" />
             </Button>

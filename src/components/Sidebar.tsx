@@ -14,11 +14,11 @@ const Sidebar = () => {
     { icon: Home, label: "Home", path: "/" },
     { icon: User, label: "About", path: "/about" },
     { icon: Briefcase, label: "Projects", path: "/experience", isProjects: true },
-    { icon: Mail, label: "Contact", path: "/contact" },
   ];
 
   const extra = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
+    { icon: Mail, label: "Contact", path: "/contact" },
   ];
 
   const handleProjectsClick = () => {
