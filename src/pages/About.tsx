@@ -95,18 +95,13 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
           {/* Hover Image Preview - fixed position to avoid clipping */}
           {hoverImage && showImage && (
             <div 
-              className="fixed z-[100] transition-all duration-300 pointer-events-none"
-              style={{
-                top: '50%',
-                right: '20px',
-                transform: 'translateY(-50%)',
-              }}
+              className="fixed z-[100] transition-all duration-300 pointer-events-none right-4 top-1/2 -translate-y-1/2"
             >
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border/50 bg-card animate-scale-in">
                 <img 
                   src={hoverImage} 
                   alt={title}
-                  className="w-72 h-48 object-cover"
+                  className="w-56 h-36 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
