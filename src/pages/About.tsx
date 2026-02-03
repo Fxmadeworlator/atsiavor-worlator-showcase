@@ -29,12 +29,7 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
     if (splitColor) {
       return (
         <>
-          <span 
-            className="transition-colors duration-300"
-            style={{ color: isHovered ? splitColor.highlightColor : undefined }}
-          >
-            {splitColor.baseText}
-          </span>
+          <span>{splitColor.baseText}</span>
           <span 
             className="transition-colors duration-300"
             style={{ color: isHovered ? splitColor.highlightColor : undefined }}
@@ -77,8 +72,8 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
             {year}{endYear ? ` — ${endYear}` : ""}
           </span>
           {isCurrent && (
-            <span className="px-2 py-0.5 text-xs font-medium bg-black text-white rounded-full">
-              Current
+            <span className="text-sm font-mono text-muted-foreground">
+              — <span className="px-2 py-0.5 text-xs font-medium bg-black text-white rounded-full">Current</span>
             </span>
           )}
         </div>
@@ -103,7 +98,7 @@ const TimelineItem = ({ year, endYear, title, subtitle, description, icon, isLas
               className="fixed z-[100] transition-all duration-300 pointer-events-none"
               style={{
                 top: '50%',
-                right: '15%',
+                right: '5%',
                 transform: 'translateY(-50%)',
               }}
             >
@@ -159,7 +154,7 @@ const About = () => {
       icon: <Code className="w-5 h-5" />,
     },
     {
-      year: "Jan 2026",
+      year: "Dec 2025",
       title: "Ootie",
       subtitle: "Founder & Developer",
       description: (
@@ -183,7 +178,7 @@ const About = () => {
       hoverColor: "#FF6B00",
     },
     {
-      year: "2026",
+      year: "Feb 2026",
       title: "CediX",
       subtitle: "Founder & Developer",
       description:
