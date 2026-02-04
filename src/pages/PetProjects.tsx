@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ProjectsSidebar from "@/components/ProjectsSidebar";
+import MobileNav from "@/components/MobileNav";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectOotie from "@/assets/project-ootie.jpg";
@@ -86,8 +87,9 @@ export default function PetProjects() {
   return (
     <div className="min-h-screen bg-background">
       <ProjectsSidebar />
+      <MobileNav />
 
-      <main className="min-h-screen flex flex-col px-8 ml-12">
+      <main className="min-h-screen flex flex-col px-8 lg:ml-12">
         <div className="pt-8 pb-4">
           <h1 className="text-4xl font-bold">/pet-projects</h1>
           <div className="h-[2px] bg-border mt-4 w-full max-w-md" />

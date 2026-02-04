@@ -1,4 +1,5 @@
 import ProjectsSidebar from "@/components/ProjectsSidebar";
+import MobileNav from "@/components/MobileNav";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useRef } from "react";
@@ -16,8 +17,9 @@ export default function Apps() {
   return (
     <div className="min-h-screen bg-background">
       <ProjectsSidebar />
+      <MobileNav />
 
-      <main className="min-h-screen flex flex-col px-8 ml-12">
+      <main className="min-h-screen flex flex-col px-8 lg:ml-12">
         <div className="pt-8 pb-4">
           <h1 className="text-4xl font-bold">/apps</h1>
           <div className="h-[2px] bg-border mt-4 w-full max-w-md" />

@@ -1,5 +1,6 @@
 // src/pages/Toolstack.tsx
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /* ----------  SVG LOGOS (brand colors)  ---------- */
@@ -267,6 +268,7 @@ const Toolstack = () => {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
+      <MobileNav />
       <main className="min-h-screen px-8 pb-20">
         <div
           ref={headerRef}

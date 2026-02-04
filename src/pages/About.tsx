@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { GraduationCap, Code, Building2, PawPrint, Banknote } from "lucide-react";
 import { useState } from "react";
@@ -189,6 +190,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
+      <MobileNav />
 
       <main className="min-h-screen px-8 pb-20">
         {/* Header */}

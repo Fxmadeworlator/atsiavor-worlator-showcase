@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProjectsSidebar from "@/components/ProjectsSidebar";
+import MobileNav from "@/components/MobileNav";
 import { Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -72,8 +73,9 @@ export default function Experience() {
   return (
     <div className="min-h-screen bg-background">
       <ProjectsSidebar />
+      <MobileNav />
 
-      <main className="min-h-screen flex flex-col px-8 ml-12">
+      <main className="min-h-screen flex flex-col px-8 lg:ml-12">
         <div className="pt-8 pb-4">
           <h1 className="text-4xl font-bold">/experience</h1>
           <div className="h-[2px] bg-border mt-4 w-full max-w-md" />
