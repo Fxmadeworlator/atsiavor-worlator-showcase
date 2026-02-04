@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Briefcase, Smartphone, Sparkles } from "lucide-react";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -10,9 +10,17 @@ const navLinks = [
   { label: "Contact", path: "/contact" },
 ];
 
+const projectLinks = [
+  { label: "Experience", path: "/experience", icon: Briefcase },
+  { label: "Apps", path: "/apps", icon: Smartphone },
+  { label: "Pet Projects", path: "/pet-projects", icon: Sparkles },
+];
+
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+
+  const isProjectPage = ["/experience", "/apps", "/pet-projects"].includes(location.pathname);
 
   return (
     <div className="lg:hidden fixed top-6 right-6 z-50">
@@ -47,7 +55,8 @@ const MobileNav = () => {
       >
         <div className="flex flex-col gap-1">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.path;
+            const isActive = location.pathname === link.path || 
+              (link.path === "/experience" && isProjectPage);
             return (
               <Link
                 key={link.path}
@@ -64,6 +73,36 @@ const MobileNav = () => {
             );
           })}
         </div>
+
+        {/* Project Sub-menu */}
+        {isProjectPage && (
+          <div className="mt-3 pt-3 border-t border-white/10">
+            <p className="px-4 py-1 text-xs font-medium text-foreground/50 uppercase tracking-wider">
+              Categories
+            </p>
+            <div className="flex flex-col gap-1 mt-1">
+              {projectLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-white/15 text-foreground"
+                        : "text-foreground/70 hover:text-foreground hover:bg-white/10"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </nav>
     </div>
   );
