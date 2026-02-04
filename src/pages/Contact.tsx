@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,7 +11,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      <main className="p-16 flex flex-col items-center justify-center">
+      <MobileNav />
+      <main className="p-8 md:p-16 flex flex-col items-center justify-center">
         <div 
           ref={ref}
           className={`max-w-2xl w-full transition-all duration-700 ${
