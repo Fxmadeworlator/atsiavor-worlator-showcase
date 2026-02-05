@@ -2,13 +2,15 @@ import ProjectsSidebar from "@/components/ProjectsSidebar";
 import MobileNav from "@/components/MobileNav";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import productImage from "@/assets/product-apps.png";
 import productHeroImage from "@/assets/product-appsP.png";
 
 export default function Apps() {
   const navigate = useNavigate();
   const phoneRef = useRef<HTMLDivElement>(null);
+  const [heroImageError, setHeroImageError] = useState(false);
+  const [phoneImageError, setPhoneImageError] = useState(false);
 
   const scrollToPhone = () => {
     phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -36,18 +38,28 @@ export default function Apps() {
           <div className="flex-1 flex flex-col items-center justify-center gap-6">
             {/* Hero Product Image */}
             <div className="relative">
-              <img
-                src={productHeroImage}
-                alt="App Preview"
-                className="max-w-full h-auto mix-blend-multiply dark:mix-blend-screen dark:opacity-90"
-                style={{ maxHeight: "60vh", background: "transparent" }}
-              />
+              {!heroImageError ? (
+                <img
+                  src={productHeroImage}
+                  alt="App Preview"
+                  className="max-w-full h-auto mix-blend-multiply dark:mix-blend-screen dark:opacity-90"
+                  style={{ maxHeight: "75vh", background: "transparent" }}
+                  onError={() => setHeroImageError(true)}
+                />
+              ) : (
+                <div 
+                  className="flex items-center justify-center text-muted-foreground"
+                  style={{ height: "75vh", width: "100%" }}
+                >
+                  <span className="text-lg">App Preview</span>
+                </div>
+              )}
             </div>
 
             {/* View Case Story Button */}
             <button
               onClick={() => navigate("/ootie-case")}
-              className="px-8 py-4 text-lg font-medium rounded-full border-2 border-muted-foreground/50 text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+              className="px-8 py-4 text-lg font-medium rounded-full bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 text-foreground hover:bg-white/20 dark:hover:bg-white/10 hover:border-white/30 dark:hover:border-white/20 transition-all duration-300 shadow-lg"
             >
               View Case Story
             </button>
@@ -63,12 +75,22 @@ export default function Apps() {
 
             {/* Phone Image */}
             <div ref={phoneRef} className="relative">
-              <img
-                src={productImage}
-                alt="Ootie App"
-                className="max-w-full h-auto"
-                style={{ maxHeight: "55vh", background: "transparent" }}
-              />
+              {!phoneImageError ? (
+                <img
+                  src={productImage}
+                  alt="Ootie App"
+                  className="max-w-full h-auto"
+                  style={{ maxHeight: "55vh", background: "transparent" }}
+                  onError={() => setPhoneImageError(true)}
+                />
+              ) : (
+                <div 
+                  className="flex items-center justify-center text-muted-foreground"
+                  style={{ height: "55vh", width: "100%" }}
+                >
+                  <span className="text-lg">Ootie App</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
