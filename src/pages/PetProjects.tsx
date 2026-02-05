@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ProjectsSidebar from "@/components/ProjectsSidebar";
 import MobileNav from "@/components/MobileNav";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import projectOotie from "@/assets/project-ootie.jpg";
 import projectAgtv from "@/assets/project-agtv.jpg";
@@ -54,6 +54,70 @@ const projects: Project[] = [
 export default function PetProjects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+
+  const toggleProjectExpansion = (title: string) =>
+    setExpandedProject((prev) => (prev === title ? null : title));
+
+  const ProjectCard = ({
+    title,
+    subtitle,
+    live = "#",
+    children,
+  }: {
+    title: string;
+    subtitle: string;
+    live?: string;
+    children?: React.ReactNode;
+  }) => {
+    const isOpen = expandedProject === title;
+
+    return (
+      <div
+        className="bg-gray-100 rounded-lg border border-gray-200 p-8 shadow-sm"
+        style={{ fontFamily: "Arimo, sans-serif", fontWeight: 400 }}
+      >
+        <div className="text-left space-y-3 mb-6">
+          <h3
+            className="text-2xl font-bold"
+            style={{ fontFamily: "Arimo, sans-serif", fontWeight: 700, color: "#2a2a2a" }}
+          >
+            {title}
+          </h3>
+          <p
+            className="text-xl text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+          />
+        </div>
+
+        <div className="flex items-center justify-between">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-blue-500 hover:text-blue-600 transition-transform rounded-full p-3 bg-white shadow-sm"
+            onClick={() => toggleProjectExpansion(title)}
+            aria-label={isOpen ? "collapse" : "expand"}
+          >
+            {isOpen ? <X className="w-7 h-7" /> : <Plus className="w-7 h-7" />}
+          </Button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            className="rounded-full px-6 py-3 bg-white shadow-sm"
+            style={{ color: "#2a2a2a", fontWeight: 500, fontSize: "1.1rem" }}
+            asChild
+          >
+            <a href={live} target="_blank" rel="noopener noreferrer">
+              view work
+            </a>
+          </Button>
+        </div>
+
+        {isOpen && children}
+      </div>
+    );
+  };
 
   const nextProject = () => {
     if (isTransitioning) return;
@@ -186,6 +250,53 @@ export default function PetProjects() {
                 ))}
               </div>
             )}
+          </div>
+
+          {/* Project Cards Section */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+            <ProjectCard
+              title="Ootie App"
+              subtitle="pet care & social app<br />2024 - Present"
+              live="https://ootie-web.vercel.app/"
+            >
+              {expandedProject === "Ootie App" && (
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                    A comprehensive pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services in their area.
+                  </p>
+                </div>
+              )}
+            </ProjectCard>
+
+            <ProjectCard
+              title="Portfolio Site"
+              subtitle="personal showcase<br />2024"
+              live="/"
+            >
+              {expandedProject === "Portfolio Site" && (
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                    This very website! A clean, minimal portfolio built to showcase my work and journey as a developer using React, TypeScript, and Tailwind CSS.
+                  </p>
+                </div>
+              )}
+            </ProjectCard>
+
+            <div className="lg:col-span-2">
+              <ProjectCard
+                title="Experimental Projects"
+                subtitle="side experiments & learning<br />ongoing"
+                live="#"
+              >
+                {expandedProject === "Experimental Projects" && (
+                  <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                    <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
+                      A collection of smaller experiments, prototypes, and learning projects exploring new technologies and ideas.
+                    </p>
+                  </div>
+                )}
+              </ProjectCard>
+            </div>
           </div>
         </div>
       </main>
