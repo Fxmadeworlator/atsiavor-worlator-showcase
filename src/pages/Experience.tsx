@@ -112,33 +112,31 @@ export default function Experience() {
 
             <ProjectCard
               title="Maxwell's Portfolio"
-              subtitle="photography portfolio<br />2025"
+             subtitle="coming soon<br />2025"
               live="https://maxwellandoh.vercel.app/"
             >
               {expandedProject === "Maxwell's Portfolio" && (
                 <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
                   <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                    A clean, minimal portfolio built to showcase Maxwell's photography work. The site emphasizes visual storytelling with a focus on responsive design and fast load times.
+                   More details coming soon...
                   </p>
                 </div>
               )}
             </ProjectCard>
 
-            <div className="lg:col-span-2">
               <ProjectCard
-                title="Elibon Events & Deco"
-                subtitle="event décor brand<br />2024"
+               title="Next Project"
+               subtitle="coming soon<br />2025"
                 live="#"
               >
-                {expandedProject === "Elibon Events & Deco" && (
+               {expandedProject === "Next Project" && (
                   <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
                     <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                      A contemporary event and décor brand transforming every space into a beautifully curated experience. The site highlights services, past work, and booking info.
+                     More details coming soon...
                     </p>
                   </div>
                 )}
               </ProjectCard>
-            </div>
           </div>
         </div>
       </main>
