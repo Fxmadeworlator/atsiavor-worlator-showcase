@@ -2,9 +2,10 @@ import ProjectsSidebar from "@/components/ProjectsSidebar";
 import MobileNav from "@/components/MobileNav";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ootiePhones from "@/assets/ootie-phones.png";
 import productHeroImage from "@/assets/product-appsP.png";
+import ootieLogo from "@/assets/ootie-logo.png";
 
 export default function Apps() {
   const navigate = useNavigate();
@@ -12,6 +13,29 @@ export default function Apps() {
   const [heroImageError, setHeroImageError] = useState(false);
   const [phoneImageError, setPhoneImageError] = useState(false);
   const [phonesAnimated, setPhonesAnimated] = useState(false);
+  const [logoError, setLogoError] = useState(false);
+  const [showArrow, setShowArrow] = useState(true);
+
+  // Auto-hide arrow after 2 seconds of inactivity
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowArrow(false);
+    }, 2000);
+
+    const handleActivity = () => {
+      setShowArrow(true);
+      clearTimeout(timer);
+    };
+
+    window.addEventListener("scroll", handleActivity);
+    window.addEventListener("mousemove", handleActivity);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleActivity);
+      window.removeEventListener("mousemove", handleActivity);
+    };
+  }, [showArrow]);
 
   const scrollToPhone = () => {
     phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -70,7 +94,9 @@ export default function Apps() {
             {/* Down Arrow */}
             <button
               onClick={scrollToPhone}
-              className="p-2 text-muted-foreground hover:text-foreground hover:scale-125 transition-all duration-200"
+              className={`p-2 text-muted-foreground hover:text-foreground hover:scale-125 transition-all duration-500 ${
+                showArrow ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
               aria-label="Scroll to phone image"
             >
               <ChevronDown className="w-8 h-8" />
@@ -88,28 +114,35 @@ export default function Apps() {
                         ? "opacity-100 translate-y-0 rotate-0 scale-100" 
                         : "opacity-0 translate-y-8 rotate-2 scale-95"
                     }`}
-                    style={{ maxHeight: "60vh", background: "transparent" }}
+                    style={{ maxHeight: "70vh", background: "transparent" }}
                     onError={() => setPhoneImageError(true)}
                     onLoad={() => {
                       // Trigger animation shortly after image loads
                       setTimeout(() => setPhonesAnimated(true), 100);
                     }}
                   />
-                  {/* Subtle floating effect before settling */}
-                  <style>{`
-                    @keyframes phone-float {
-                      0%, 100% { transform: translateY(0px) rotate(0deg); }
-                      50% { transform: translateY(-8px) rotate(0.5deg); }
-                    }
-                  `}</style>
                 </div>
               ) : (
                 <div 
                   className="flex items-center justify-center text-muted-foreground"
-                  style={{ height: "60vh", width: "100%" }}
+                  style={{ height: "70vh", width: "100%" }}
                 >
                   <span className="text-lg">Ootie App</span>
                 </div>
+              )}
+            </div>
+
+            {/* Ootie Logo */}
+            <div className="flex justify-center mt-8 mb-12">
+              {!logoError ? (
+                <img
+                  src={ootieLogo}
+                  alt="Ootie Logo"
+                  className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <span className="text-2xl font-bold text-primary">Ootie</span>
               )}
             </div>
           </div>
