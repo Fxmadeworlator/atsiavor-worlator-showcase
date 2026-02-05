@@ -57,7 +57,7 @@ const MobileNav = () => {
 
       {/* Navigation Panels Container */}
       <div
-        className={`absolute top-16 right-0 flex flex-row-reverse gap-2 transition-all duration-300 ${
+        className={`absolute top-16 right-0 flex flex-row-reverse items-center gap-2 transition-all duration-300 ${
           open 
             ? "opacity-100 translate-y-0 pointer-events-auto" 
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -110,16 +110,13 @@ const MobileNav = () => {
 
         {/* Project Sub-menu Panel */}
         <nav
-          className={`min-w-[160px] p-3 rounded-2xl bg-background/20 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 ${
+          className={`p-2 rounded-xl bg-background/20 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 ${
             projectsSubVisible
               ? "opacity-100 translate-x-0 pointer-events-auto"
               : "opacity-0 translate-x-4 pointer-events-none"
           }`}
         >
-          <p className="px-3 py-1 text-xs font-medium text-foreground/50 uppercase tracking-wider mb-1">
-            Categories
-          </p>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-0.5">
             {projectLinks.map((link) => {
               const Icon = link.icon;
               const isActive = location.pathname === link.path;
@@ -131,7 +128,7 @@ const MobileNav = () => {
                     setOpen(false);
                     setShowProjectsSub(false);
                   }}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-white/15 text-foreground"
                       : "text-foreground/70 hover:text-foreground hover:bg-white/10"
