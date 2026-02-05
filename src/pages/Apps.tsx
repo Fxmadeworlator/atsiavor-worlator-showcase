@@ -3,7 +3,7 @@ import MobileNav from "@/components/MobileNav";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useRef, useState } from "react";
-import productImage from "@/assets/product-apps.png";
+import ootiePhones from "@/assets/ootie-phones.png";
 import productHeroImage from "@/assets/product-appsP.png";
 
 export default function Apps() {
@@ -11,9 +11,12 @@ export default function Apps() {
   const phoneRef = useRef<HTMLDivElement>(null);
   const [heroImageError, setHeroImageError] = useState(false);
   const [phoneImageError, setPhoneImageError] = useState(false);
+  const [phonesAnimated, setPhonesAnimated] = useState(false);
 
   const scrollToPhone = () => {
     phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    // Trigger the animation when scrolling to phones
+    setTimeout(() => setPhonesAnimated(true), 300);
   };
 
   return (
@@ -59,7 +62,7 @@ export default function Apps() {
             {/* View Case Story Button */}
             <button
               onClick={() => navigate("/ootie-case")}
-              className="px-8 py-4 text-lg font-medium rounded-full bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 text-foreground hover:bg-white/20 dark:hover:bg-white/10 hover:border-white/30 dark:hover:border-white/20 transition-all duration-300 shadow-lg"
+              className="px-8 py-4 text-lg font-medium rounded-full bg-background/30 backdrop-blur-xl border border-foreground/10 text-foreground hover:bg-background/50 hover:border-foreground/20 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]"
             >
               View Case Story
             </button>
@@ -74,19 +77,36 @@ export default function Apps() {
             </button>
 
             {/* Phone Image */}
-            <div ref={phoneRef} className="relative">
+            <div ref={phoneRef} className="relative overflow-visible">
               {!phoneImageError ? (
-                <img
-                  src={productImage}
-                  alt="Ootie App"
-                  className="max-w-full h-auto"
-                  style={{ maxHeight: "55vh", background: "transparent" }}
-                  onError={() => setPhoneImageError(true)}
-                />
+                <div className="relative">
+                  <img
+                    src={ootiePhones}
+                    alt="Ootie App Screenshots"
+                    className={`max-w-full h-auto transition-all duration-1000 ease-out ${
+                      phonesAnimated 
+                        ? "opacity-100 translate-y-0 rotate-0 scale-100" 
+                        : "opacity-0 translate-y-8 rotate-2 scale-95"
+                    }`}
+                    style={{ maxHeight: "60vh", background: "transparent" }}
+                    onError={() => setPhoneImageError(true)}
+                    onLoad={() => {
+                      // Trigger animation shortly after image loads
+                      setTimeout(() => setPhonesAnimated(true), 100);
+                    }}
+                  />
+                  {/* Subtle floating effect before settling */}
+                  <style>{`
+                    @keyframes phone-float {
+                      0%, 100% { transform: translateY(0px) rotate(0deg); }
+                      50% { transform: translateY(-8px) rotate(0.5deg); }
+                    }
+                  `}</style>
+                </div>
               ) : (
                 <div 
                   className="flex items-center justify-center text-muted-foreground"
-                  style={{ height: "55vh", width: "100%" }}
+                  style={{ height: "60vh", width: "100%" }}
                 >
                   <span className="text-lg">Ootie App</span>
                 </div>
