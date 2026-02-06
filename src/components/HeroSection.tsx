@@ -1,9 +1,26 @@
 import { Button } from "./ui/button";
 import profileHero from "@/assets/profile-hero.jpg";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Send } from "lucide-react";
 
 const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const navigate = useNavigate();
+  const [isFlying, setIsFlying] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleSayHi = () => {
+    if (isFlying) return;
+    
+    setIsFlying(true);
+    
+    // After animation completes, navigate to contact
+    setTimeout(() => {
+      navigate("/contact");
+    }, 1200);
+  };
 
   return (
     <section 
@@ -30,12 +47,30 @@ const HeroSection = () => {
           If you're here to judge my life choices… at least look at the projects first.
         </p>
         
-        <Button 
-          size="lg"
-          className="rounded-full px-8"
-        >
-          Say Hi
-        </Button>
+        <div className="relative">
+          <Button 
+            ref={buttonRef}
+            size="lg"
+            className={`rounded-full px-8 transition-all duration-500 ${
+              isFlying 
+                ? "opacity-0 scale-0" 
+                : "opacity-100 scale-100"
+            }`}
+            onClick={handleSayHi}
+            disabled={isFlying}
+          >
+            Say Hi
+          </Button>
+          
+          {/* Flying Paper Airplane */}
+          {isFlying && (
+            <div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-fly-to-contact"
+            >
+              <Send className="w-6 h-6 text-primary animate-spin-slow" />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
