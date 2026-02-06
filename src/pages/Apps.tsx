@@ -133,16 +133,16 @@ export default function Apps() {
             </div>
 
             {/* Ootie Logo */}
-            <div className="flex justify-center mt-8 mb-12">
+            <div className="flex justify-center mt-12 mb-16">
               {!logoError ? (
                 <img
                   src={ootieLogo}
                   alt="Ootie Logo"
-                  className="h-16 md:h-20 w-auto object-contain drop-shadow-lg"
+                  className="h-32 md:h-40 lg:h-48 w-auto object-contain drop-shadow-2xl"
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <span className="text-2xl font-bold text-primary">Ootie</span>
+                <span className="text-5xl md:text-6xl font-bold text-primary">Ootie</span>
               )}
             </div>
           </div>

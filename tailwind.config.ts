@@ -90,12 +90,32 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-33.333%)" },
         },
+        "fly-to-contact": {
+          "0%": { 
+            transform: "translate(-50%, -50%) scale(1) rotate(0deg)",
+            opacity: "1"
+          },
+          "30%": { 
+            transform: "translate(-50%, -100%) scale(1.2) rotate(-15deg)",
+            opacity: "1"
+          },
+          "100%": { 
+            transform: "translate(-300px, -400px) scale(0.5) rotate(-45deg)",
+            opacity: "0"
+          },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(-45deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "infinite-scroll": "infinite-scroll 15s linear infinite",
         "infinite-scroll-fast": "infinite-scroll 10s linear infinite",
+        "fly-to-contact": "fly-to-contact 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        "spin-slow": "spin-slow 0.3s ease-out forwards",
       },
     },
   },
