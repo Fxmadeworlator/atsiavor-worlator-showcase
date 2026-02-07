@@ -1,6 +1,5 @@
 import ProjectsSidebar from "@/components/ProjectsSidebar";
 import MobileNav from "@/components/MobileNav";
-import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import ootiePhones from "@/assets/ootie-phones.png";
@@ -8,7 +7,6 @@ import productHeroImage from "@/assets/product-appsP.png";
 import ootieLogo from "@/assets/ootie-logo.png";
 
 export default function Apps() {
-  const navigate = useNavigate();
   const phoneRef = useRef<HTMLDivElement>(null);
   const [heroImageError, setHeroImageError] = useState(false);
   const [phoneImageError, setPhoneImageError] = useState(false);
@@ -141,12 +139,12 @@ export default function Apps() {
             </div>
 
             {/* Role Summary Section */}
-            <div className="flex flex-col items-center text-center max-w-2xl mx-auto mt-8 mb-16 px-4">
+            <div className="flex flex-col items-center text-center max-w-2xl mx-auto mt-2 mb-16 px-4">
               <h3 className="text-xl md:text-2xl font-light text-muted-foreground mb-4">
                 Founder & Full-Stack Developer
               </h3>
               <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed mb-6">
-                I designed and built Ootie from zero to MVP in 10 weeks, creating an all-in-one pet management, social, and marketplace platform for pet owners in Ghana and the broader African market.
+                I designed and built Ootie from zero to MVP in 10 weeks, creating an all-in-one pet management, social, and marketplace platform for pet owners worldwide.
               </p>
               
               {/* Skill Tags */}
@@ -154,20 +152,22 @@ export default function Apps() {
                 {["PRODUCT DESIGN", "REACT NATIVE", "SUPABASE", "USER RESEARCH", "MVP STRATEGY"].map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 text-xs font-medium rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/50 transition-all duration-300"
+                    className="px-4 py-2 text-xs font-medium rounded-full bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-all duration-300"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              {/* View Case Story Button */}
-              <button
-                onClick={() => navigate("/ootie-case")}
+              {/* View Site Button */}
+              <a
+                href="https://ootie.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 text-lg font-medium rounded-full bg-background/30 backdrop-blur-xl border border-foreground/10 text-foreground hover:bg-background/50 hover:border-foreground/20 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]"
               >
-                View Case Story
-              </button>
+                View Site
+              </a>
             </div>
           </div>
         </div>
