@@ -83,13 +83,7 @@ export default function Apps() {
               )}
             </div>
 
-            {/* View Case Story Button */}
-            <button
-              onClick={() => navigate("/ootie-case")}
-              className="px-8 py-4 text-lg font-medium rounded-full bg-background/30 backdrop-blur-xl border border-foreground/10 text-foreground hover:bg-background/50 hover:border-foreground/20 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]"
-            >
-              View Case Story
-            </button>
+
 
             {/* Down Arrow */}
             <button
@@ -133,7 +127,7 @@ export default function Apps() {
             </div>
 
             {/* Ootie Logo - overlapping with phones */}
-            <div className="flex justify-center -mt-16 md:-mt-24 lg:-mt-32 mb-16 relative z-10">
+            <div className="flex justify-center -mt-16 md:-mt-24 lg:-mt-32 relative z-10">
               {!logoError ? (
                 <img
                   src={ootieLogo}
@@ -144,6 +138,36 @@ export default function Apps() {
               ) : (
                 <span className="text-5xl md:text-6xl font-bold text-primary">Ootie</span>
               )}
+            </div>
+
+            {/* Role Summary Section */}
+            <div className="flex flex-col items-center text-center max-w-2xl mx-auto mt-8 mb-16 px-4">
+              <h3 className="text-xl md:text-2xl font-light text-muted-foreground mb-4">
+                Founder & Full-Stack Developer
+              </h3>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed mb-6">
+                I designed and built Ootie from zero to MVP in 10 weeks, creating an all-in-one pet management, social, and marketplace platform for pet owners in Ghana and the broader African market.
+              </p>
+              
+              {/* Skill Tags */}
+              <div className="flex flex-wrap justify-center gap-2 mb-8">
+                {["PRODUCT DESIGN", "REACT NATIVE", "SUPABASE", "USER RESEARCH", "MVP STRATEGY"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-2 text-xs font-medium rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/50 transition-all duration-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* View Case Story Button */}
+              <button
+                onClick={() => navigate("/ootie-case")}
+                className="px-8 py-4 text-lg font-medium rounded-full bg-background/30 backdrop-blur-xl border border-foreground/10 text-foreground hover:bg-background/50 hover:border-foreground/20 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]"
+              >
+                View Case Story
+              </button>
             </div>
           </div>
         </div>
