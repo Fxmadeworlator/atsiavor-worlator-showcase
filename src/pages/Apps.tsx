@@ -38,7 +38,7 @@ export default function Apps() {
   }, [showArrow]);
 
   const scrollToPhone = () => {
-    phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     // Trigger the animation when scrolling to phones
     setTimeout(() => setPhonesAnimated(true), 300);
   };
@@ -132,8 +132,8 @@ export default function Apps() {
               )}
             </div>
 
-            {/* Ootie Logo */}
-            <div className="flex justify-center mt-12 mb-16">
+            {/* Ootie Logo - overlapping with phones */}
+            <div className="flex justify-center -mt-16 md:-mt-24 lg:-mt-32 mb-16 relative z-10">
               {!logoError ? (
                 <img
                   src={ootieLogo}
