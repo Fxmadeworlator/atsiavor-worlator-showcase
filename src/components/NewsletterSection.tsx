@@ -2,6 +2,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Instagram } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useState } from "react";
+import confetti from "canvas-confetti";
 
 const XIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
@@ -11,6 +13,66 @@ const XIcon = () => (
 
 const NewsletterSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const triggerCelebration = () => {
+    // Fire confetti from the center
+    const count = 200;
+    const defaults = {
+      origin: { y: 0.7 },
+      zIndex: 9999,
+    };
+
+    function fire(particleRatio: number, opts: confetti.Options) {
+      confetti({
+        ...defaults,
+        ...opts,
+        particleCount: Math.floor(count * particleRatio),
+      });
+    }
+
+    fire(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
+
+    fire(0.2, {
+      spread: 60,
+    });
+
+    fire(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setIsSubmitted(true);
+      triggerCelebration();
+      setEmail("");
+      
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    }
+  };
 
   return (
     <section 
@@ -25,16 +87,28 @@ const NewsletterSection = () => {
           Don't leave your email for attendance. Seriously. Don't. (But if you do… nice.)
         </p>
         
-        <div className="flex gap-3 max-w-xl mx-auto mb-12">
+        <form onSubmit={handleSubmit} className="flex gap-3 max-w-xl mx-auto mb-12">
           <Input 
             type="email" 
             placeholder="name@email.com"
             className="h-12 rounded-full border-border"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isSubmitted}
           />
-          <Button size="lg" className="rounded-full px-8 whitespace-nowrap">
-            was here!
+          <Button 
+            type="submit" 
+            size="lg" 
+            className={`rounded-full px-8 whitespace-nowrap transition-all duration-300 ${
+              isSubmitted 
+                ? "bg-green-500 hover:bg-green-500 text-white" 
+                : ""
+            }`}
+            disabled={isSubmitted}
+          >
+            {isSubmitted ? "🎉 Marked!" : "was here!"}
           </Button>
-        </div>
+        </form>
         
         <div className="flex justify-center gap-4">
           <a href="https://www.instagram.com/worlator_/" target="_blank" rel="noopener noreferrer">

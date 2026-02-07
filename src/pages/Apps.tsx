@@ -161,7 +161,7 @@ export default function Apps() {
 
               {/* View Site Button */}
               <a
-                href="https://ootie.app"
+                href="https://ootie-web.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 text-lg font-medium rounded-full bg-background/30 backdrop-blur-xl border border-foreground/10 text-foreground hover:bg-background/50 hover:border-foreground/20 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)]"
