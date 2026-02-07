@@ -13,8 +13,6 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack";
 
-import OotieCasePage from "./pages/OotieCasePage";
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,14 +30,6 @@ const App = () => (
           <Route path="/pet-projects" element={<PetProjects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/toolstack" element={<Toolstack />} />
-          
-          <Route path="/ootie-case" element={<OotieCasePage />} />
-          <Route path="/ootie-case-story" element={<Navigate to="/ootie-case" replace />} />
-          <Route path="/ootie-my-role" element={<Navigate to="/ootie-case" replace />} />
-          <Route path="/ootie-opportunities" element={<Navigate to="/ootie-case#opportunities" replace />} />
-          <Route path="/ootie-approach" element={<Navigate to="/ootie-case#approach" replace />} />
-          <Route path="/ootie-outcomes" element={<Navigate to="/ootie-case#outcomes" replace />} />
-          <Route path="/ootie-outputs" element={<Navigate to="/ootie-case#outputs" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
