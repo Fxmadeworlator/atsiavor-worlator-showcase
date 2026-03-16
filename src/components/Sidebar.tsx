@@ -1,5 +1,5 @@
 import { NavLink } from "./NavLink";
-import { Home, User, Briefcase, Mail, Wrench } from "lucide-react";
+import { Home, User, Briefcase, Mail, Wrench, CandlestickChart } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
