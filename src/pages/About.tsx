@@ -152,38 +152,29 @@ const About = () => {
     },
     {
       year: "Dec 2025",
-      title: "Ootie",
-      subtitle: "Founder & Developer",
+      title: "163rd Floor LLC",
+      subtitle: "Founder — Tech & Trading",
       description: (
         <>
-          Building Ootie — a pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services and products.{" "}
+          Founded 163rd Floor LLC — a tech and trading company. Currently building{" "}
           <a
             href="https://ootie-web.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors relative"
           >
-            ootie
+            Ootie
             <span className="absolute -bottom-6 left-0 text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
               ootie-web.vercel.app
             </span>
           </a>
+          , a pet care and social platform for owners worldwide, and CediX, a B2B peer-to-peer loan platform making lending accessible and trustworthy.
         </>
       ),
-      icon: <PawPrint className="w-5 h-5" />,
-      isCurrent: true,
-      hoverColor: "#FF6B00",
-    },
-    {
-      year: "Feb 2026",
-      title: "CediX",
-      subtitle: "Founder & Developer",
-      description:
-        "Building CediX — a B2B loan platform where individuals can request loans from others and lenders can offer financing. Making peer-to-peer lending accessible and trustworthy.",
-      icon: <Banknote className="w-5 h-5" />,
+      icon: <Building2 className="w-5 h-5" />,
       isCurrent: true,
       isLast: true,
-      splitColor: { baseText: "Cedi", highlightText: "X", highlightColor: "#FF6B00" },
+      hoverColor: "#FF6B00",
     },
   ];
 
