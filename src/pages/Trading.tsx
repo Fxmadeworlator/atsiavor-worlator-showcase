@@ -68,9 +68,30 @@ export default function Trading() {
             <span className="text-sm font-mono text-muted-foreground tracking-wider uppercase">163rd Floor LLC</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Trading Dashboard</h1>
-          <p className="text-lg text-muted-foreground max-w-xl">
+          <p className="text-lg text-muted-foreground max-w-xl mb-5">
             Live performance metrics from my trading activity across forex, indices, crypto, and commodities.
           </p>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://x.com/worlator_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-card border border-border hover:border-primary/30 transition-all duration-300"
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              Follow my trades
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-card border border-border hover:border-primary/30 transition-all duration-300"
+            >
+              📓 Trading Journal
+            </a>
+          </div>
         </div>
 
         {/* Stats Grid */}
