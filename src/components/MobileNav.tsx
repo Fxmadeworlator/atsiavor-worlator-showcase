@@ -7,6 +7,7 @@ const navLinks = [
   { label: "About", path: "/about" },
   { label: "Projects", path: "/experience", hasSubmenu: true },
   { label: "Tool Stack", path: "/toolstack" },
+  { label: "Trading", path: "/trading" },
   { label: "Contact", path: "/contact" },
 ];
 
