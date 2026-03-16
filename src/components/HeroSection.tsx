@@ -1,15 +1,50 @@
 import { Button } from "./ui/button";
 import profileHero from "@/assets/profile-hero.jpg";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Send } from "lucide-react";
+
+const getTimeGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) {
+    const mornings = [
+      "Good morning ☀️ Hope your coffee's strong!",
+      "Morning! Ready to build something cool?",
+      "Rise and shine ☀️ What's on the agenda?",
+    ];
+    return mornings[Math.floor(Math.random() * mornings.length)];
+  }
+  if (hour >= 12 && hour < 17) {
+    const afternoons = [
+      "Good afternoon 👋 How's your day going?",
+      "Hey! Afternoon vibes hitting right?",
+      "Hope your afternoon's going smooth 🚀",
+    ];
+    return afternoons[Math.floor(Math.random() * afternoons.length)];
+  }
+  if (hour >= 17 && hour < 21) {
+    const evenings = [
+      "Good evening 🌅 Winding down or just getting started?",
+      "Evening! Still got some energy left? 💪",
+      "Hey, nice evening isn't it? 🌇",
+    ];
+    return evenings[Math.floor(Math.random() * evenings.length)];
+  }
+  const nights = [
+    "Still up? Night owls build the best things 🦉",
+    "Late night coding session? I respect that 🌙",
+    "Hey night owl 🌙 Can't sleep either?",
+  ];
+  return nights[Math.floor(Math.random() * nights.length)];
+};
 
 const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation();
   const navigate = useNavigate();
   const [isFlying, setIsFlying] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const greeting = useMemo(() => getTimeGreeting(), []);
 
   const handleSayHi = () => {
     if (isFlying) return;
@@ -36,7 +71,7 @@ const HeroSection = () => {
           className="w-20 h-20 rounded-full object-cover mb-6 grayscale hover:grayscale-0 transition-all duration-300"
         />
         <h1 className="text-4xl font-bold mb-2">Hey, Etor here</h1>
-        <p className="text-lg text-muted-foreground mb-6">How's your day going?</p>
+        <p className="text-lg text-muted-foreground mb-6">{greeting}</p>
         
         <p className="text-base text-foreground/90 leading-relaxed mb-8">
           Hey There! My name is Worlator "Etor" Atsiavor. I'm a student with 3–5 years of coding experience, depending on whether you count the days I spent debugging… which absolutely should count because that's where the real learning happens.
