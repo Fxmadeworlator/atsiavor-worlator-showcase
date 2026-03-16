@@ -12,6 +12,7 @@ import PetProjects from "./pages/PetProjects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Toolstack from "./pages/Toolstack";
+import Trading from "./pages/Trading";
 
 const queryClient = new QueryClient();
 
