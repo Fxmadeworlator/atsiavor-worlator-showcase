@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { GraduationCap, Code, Building2, PawPrint, Banknote } from "lucide-react";
+import { GraduationCap, Code, Building2 } from "lucide-react";
 import { useState } from "react";
 
 import presecImg from "@/assets/presec.jpg";
