@@ -18,7 +18,7 @@ const getTimeGreeting = () => {
   if (hour >= 12 && hour < 17) {
     const afternoons = [
       "Good afternoon 👋 How's your day going?",
-      "Hey! Afternoon vibes hitting right?",
+      "Afternoon vibes hitting right?",
       "Hope your afternoon's going smooth 🚀",
     ];
     return afternoons[Math.floor(Math.random() * afternoons.length)];
@@ -27,14 +27,14 @@ const getTimeGreeting = () => {
     const evenings = [
       "Good evening 🌅 Winding down or just getting started?",
       "Evening! Still got some energy left? 💪",
-      "Hey, nice evening isn't it? 🌇",
+      "Nice evening isn't it? 🌇",
     ];
     return evenings[Math.floor(Math.random() * evenings.length)];
   }
   const nights = [
     "Still up? Night owls build the best things 🦉",
     "Late night coding session? I respect that 🌙",
-    "Hey night owl 🌙 Can't sleep either?",
+    "Can't sleep either? 🌙",
   ];
   return nights[Math.floor(Math.random() * nights.length)];
 };
