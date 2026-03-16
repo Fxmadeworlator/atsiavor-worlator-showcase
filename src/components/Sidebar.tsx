@@ -18,6 +18,7 @@ const Sidebar = () => {
 
   const expandedItems = [
     { icon: Wrench, label: "Tool Stack", path: "/toolstack" },
+    { icon: CandlestickChart, label: "Trading", path: "/trading" },
   ];
 
   const bottomItems = [
