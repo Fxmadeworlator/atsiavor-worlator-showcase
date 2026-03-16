@@ -90,7 +90,6 @@ export default function Trading() {
                 <div className="flex items-center justify-between mb-3">
                   <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                   {stat.trend === "up" && <TrendingUp className="w-4 h-4 text-green-500" />}
-                  {stat.trend === "down" && <TrendingDown className="w-4 h-4 text-red-500" />}
                 </div>
                 <p className="text-3xl font-bold mb-1">{stat.value}</p>
                 <p className="text-sm text-muted-foreground">{stat.label}</p>
