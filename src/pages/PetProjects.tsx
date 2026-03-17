@@ -238,34 +238,6 @@ export default function PetProjects() {
 
           {/* Project Cards Section */}
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
-            <ProjectCard
-              title="Ootie App"
-              subtitle="pet care & social app<br />2024 - Present"
-              live="https://ootie-web.vercel.app/"
-            >
-              {expandedProject === "Ootie App" && (
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                    A comprehensive pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services in their area.
-                  </p>
-                </div>
-              )}
-            </ProjectCard>
-
-            <ProjectCard
-              title="Portfolio Site"
-              subtitle="personal showcase<br />2024"
-              live="/"
-            >
-              {expandedProject === "Portfolio Site" && (
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                    This very website! A clean, minimal portfolio built to showcase my work and journey as a developer using React, TypeScript, and Tailwind CSS.
-                  </p>
-                </div>
-              )}
-            </ProjectCard>
-
             <div className="lg:col-span-2">
               <ProjectCard
                 title="Experimental Projects"

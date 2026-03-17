@@ -110,19 +110,6 @@ export default function Experience() {
               )}
             </ProjectCard>
 
-            <ProjectCard
-              title="Maxwell's Portfolio"
-             subtitle="coming soon<br />2025"
-              live="https://maxwellandoh.vercel.app/"
-            >
-              {expandedProject === "Maxwell's Portfolio" && (
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
-                  <p className="text-muted-foreground" style={{ fontSize: "1.1rem" }}>
-                   More details coming soon...
-                  </p>
-                </div>
-              )}
-            </ProjectCard>
 
               <ProjectCard
                title="Next Project"
