@@ -65,23 +65,33 @@ const GeminiLogo = () => (
 );
 
 const MT4Logo = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5">
-    <rect fill="#2B4480" rx="3" width="24" height="24"/>
-    <text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" fontFamily="Arial">MT4</text>
+  <svg viewBox="0 0 800 800" className="h-5 w-5">
+    <rect width="800" height="800" rx="80" fill="#06233C"/>
+    <path d="M200 580V300l120 160 120-160v280" stroke="#fff" strokeWidth="50" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <line x1="470" y1="300" x2="470" y2="580" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
+    <line x1="390" y1="300" x2="550" y2="300" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
+    <path d="M620 380V300h-50l50-80 50 80h-50v200" stroke="#4CB7F5" strokeWidth="45" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const MT5Logo = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5">
-    <rect fill="#1D8CF8" rx="3" width="24" height="24"/>
-    <text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" fontFamily="Arial">MT5</text>
+  <svg viewBox="0 0 800 800" className="h-5 w-5">
+    <rect width="800" height="800" rx="80" fill="#06233C"/>
+    <path d="M200 580V300l120 160 120-160v280" stroke="#fff" strokeWidth="50" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    <line x1="470" y1="300" x2="470" y2="580" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
+    <line x1="390" y1="300" x2="550" y2="300" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
+    <path d="M580 300h80v0c0 0 0 60-40 80s-40 80-40 80v0h80" stroke="#E8792F" strokeWidth="45" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const TradingViewLogo = () => (
   <svg viewBox="0 0 36 28" className="h-5 w-5">
-    <path fill="#2962FF" d="M14 22H7V6h7v16zM21 22h-5V11h5v11zM28 22h-5V2h5v20z"/>
-    <circle fill="#2962FF" cx="10.5" cy="3" r="3"/>
+    <rect width="36" height="28" rx="4" fill="#131722"/>
+    <circle cx="8" cy="11" r="2.5" fill="#2962FF"/>
+    <path d="M8 13.5V22" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M15 8v14" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M22 5v17" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M29 10v12" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
   </svg>
 );
 
@@ -137,35 +147,37 @@ const NotionLogo = () => (
   </svg>
 );
 
-const MeetLogo = () => (
-  <svg viewBox="0 0 24 24" className="h-6 w-6">
-    <path fill="#00832D" d="M12 12.75c1.63 0 3.07.39 4.24.97l2.77-2.77A9.96 9.96 0 0 0 12 9c-2.79 0-5.33 1.08-7.24 2.84l2.77 2.78A6.47 6.47 0 0 1 12 12.75z"/>
-    <path fill="#0066DA" d="M12 15.5c-.81 0-1.55.31-2.12.81l2.12 2.12 2.12-2.12c-.57-.5-1.31-.81-2.12-.81z"/>
-    <path fill="#E94235" d="M7.53 14.62l-2.77-2.78C3.33 13.25 2.5 15.04 2.5 17h4c0-1.04.4-1.98 1.03-2.38z"/>
-    <path fill="#F9AB00" d="M17.5 17h4c0-1.96-.83-3.75-2.26-5.16l-2.77 2.78c.63.5 1.03 1.34 1.03 2.38z"/>
-    <rect fill="#00832D" x="3" y="17" width="18" height="4" rx="1"/>
-  </svg>
-);
-
 const PinterestLogo = () => (
   <svg viewBox="0 0 24 24" className="h-6 w-6">
     <path fill="#E60023" d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
   </svg>
 );
 
+const MeetLogo = () => (
+  <svg viewBox="0 0 24 24" className="h-6 w-6">
+    <path fill="#00832D" d="M22 11v2l-4 2.5V18c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2.5L22 11z"/>
+    <path fill="#0066DA" d="M18 8.5L22 6v2l-4 2.5V8.5z"/>
+    <path fill="#00832D" d="M18 13.5L22 16v2l-4-2.5V13.5z"/>
+    <rect fill="#fff" x="7" y="9" width="8" height="6" rx="0.5" opacity="0.3"/>
+  </svg>
+);
+
 const ZoomLogo = () => (
   <svg viewBox="0 0 24 24" className="h-6 w-6">
-    <path fill="#2D8CFF" d="M4.585 9.588h8.59v4.823H4.584V9.588zm15.267-4.79c-.304-.15-.66-.15-.964.002l-3.455 1.705v11.002l3.455 1.7c.61.302 1.327-.103 1.327-.75V5.547c0-.324-.163-.608-.363-.75zM2.117 5.996a.995.995 0 0 0-.995.996v9.012c0 .55.444.996.995.996h12.056c.55 0 .995-.445.995-.996V6.992a.996.996 0 0 0-.995-.996H2.117z"/>
+    <rect width="24" height="24" rx="5" fill="#2D8CFF"/>
+    <rect x="3.5" y="7" width="11" height="10" rx="2" fill="#fff"/>
+    <path d="M15.5 10l4.5-2.5v9L15.5 14V10z" fill="#fff"/>
   </svg>
 );
 
 const CalendarLogo = () => (
   <svg viewBox="0 0 24 24" className="h-6 w-6">
-    <path fill="#4285F4" d="M17 2h-2V1h-2v1H7V1H5v1H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2h-2zm0 16H3V8h14v10z"/>
-    <path fill="#EA4335" d="M12 9.5l-5.5 5.5 1.41 1.41L12 12.33l4.09 4.08 1.41-1.41z"/>
-    <rect fill="#FBBC04" x="6" y="10" width="3" height="2"/>
-    <rect fill="#34A853" x="11" y="10" width="3" height="2"/>
-    <rect fill="#4285F4" x="6" y="14" width="3" height="2"/>
+    <path fill="#4285F4" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10z"/>
+    <rect fill="#EA4335" x="7" y="11" width="3" height="3" rx="0.5"/>
+    <rect fill="#FBBC04" x="11" y="11" width="3" height="3" rx="0.5"/>
+    <rect fill="#34A853" x="15" y="11" width="3" height="3" rx="0.5"/>
+    <rect fill="#4285F4" x="7" y="15" width="3" height="3" rx="0.5"/>
+    <rect fill="#0F9D58" x="11" y="15" width="3" height="3" rx="0.5"/>
   </svg>
 );
 
