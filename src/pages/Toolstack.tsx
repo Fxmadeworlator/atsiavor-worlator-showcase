@@ -64,6 +64,27 @@ const GeminiLogo = () => (
   </svg>
 );
 
+const MT4Logo = () => (
+  <svg viewBox="0 0 24 24" className="h-5 w-5">
+    <rect fill="#2B4480" rx="3" width="24" height="24"/>
+    <text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" fontFamily="Arial">MT4</text>
+  </svg>
+);
+
+const MT5Logo = () => (
+  <svg viewBox="0 0 24 24" className="h-5 w-5">
+    <rect fill="#1D8CF8" rx="3" width="24" height="24"/>
+    <text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold" fontFamily="Arial">MT5</text>
+  </svg>
+);
+
+const TradingViewLogo = () => (
+  <svg viewBox="0 0 36 28" className="h-5 w-5">
+    <path fill="#2962FF" d="M14 22H7V6h7v16zM21 22h-5V11h5v11zM28 22h-5V2h5v20z"/>
+    <circle fill="#2962FF" cx="10.5" cy="3" r="3"/>
+  </svg>
+);
+
 /* ----------  Other tools logos  ---------- */
 const ExcelLogo = () => (
   <svg viewBox="0 0 24 24" className="h-6 w-6">
