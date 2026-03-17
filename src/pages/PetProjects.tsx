@@ -18,20 +18,12 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Personal Portfolio",
+    title: "Maxwell",
     description:
-      "This very website you're looking at! A clean, minimal portfolio showcasing my work and journey as a developer.",
-    techStack: ["React", "TypeScript", "Tailwind CSS"],
-    image: project1,
-    live: "/",
-  },
-  {
-    title: "Ootie",
-    description:
-      "A pet care and social app that helps owners manage their pets' health, share responsibilities with family, and discover trusted pet services.",
-    techStack: ["React Native", "TypeScript", "Supabase"],
-    image: projectOotie,
-    live: "https://ootie-web.vercel.app/",
+      "An AI-powered assistant project exploring natural language processing and conversational interfaces.",
+    techStack: ["Python", "OpenAI", "FastAPI"],
+    image: projectMaxwell,
+    live: "#",
   },
   {
     title: "AGTV",
@@ -39,14 +31,6 @@ const projects: Project[] = [
       "A streaming platform concept designed for African content creators and viewers to connect through authentic storytelling.",
     techStack: ["React", "Node.js", "MongoDB"],
     image: projectAgtv,
-    live: "#",
-  },
-  {
-    title: "Maxwell",
-    description:
-      "An AI-powered assistant project exploring natural language processing and conversational interfaces.",
-    techStack: ["Python", "OpenAI", "FastAPI"],
-    image: projectMaxwell,
     live: "#",
   },
 ];
