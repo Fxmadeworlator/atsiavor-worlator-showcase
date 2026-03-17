@@ -3,10 +3,8 @@ import ProjectsSidebar from "@/components/ProjectsSidebar";
 import MobileNav from "@/components/MobileNav";
 import { ChevronLeft, ChevronRight, ExternalLink, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import projectOotie from "@/assets/project-ootie.jpg";
 import projectAgtv from "@/assets/project-agtv.jpg";
 import projectMaxwell from "@/assets/project-maxwell.jpg";
-import project1 from "@/assets/project-1.jpg";
 
 interface Project {
   title: string;
