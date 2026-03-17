@@ -312,12 +312,9 @@ const Toolstack = () => {
         </div>
 
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-          {/* Row 1: Design & Prototyping | Development */}
-          <ToolCategory category={toolGroups[0].category} tools={toolGroups[0].tools} />
-          <ToolCategory category={toolGroups[1].category} tools={toolGroups[1].tools} />
-          {/* Row 2: No-Code | AI & Productivity */}
-          <ToolCategory category={toolGroups[2].category} tools={toolGroups[2].tools} />
-          <ToolCategory category={toolGroups[3].category} tools={toolGroups[3].tools} />
+          {toolGroups.map((group, i) => (
+            <ToolCategory key={i} category={group.category} tools={group.tools} />
+          ))}
         </div>
 
         <OtherTools />
