@@ -284,6 +284,14 @@ const Toolstack = () => {
         { name: "Gemini", logo: <GeminiLogo /> },
       ],
     },
+    {
+      category: "Trading",
+      tools: [
+        { name: "MetaTrader 4", logo: <MT4Logo /> },
+        { name: "MetaTrader 5", logo: <MT5Logo /> },
+        { name: "TradingView", logo: <TradingViewLogo /> },
+      ],
+    },
   ];
 
   return (
