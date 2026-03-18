@@ -65,34 +65,15 @@ const GeminiLogo = () => (
 );
 
 const MT4Logo = () => (
-  <svg viewBox="0 0 800 800" className="h-5 w-5">
-    <rect width="800" height="800" rx="80" fill="#06233C"/>
-    <path d="M200 580V300l120 160 120-160v280" stroke="#fff" strokeWidth="50" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="470" y1="300" x2="470" y2="580" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
-    <line x1="390" y1="300" x2="550" y2="300" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
-    <path d="M620 380V300h-50l50-80 50 80h-50v200" stroke="#4CB7F5" strokeWidth="45" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+  <img src="https://www.metatrader4.com/i/favicon.ico" alt="MetaTrader 4" className="h-5 w-5 rounded" />
 );
 
 const MT5Logo = () => (
-  <svg viewBox="0 0 800 800" className="h-5 w-5">
-    <rect width="800" height="800" rx="80" fill="#06233C"/>
-    <path d="M200 580V300l120 160 120-160v280" stroke="#fff" strokeWidth="50" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="470" y1="300" x2="470" y2="580" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
-    <line x1="390" y1="300" x2="550" y2="300" stroke="#fff" strokeWidth="50" strokeLinecap="round"/>
-    <path d="M580 300h80v0c0 0 0 60-40 80s-40 80-40 80v0h80" stroke="#E8792F" strokeWidth="45" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+  <img src="https://www.metatrader5.com/i/favicon.ico" alt="MetaTrader 5" className="h-5 w-5 rounded" />
 );
 
 const TradingViewLogo = () => (
-  <svg viewBox="0 0 36 28" className="h-5 w-5">
-    <rect width="36" height="28" rx="4" fill="#131722"/>
-    <circle cx="8" cy="11" r="2.5" fill="#2962FF"/>
-    <path d="M8 13.5V22" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M15 8v14" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M22 5v17" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
-    <path d="M29 10v12" stroke="#2962FF" strokeWidth="2.5" strokeLinecap="round"/>
-  </svg>
+  <img src="https://static.tradingview.com/static/images/favicon.ico" alt="TradingView" className="h-5 w-5 rounded" />
 );
 
 /* ----------  Other tools logos  ---------- */

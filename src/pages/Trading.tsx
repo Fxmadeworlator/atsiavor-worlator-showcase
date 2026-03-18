@@ -15,6 +15,7 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 
 /* ───── STATS ───── */
@@ -163,60 +164,138 @@ const MonthCalendar = ({ monthIndex, year }: { monthIndex: number; year: number 
   );
 };
 
-/* ───── PROP FIRM CARD ───── */
-const PropFirmCard = ({ firm }: { firm: PropFirmPayout }) => {
-  const [expanded, setExpanded] = useState(false);
+/* ───── FLATTENED GALLERY ITEMS ───── */
+interface GalleryItem {
+  firm: string;
+  color: string;
+  logo: string;
+  amount: string;
+  date: string;
+  certImage: string;
+}
+
+const allPayoutItems: GalleryItem[] = propFirmPayouts.flatMap((f) =>
+  f.payouts.map((p) => ({
+    firm: f.firm,
+    color: f.color,
+    logo: f.logo,
+    ...p,
+  }))
+);
+
+/* ───── PAYOUT GALLERY DIALOG ───── */
+const PayoutGallery = () => {
+  const [open, setOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const openAtFirm = (firmName: string) => {
+    const idx = allPayoutItems.findIndex((item) => item.firm === firmName);
+    setCurrentIndex(idx >= 0 ? idx : 0);
+    setOpen(true);
+  };
+
+  const prev = () => setCurrentIndex((i) => (i > 0 ? i - 1 : allPayoutItems.length - 1));
+  const next = () => setCurrentIndex((i) => (i < allPayoutItems.length - 1 ? i + 1 : 0));
+
+  const current = allPayoutItems[currentIndex];
 
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className={`w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold border ${firm.color}`}
+    <>
+      {/* Firm list */}
+      <div className="space-y-3">
+        {propFirmPayouts.map((firm) => (
+          <button
+            key={firm.firm}
+            onClick={() => openAtFirm(firm.firm)}
+            className="w-full rounded-xl border border-border bg-card overflow-hidden flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
           >
-            {firm.logo}
-          </div>
-          <div className="text-left">
-            <p className="font-medium text-sm">{firm.firm}</p>
-            <p className="text-xs text-muted-foreground">
-              {firm.payouts.length} payout{firm.payouts.length > 1 ? "s" : ""}
-            </p>
-          </div>
-        </div>
-        {expanded ? (
-          <ChevronUp className="w-4 h-4 text-muted-foreground" />
-        ) : (
-          <ChevronDown className="w-4 h-4 text-muted-foreground" />
-        )}
-      </button>
-
-      {expanded && (
-        <div className="px-4 pb-4 space-y-3 border-t border-border/50">
-          {firm.payouts.map((p, i) => (
-            <div key={i} className="mt-3">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-green-500">{p.amount}</span>
-                <span className="text-xs text-muted-foreground">{p.date}</span>
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold border ${firm.color}`}
+              >
+                {firm.logo}
               </div>
-              {p.certImage ? (
+              <div className="text-left">
+                <p className="font-medium text-sm">{firm.firm}</p>
+                <p className="text-xs text-muted-foreground">
+                  {firm.payouts.length} payout{firm.payouts.length > 1 ? "s" : ""}
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          </button>
+        ))}
+      </div>
+
+      {/* Gallery Dialog */}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/80 animate-in fade-in"
+            onClick={() => setOpen(false)}
+          />
+          <div className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-card border border-border overflow-hidden animate-in fade-in zoom-in-95">
+            {/* Header with firm name */}
+            <div className="flex items-center justify-between p-4 border-b border-border/50">
+              <div className="flex items-center gap-2">
+                <div
+                  className={`w-7 h-7 rounded-md flex items-center justify-center text-[10px] font-bold border ${current.color}`}
+                >
+                  {current.logo}
+                </div>
+                <span className="text-sm font-semibold">{current.firm}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">
+                  {currentIndex + 1} / {allPayoutItems.length}
+                </span>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="p-1.5 rounded-md hover:bg-muted transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Image area */}
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-green-500">{current.amount}</span>
+                <span className="text-xs text-muted-foreground">{current.date}</span>
+              </div>
+              {current.certImage ? (
                 <img
-                  src={p.certImage}
-                  alt={`${firm.firm} payout certificate`}
+                  src={current.certImage}
+                  alt={`${current.firm} payout certificate`}
                   className="w-full rounded-lg border border-border"
                 />
               ) : (
-                <div className="w-full h-32 rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground">
+                <div className="w-full h-48 rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground">
                   Payout certificate — add image
                 </div>
               )}
             </div>
-          ))}
+
+            {/* Navigation */}
+            <div className="flex items-center justify-between p-4 border-t border-border/50">
+              <button
+                onClick={prev}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-muted transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" /> Prev
+              </button>
+              <button
+                onClick={next}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-muted transition-colors"
+              >
+                Next <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
@@ -250,10 +329,16 @@ export default function Trading() {
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Trading Dashboard</h1>
-          <p className="text-lg text-muted-foreground max-w-xl mb-5">
+          <p className="text-lg text-muted-foreground max-w-xl mb-3">
             Live performance metrics from my trading activity across forex, indices, crypto, and
             commodities.
           </p>
+          <div className="flex items-center gap-2 mb-5">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+              <Clock className="w-3 h-3" />
+              Updated monthly
+            </span>
+          </div>
           <div className="flex items-center gap-3">
             <a
               href="https://x.com/worlator_"
@@ -420,11 +505,7 @@ export default function Trading() {
                 Verified payouts from funded accounts
               </p>
 
-              <div className="space-y-3">
-                {propFirmPayouts.map((firm) => (
-                  <PropFirmCard key={firm.firm} firm={firm} />
-                ))}
-              </div>
+              <PayoutGallery />
             </div>
           </div>
 
