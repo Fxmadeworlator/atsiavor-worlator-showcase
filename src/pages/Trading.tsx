@@ -329,16 +329,10 @@ export default function Trading() {
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Trading Dashboard</h1>
-          <p className="text-lg text-muted-foreground max-w-xl mb-3">
-            Live performance metrics from my trading activity across forex, indices, crypto, and
-            commodities.
+          <p className="text-lg text-muted-foreground max-w-xl mb-5">
+            Performance metrics from my trading activity across forex, indices, crypto, and
+            commodities — updated monthly.
           </p>
-          <div className="flex items-center gap-2 mb-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
-              <Clock className="w-3 h-3" />
-              Updated monthly
-            </span>
-          </div>
           <div className="flex items-center gap-3">
             <a
               href="https://x.com/worlator_"
