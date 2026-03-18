@@ -222,7 +222,9 @@ const PayoutGallery = () => {
                 </p>
               </div>
             </div>
-            <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            </div>
           </button>
         ))}
       </div>
