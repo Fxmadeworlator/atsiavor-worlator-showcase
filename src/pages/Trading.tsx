@@ -505,11 +505,7 @@ export default function Trading() {
                 Verified payouts from funded accounts
               </p>
 
-              <div className="space-y-3">
-                {propFirmPayouts.map((firm) => (
-                  <PropFirmCard key={firm.firm} firm={firm} />
-                ))}
-              </div>
+              <PayoutGallery />
             </div>
           </div>
 
