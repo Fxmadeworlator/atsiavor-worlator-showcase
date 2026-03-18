@@ -222,77 +222,74 @@ const PayoutGallery = () => {
                 </p>
               </div>
             </div>
-            <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            </div>
           </button>
         ))}
       </div>
 
-      {/* Gallery Dialog */}
+      {/* Fullscreen Gallery Overlay */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-black/80 animate-in fade-in"
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-in fade-in">
+          {/* Close button */}
+          <button
             onClick={() => setOpen(false)}
-          />
-          <div className="relative z-10 w-full max-w-lg mx-4 rounded-2xl bg-card border border-border overflow-hidden animate-in fade-in zoom-in-95">
-            {/* Header with firm name */}
-            <div className="flex items-center justify-between p-4 border-b border-border/50">
-              <div className="flex items-center gap-2">
-                <div
-                  className={`w-7 h-7 rounded-md flex items-center justify-center text-[10px] font-bold border ${current.color}`}
-                >
-                  {current.logo}
-                </div>
-                <span className="text-sm font-semibold">{current.firm}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">
-                  {currentIndex + 1} / {allPayoutItems.length}
-                </span>
-                <button
-                  onClick={() => setOpen(false)}
-                  className="p-1.5 rounded-md hover:bg-muted transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+            className="absolute top-6 right-6 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <X className="w-5 h-5 text-white" />
+          </button>
 
-            {/* Image area */}
-            <div className="p-4">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-green-500">{current.amount}</span>
-                <span className="text-xs text-muted-foreground">{current.date}</span>
-              </div>
-              {current.certImage ? (
-                <img
-                  src={current.certImage}
-                  alt={`${current.firm} payout certificate`}
-                  className="w-full rounded-lg border border-border"
-                />
-              ) : (
-                <div className="w-full h-48 rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground">
-                  Payout certificate — add image
-                </div>
-              )}
+          {/* Firm name + counter top-left */}
+          <div className="absolute top-6 left-6 z-10 flex items-center gap-3">
+            <div
+              className={`w-8 h-8 rounded-md flex items-center justify-center text-[10px] font-bold border ${current.color}`}
+            >
+              {current.logo}
             </div>
-
-            {/* Navigation */}
-            <div className="flex items-center justify-between p-4 border-t border-border/50">
-              <button
-                onClick={prev}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-muted transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" /> Prev
-              </button>
-              <button
-                onClick={next}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-muted transition-colors"
-              >
-                Next <ChevronRight className="w-4 h-4" />
-              </button>
+            <div>
+              <p className="text-sm font-semibold text-white">{current.firm}</p>
+              <p className="text-xs text-white/50">
+                {current.amount} · {current.date}
+              </p>
             </div>
           </div>
+
+          {/* Counter bottom-center */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-xs text-white/50">
+            {currentIndex + 1} / {allPayoutItems.length}
+          </div>
+
+          {/* Prev button */}
+          <button
+            onClick={prev}
+            className="absolute left-4 md:left-8 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
+
+          {/* Image */}
+          <div className="max-w-4xl w-full mx-4 md:mx-16">
+            {current.certImage ? (
+              <img
+                src={current.certImage}
+                alt={`${current.firm} payout certificate`}
+                className="w-full rounded-xl shadow-2xl"
+              />
+            ) : (
+              <div className="w-full aspect-video rounded-xl border border-dashed border-white/20 flex items-center justify-center text-sm text-white/40">
+                Payout certificate — add image
+              </div>
+            )}
+          </div>
+
+          {/* Next button */}
+          <button
+            onClick={next}
+            className="absolute right-4 md:right-8 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
         </div>
       )}
     </>
@@ -329,16 +326,10 @@ export default function Trading() {
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Trading Dashboard</h1>
-          <p className="text-lg text-muted-foreground max-w-xl mb-3">
-            Live performance metrics from my trading activity across forex, indices, crypto, and
-            commodities.
+          <p className="text-lg text-muted-foreground max-w-xl mb-5">
+            Performance metrics from my trading activity across forex, indices, crypto, and
+            commodities — updated monthly.
           </p>
-          <div className="flex items-center gap-2 mb-5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
-              <Clock className="w-3 h-3" />
-              Updated monthly
-            </span>
-          </div>
           <div className="flex items-center gap-3">
             <a
               href="https://x.com/worlator_"
