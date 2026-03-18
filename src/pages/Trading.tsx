@@ -15,6 +15,7 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 
 /* ───── STATS ───── */
