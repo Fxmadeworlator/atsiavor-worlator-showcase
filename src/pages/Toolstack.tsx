@@ -64,16 +64,20 @@ const GeminiLogo = () => (
   </svg>
 );
 
+import mt4Favicon from "@/assets/mt4-favicon.ico";
+import mt5Favicon from "@/assets/mt5-favicon.ico";
+import tvFavicon from "@/assets/tv-favicon.ico";
+
 const MT4Logo = () => (
-  <img src="https://www.metatrader4.com/i/favicon.ico" alt="MetaTrader 4" className="h-5 w-5 rounded" />
+  <img src={mt4Favicon} alt="MetaTrader 4" className="h-5 w-5 rounded" />
 );
 
 const MT5Logo = () => (
-  <img src="https://www.metatrader5.com/i/favicon.ico" alt="MetaTrader 5" className="h-5 w-5 rounded" />
+  <img src={mt5Favicon} alt="MetaTrader 5" className="h-5 w-5 rounded" />
 );
 
 const TradingViewLogo = () => (
-  <img src="https://static.tradingview.com/static/images/favicon.ico" alt="TradingView" className="h-5 w-5 rounded" />
+  <img src={tvFavicon} alt="TradingView" className="h-5 w-5 rounded" />
 );
 
 /* ----------  Other tools logos  ---------- */
