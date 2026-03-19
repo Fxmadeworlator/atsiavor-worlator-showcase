@@ -9,7 +9,6 @@ import projectMaxwell from "@/assets/project-maxwell.jpg";
 interface Project {
   title: string;
   description: string;
-  techStack: string[];
   image: string;
   live: string;
 }
@@ -18,16 +17,14 @@ const projects: Project[] = [
   {
     title: "Maxwell",
     description:
-      "An AI-powered assistant project exploring natural language processing and conversational interfaces.",
-    techStack: ["Python", "OpenAI", "FastAPI"],
+      "A photography portfolio website for Maxwell Andoh, showcasing his selected work, visual stories, and creative vision.",
     image: projectMaxwell,
-    live: "#",
+    live: "https://maxwellandoh.vercel.app/",
   },
   {
     title: "AGTV",
     description:
       "A streaming platform concept designed for African content creators and viewers to connect through authentic storytelling.",
-    techStack: ["React", "Node.js", "MongoDB"],
     image: projectAgtv,
     live: "#",
   },
