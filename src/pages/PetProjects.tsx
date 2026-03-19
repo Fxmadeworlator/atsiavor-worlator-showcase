@@ -168,20 +168,11 @@ export default function PetProjects() {
                   }`}>
                     {currentProject.description}
                   </p>
-                  <div className={`flex flex-wrap gap-2 mb-5 transition-all duration-500 delay-100 ${
-                    isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                  }`}>
-                    {currentProject.techStack.map((t, i) => (
-                      <span key={i} className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
                   {currentProject.live !== "#" && (
                     <Button 
                       variant="secondary" 
                       size="sm" 
-                      className={`bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm transition-all duration-500 delay-150 ${
+                      className={`bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm transition-all duration-500 delay-100 ${
                         isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                       }`} 
                       asChild
