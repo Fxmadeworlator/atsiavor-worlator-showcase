@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -188,108 +188,135 @@ const PayoutGallery = () => {
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+      if (event.key === "ArrowLeft") {
+        setCurrentIndex((index) => (index > 0 ? index - 1 : allPayoutItems.length - 1));
+      }
+      if (event.key === "ArrowRight") {
+        setCurrentIndex((index) => (index < allPayoutItems.length - 1 ? index + 1 : 0));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   const openAtFirm = (firmName: string) => {
     const idx = allPayoutItems.findIndex((item) => item.firm === firmName);
     setCurrentIndex(idx >= 0 ? idx : 0);
     setOpen(true);
   };
 
-  const prev = () => setCurrentIndex((i) => (i > 0 ? i - 1 : allPayoutItems.length - 1));
-  const next = () => setCurrentIndex((i) => (i < allPayoutItems.length - 1 ? i + 1 : 0));
+  const prev = () => setCurrentIndex((index) => (index > 0 ? index - 1 : allPayoutItems.length - 1));
+  const next = () => setCurrentIndex((index) => (index < allPayoutItems.length - 1 ? index + 1 : 0));
 
-  const current = allPayoutItems[currentIndex];
+  const current = allPayoutItems[currentIndex] ?? allPayoutItems[0];
 
   return (
     <>
-      {/* Firm list */}
       <div className="space-y-3">
         {propFirmPayouts.map((firm) => (
           <button
             key={firm.firm}
+            type="button"
             onClick={() => openAtFirm(firm.firm)}
-            className="w-full rounded-xl border border-border bg-card overflow-hidden flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
+            className="flex w-full items-center justify-between overflow-hidden rounded-xl border border-border bg-card p-4 transition-colors hover:bg-muted/30"
           >
             <div className="flex items-center gap-3">
               <div
-                className={`w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold border ${firm.color}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-lg border text-xs font-bold ${firm.color}`}
               >
                 {firm.logo}
               </div>
               <div className="text-left">
-                <p className="font-medium text-sm">{firm.firm}</p>
+                <p className="text-sm font-medium">{firm.firm}</p>
                 <p className="text-xs text-muted-foreground">
                   {firm.payouts.length} payout{firm.payouts.length > 1 ? "s" : ""}
                 </p>
               </div>
             </div>
-            <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors">
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-muted">
+              <ChevronRight className="h-4 w-4 text-foreground" />
+            </span>
           </button>
         ))}
       </div>
 
-      {/* Fullscreen Gallery Overlay */}
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 animate-in fade-in">
-          {/* Close button */}
-          <button
-            onClick={() => setOpen(false)}
-            className="absolute top-6 right-6 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-          >
-            <X className="w-5 h-5 text-white" />
-          </button>
-
-          {/* Firm name + counter top-left */}
-          <div className="absolute top-6 left-6 z-10 flex items-center gap-3">
-            <div
-              className={`w-8 h-8 rounded-md flex items-center justify-center text-[10px] font-bold border ${current.color}`}
+      {open && current && (
+        <div className="fixed inset-0 z-[60] h-screen w-screen bg-background/95 backdrop-blur-sm animate-in fade-in">
+          <div className="relative flex h-full w-full items-center justify-center overflow-hidden px-4 py-6 md:px-10 md:py-8">
+            <button
+              type="button"
+              aria-label="Close payout slideshow"
+              onClick={() => setOpen(false)}
+              className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:right-6 md:top-6"
             >
-              {current.logo}
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-white">{current.firm}</p>
-              <p className="text-xs text-white/50">
-                {current.amount} · {current.date}
-              </p>
-            </div>
-          </div>
+              <X className="h-5 w-5" />
+            </button>
 
-          {/* Counter bottom-center */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-xs text-white/50">
-            {currentIndex + 1} / {allPayoutItems.length}
-          </div>
-
-          {/* Prev button */}
-          <button
-            onClick={prev}
-            className="absolute left-4 md:left-8 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-white" />
-          </button>
-
-          {/* Image */}
-          <div className="max-w-4xl w-full mx-4 md:mx-16">
-            {current.certImage ? (
-              <img
-                src={current.certImage}
-                alt={`${current.firm} payout certificate`}
-                className="w-full rounded-xl shadow-2xl"
-              />
-            ) : (
-              <div className="w-full aspect-video rounded-xl border border-dashed border-white/20 flex items-center justify-center text-sm text-white/40">
-                Payout certificate — add image
+            <div className="absolute left-4 top-4 z-20 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-sm md:left-6 md:top-6">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-[10px] font-bold ${current.color}`}
+                >
+                  {current.logo}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{current.firm}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {current.amount} · {current.date}
+                  </p>
+                </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* Next button */}
-          <button
-            onClick={next}
-            className="absolute right-4 md:right-8 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <ChevronRight className="w-5 h-5 text-white" />
-          </button>
+            <button
+              type="button"
+              aria-label="Previous payout image"
+              onClick={prev}
+              className="absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:left-6"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            <div className="flex h-full w-full items-center justify-center px-12 md:px-20">
+              {current.certImage ? (
+                <img
+                  src={current.certImage}
+                  alt={`${current.firm} payout certificate`}
+                  className="max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
+                />
+              ) : (
+                <div className="flex h-full max-h-[80vh] w-full max-w-5xl items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 px-6 text-center text-sm text-muted-foreground">
+                  Payout certificate — add image
+                </div>
+              )}
+            </div>
+
+            <button
+              type="button"
+              aria-label="Next payout image"
+              onClick={next}
+              className="absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:right-6"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-border bg-card/90 px-4 py-2 text-xs text-muted-foreground shadow-sm md:bottom-6">
+              {currentIndex + 1} / {allPayoutItems.length}
+            </div>
+          </div>
         </div>
       )}
     </>
