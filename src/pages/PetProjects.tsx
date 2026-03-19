@@ -117,13 +117,8 @@ export default function PetProjects() {
     }
   }, [isTransitioning]);
 
-  // Auto-advance slideshow
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((i) => (i + 1) % projects.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+
+
 
   const currentProject = projects[currentIndex];
 
