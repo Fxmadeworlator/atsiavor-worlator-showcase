@@ -9,7 +9,6 @@ import projectMaxwell from "@/assets/project-maxwell.jpg";
 interface Project {
   title: string;
   description: string;
-  techStack: string[];
   image: string;
   live: string;
 }
@@ -18,16 +17,14 @@ const projects: Project[] = [
   {
     title: "Maxwell",
     description:
-      "An AI-powered assistant project exploring natural language processing and conversational interfaces.",
-    techStack: ["Python", "OpenAI", "FastAPI"],
+      "A photography portfolio website for Maxwell Andoh, showcasing his selected work, visual stories, and creative vision.",
     image: projectMaxwell,
-    live: "#",
+    live: "https://maxwellandoh.vercel.app/",
   },
   {
     title: "AGTV",
     description:
       "A streaming platform concept designed for African content creators and viewers to connect through authentic storytelling.",
-    techStack: ["React", "Node.js", "MongoDB"],
     image: projectAgtv,
     live: "#",
   },
@@ -171,20 +168,11 @@ export default function PetProjects() {
                   }`}>
                     {currentProject.description}
                   </p>
-                  <div className={`flex flex-wrap gap-2 mb-5 transition-all duration-500 delay-100 ${
-                    isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                  }`}>
-                    {currentProject.techStack.map((t, i) => (
-                      <span key={i} className="px-3 py-1 text-xs font-medium bg-white/15 backdrop-blur-sm text-white/90 rounded-full border border-white/10">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
                   {currentProject.live !== "#" && (
                     <Button 
                       variant="secondary" 
                       size="sm" 
-                      className={`bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm transition-all duration-500 delay-150 ${
+                      className={`bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm transition-all duration-500 delay-100 ${
                         isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
                       }`} 
                       asChild
