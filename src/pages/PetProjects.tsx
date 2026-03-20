@@ -143,41 +143,45 @@ export default function PetProjects() {
           <div className="max-w-6xl mx-auto mb-10">
             <div className="relative rounded-2xl border border-border overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
               <div className="relative w-full h-[500px] overflow-hidden">
-                <img
-                  src={currentProject.image}
-                  alt={currentProject.title}
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
-                    isTransitioning ? "opacity-0 scale-105" : "opacity-100 scale-100"
-                  }`}
-                />
+                {projects.map((project, i) => (
+                  <img
+                    key={project.title}
+                    src={project.image}
+                    alt={project.title}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                      currentIndex === i ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                    }`}
+                  />
+                ))}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <h2 className={`text-2xl md:text-3xl font-bold leading-tight mb-3 transition-all duration-500 ${
-                    isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                  }`}>
-                    {currentProject.title}
-                  </h2>
-                  <p className={`text-sm leading-relaxed text-white/85 max-w-lg mb-4 transition-all duration-500 delay-75 ${
-                    isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                  }`}>
-                    {currentProject.description}
-                  </p>
-                  {currentProject.live !== "#" && (
-                    <Button 
-                      variant="secondary" 
-                      size="sm" 
-                      className={`bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm transition-all duration-500 delay-100 ${
-                        isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                      }`} 
-                      asChild
-                    >
-                      <a href={currentProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4" /><span>View Live</span>
-                      </a>
-                    </Button>
-                  )}
-                </div>
+                {projects.map((project, i) => (
+                  <div
+                    key={project.title}
+                    className={`absolute bottom-0 left-0 right-0 p-8 text-white transition-all duration-500 ${
+                      currentIndex === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
+                  >
+                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">
+                      {project.title}
+                    </h2>
+                    <p className="text-sm leading-relaxed text-white/85 max-w-lg mb-4">
+                      {project.description}
+                    </p>
+                    {project.live !== "#" && (
+                      <Button 
+                        variant="secondary" 
+                        size="sm" 
+                        className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm" 
+                        asChild
+                      >
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" /><span>View Live</span>
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                ))}
 
                 {projects.length > 1 && (
                   <>
