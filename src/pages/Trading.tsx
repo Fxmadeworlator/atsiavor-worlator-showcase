@@ -254,51 +254,35 @@ const PayoutGallery = () => {
       </div>
 
       {open && current && (
-        <div className="fixed inset-0 z-[60] h-screen w-screen bg-background/95 backdrop-blur-sm animate-in fade-in">
-          <div className="relative flex h-full w-full items-center justify-center overflow-hidden px-4 py-6 md:px-10 md:py-8">
+        <div className="fixed inset-0 z-[60] h-screen w-screen bg-white dark:bg-black animate-in fade-in">
+          <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
             <button
               type="button"
               aria-label="Close payout slideshow"
               onClick={() => setOpen(false)}
-              className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:right-6 md:top-6"
+              className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center text-neutral-500 hover:text-foreground transition-colors"
             >
-              <X className="h-5 w-5" />
+              <X className="h-6 w-6" />
             </button>
-
-            <div className="absolute left-4 top-4 z-20 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-sm md:left-6 md:top-6">
-              <div className="flex items-center gap-3">
-                <div
-                  className={`flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-[10px] font-bold ${current.color}`}
-                >
-                  {current.logo}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{current.firm}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {current.amount} · {current.date}
-                  </p>
-                </div>
-              </div>
-            </div>
 
             <button
               type="button"
               aria-label="Previous payout image"
               onClick={prev}
-              className="absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:left-6"
+              className="absolute left-4 top-1/2 z-20 -translate-y-1/2 text-neutral-400 hover:text-foreground transition-colors md:left-8"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-8 w-8" />
             </button>
 
-            <div className="flex h-full w-full items-center justify-center px-12 md:px-20">
+            <div className="flex h-full w-full items-center justify-center px-16 py-16 md:px-24">
               {current.certImage ? (
                 <img
                   src={current.certImage}
                   alt={`${current.firm} payout certificate`}
-                  className="max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
+                  className="max-h-full max-w-full object-contain"
                 />
               ) : (
-                <div className="flex h-full max-h-[80vh] w-full max-w-5xl items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 px-6 text-center text-sm text-muted-foreground">
+                <div className="flex h-full max-h-[80vh] w-full max-w-5xl items-center justify-center rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 text-center text-sm text-neutral-400">
                   Payout certificate — add image
                 </div>
               )}
@@ -308,12 +292,12 @@ const PayoutGallery = () => {
               type="button"
               aria-label="Next payout image"
               onClick={next}
-              className="absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-sm transition-colors hover:bg-muted md:right-6"
+              className="absolute right-4 top-1/2 z-20 -translate-y-1/2 text-neutral-400 hover:text-foreground transition-colors md:right-8"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-8 w-8" />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-border bg-card/90 px-4 py-2 text-xs text-muted-foreground shadow-sm md:bottom-6">
+            <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 text-sm text-neutral-400">
               {currentIndex + 1} / {allPayoutItems.length}
             </div>
           </div>
