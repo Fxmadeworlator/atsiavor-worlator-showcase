@@ -254,8 +254,8 @@ const PayoutGallery = () => {
         ))}
       </div>
 
-      {open && current && (
-        <div className="fixed inset-0 z-[60] h-screen w-screen bg-white dark:bg-black animate-in fade-in">
+      {open && current && createPortal(
+        <div className="fixed inset-0 z-[9999] h-screen w-screen bg-white dark:bg-black animate-in fade-in">
           <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
             <button
               type="button"
@@ -302,7 +302,8 @@ const PayoutGallery = () => {
               {currentIndex + 1} / {allPayoutItems.length}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
