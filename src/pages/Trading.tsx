@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -253,8 +254,8 @@ const PayoutGallery = () => {
         ))}
       </div>
 
-      {open && current && (
-        <div className="fixed inset-0 z-[60] h-screen w-screen bg-white dark:bg-black animate-in fade-in">
+      {open && current && createPortal(
+        <div className="fixed inset-0 z-[9999] h-screen w-screen bg-white dark:bg-black animate-in fade-in">
           <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
             <button
               type="button"
@@ -301,7 +302,8 @@ const PayoutGallery = () => {
               {currentIndex + 1} / {allPayoutItems.length}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
