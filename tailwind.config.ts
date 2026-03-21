@@ -108,6 +108,15 @@ export default {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(-45deg)" },
         },
+        "roll-off-right": {
+          "0%": { transform: "translateX(0)" },
+          "10%": { transform: "translateX(-10px)" },
+          "100%": { transform: "translateX(200vw)" },
+        },
+        "spin-wheels": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(720deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -116,6 +125,8 @@ export default {
         "infinite-scroll-fast": "infinite-scroll 10s linear infinite",
         "fly-to-contact": "fly-to-contact 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
         "spin-slow": "spin-slow 0.3s ease-out forwards",
+        "roll-off-right": "roll-off-right 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        "spin-wheels": "spin-wheels 1.5s linear",
       },
     },
   },
