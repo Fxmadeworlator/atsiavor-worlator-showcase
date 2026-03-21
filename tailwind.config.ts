@@ -108,6 +108,15 @@ export default {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(-45deg)" },
         },
+        "roll-off-right": {
+          "0%": { transform: "translateX(0)" },
+          "10%": { transform: "translateX(-10px)" },
+          "100%": { transform: "translateX(200vw)" },
+        },
+        "spin-wheels": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(720deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
