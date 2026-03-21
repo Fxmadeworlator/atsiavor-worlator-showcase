@@ -125,6 +125,8 @@ export default {
         "infinite-scroll-fast": "infinite-scroll 10s linear infinite",
         "fly-to-contact": "fly-to-contact 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
         "spin-slow": "spin-slow 0.3s ease-out forwards",
+        "roll-off-right": "roll-off-right 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        "spin-wheels": "spin-wheels 1.5s linear",
       },
     },
   },
